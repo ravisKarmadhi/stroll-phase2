@@ -322,7 +322,7 @@ $flexible_content = get_field('flexible_content');
                     <div class="dpt-175 tpt-135"></div>
                     <div class="container" data-aos="fade-right" data-aos-duration="1500">
                         <div class="row align-items-center">
-                            <div class="col-lg-5">
+                            <div class="col-lg-4">
                                 <?php if (!empty($left__right_side_image_content_prefix)) : ?>
                                     <label class="acid-normal fontX text-white lh-1 px-3 py-2 light-label-bg radiusEX lh-1"><?php echo $left__right_side_image_content_prefix; ?></label>
                                 <?php endif; ?>
@@ -341,8 +341,8 @@ $flexible_content = get_field('flexible_content');
                                 <?php endif; ?>
                             </div>
                             <?php if (!empty($left__right_side_image_content_image['url'])) : ?>
-                                <div class="col-lg-6 ms-auto tmt-35">
-                                    <div class="solutions-hero-img overflow-hidden radiusX ms-lg-5">
+                                <div class="col-lg-8 ms-auto tmt-35">
+                                    <div class="solutions-hero-img overflow-hidden radiusX ms-lg-4">
                                         <img src="<?php echo $left__right_side_image_content_image['url']; ?>" class="w-100 h-100 object-cover" alt="">
                                     </div>
                                 </div>
@@ -426,11 +426,12 @@ $flexible_content = get_field('flexible_content');
             <?php endif; ?>
             <?php elseif (get_row_layout() == 'three_icon_section') :
             $three_icon_section_items = get_sub_field('items');
+            $background_color = get_sub_field('background_color');
             if (!empty($three_icon_section_items)) :
             ?>
                 <!-- why choose us section -->
-                <section class="bgprimary">
-                    <div class="bgprimary radius-bottom-right dpt-180 tpt-55 dpb-150 tpb-60">
+                <section>
+                    <div class="<?= $background_color == 'dark' ? 'bgprimary' : 'bglightwhite' ?> radius-bottom-right dpt-180 tpt-55 dpb-150 tpb-60">
                         <div class="container pe-p-0" data-aos="fade-up">
                             <div class="row">
                                 <div class="col-12">
@@ -453,11 +454,11 @@ $flexible_content = get_field('flexible_content');
                     </div>
                 </section>
             <?php endif; ?>
-        <?php elseif (get_row_layout() == 'review') :
+            <?php elseif (get_row_layout() == 'review') :
             $review_heading = get_sub_field('heading');
             $review_button = get_sub_field('button');
             $review_items = get_sub_field('items');
-        ?>
+            ?>23
             <!-- case studies section -->
             <section class="<?php if (! get_sub_field('disable_background_colour')) : ?>bglightblack<?php else: ?><?php endif; ?> radius-bottom-right testimonial ">
                 <div class="container px-p-0" data-aos="fade-up">
@@ -550,6 +551,7 @@ $flexible_content = get_field('flexible_content');
                                     <?php foreach ($faq_items as $key => $faq_items_custom) :
                                         $clssname = ($key == '0') ? "show" : "";
                                         $clssname_value = ($key == '0') ? "true" : "false";
+                                        // $category = get_the_terms(   ,'');
                                     ?>
                                         <div class="bg-white border-0 mb-3 radiusES overflow-hidden">
                                             <h2 class="accordion-header" id="heading<?php echo $key; ?>">
@@ -1533,65 +1535,65 @@ $flexible_content = get_field('flexible_content');
             $hero_viemo = get_sub_field('hero_viemo');
         ?>
             <section class="hero-video-section h-vh position-relative overflow-hidden">
-                    <?php if ($media_type == 'image'): ?>
-                        <?php if (!empty($hero_image)): ?>
-                            <img src="<?= $hero_image; ?>" class="w-100 h-100 object-cover" alt="">
-                        <?php endif; ?>
-                    <?php elseif ($media_type == 'video'): ?>
-                        <?php if (!empty($hero_video)): ?>
-                            <video playsinline="playsinline" autoplay="autoplay" muted="muted" class="w-100 h-100 object-cover">
-                                <source src="<?= $hero_video ?>" type="video/mp4">
-                                </source>
-                            </video>
-                        <?php endif; ?>
-
-                    <?php elseif ($media_type == 'youtube'): ?>
-                        <?php if (!empty($hero_youtube)): ?>
-                            <iframe class="w-100 h-100 object-cover embed-video"
-                                src="<?= $hero_youtube; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline=<?= basename($hero_youtube) ?>"
-                                allow="autoplay; fullscreen">
-                            </iframe>
-                        <?php endif; ?>
-                    <?php elseif ($media_type == 'viemo'): ?>
-                        <?php if (!empty($hero_viemo)): ?>
-                            <iframe class="w-100 h-100 object-cover embed-video"
-                                src="<?= $hero_viemo; ?>?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay"
-                                allowfullscreen>
-                            </iframe>
-                        <?php endif; ?>
+                <?php if ($media_type == 'image'): ?>
+                    <?php if (!empty($hero_image)): ?>
+                        <img src="<?= $hero_image; ?>" class="w-100 h-100 object-cover" alt="">
+                    <?php endif; ?>
+                <?php elseif ($media_type == 'video'): ?>
+                    <?php if (!empty($hero_video)): ?>
+                        <video playsinline="playsinline" autoplay="autoplay" muted="muted" class="w-100 h-100 object-cover">
+                            <source src="<?= $hero_video ?>" type="video/mp4">
+                            </source>
+                        </video>
                     <?php endif; ?>
 
-                    <div class="position-absolute top-center w-100">
-                        <div class="container h-100">
-                            <div class="col-lg-7 col-10">
-                                <?php if (!empty($hero_video_title)): ?>
-                                    <div class="acid-bold fontLS leadingMX text-white resfontLM resleadingMS">
-                                        <?= $hero_video_title ?>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (!empty($hero_video_button)): ?>
-                                    <a href="<?= $hero_video_button['url'] ?>" target="<?= $hero_video_button['target'] ?>" class="text-white acid-bold d-flex align-items-center fontXX justify-content-center text-decoration-none bgsecondary radiusX dmt-30 btnY"> <?= $hero_video_button['title'] ?> </a>
-                                <?php endif; ?>
-                            </div>
+                <?php elseif ($media_type == 'youtube'): ?>
+                    <?php if (!empty($hero_youtube)): ?>
+                        <iframe class="w-100 h-100 object-cover embed-video"
+                            src="<?= $hero_youtube; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline=<?= basename($hero_youtube) ?>"
+                            allow="autoplay; fullscreen">
+                        </iframe>
+                    <?php endif; ?>
+                <?php elseif ($media_type == 'viemo'): ?>
+                    <?php if (!empty($hero_viemo)): ?>
+                        <iframe class="w-100 h-100 object-cover embed-video"
+                            src="<?= $hero_viemo; ?>?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay"
+                            allowfullscreen>
+                        </iframe>
+                    <?php endif; ?>
+                <?php endif; ?>
+
+                <div class="position-absolute top-center w-100">
+                    <div class="container h-100">
+                        <div class="col-lg-7 col-10">
+                            <?php if (!empty($hero_video_title)): ?>
+                                <div class="acid-bold fontLS leadingMX text-white resfontLM resleadingMS">
+                                    <?= $hero_video_title ?>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (!empty($hero_video_button)): ?>
+                                <a href="<?= $hero_video_button['url'] ?>" target="<?= $hero_video_button['target'] ?>" class="text-white acid-bold d-flex align-items-center fontXX justify-content-center text-decoration-none bgsecondary radiusX dmt-30 btnY"> <?= $hero_video_button['title'] ?> </a>
+                            <?php endif; ?>
                         </div>
                     </div>
-                    <div class="position-absolute bottom-0 end-0">
+                </div>
+                <div class="position-absolute bottom-0 end-0">
                     <?php if ($media_type == 'video'): ?>
-                        <div  data-src="<?= $hero_video ?>" data-type="video"
+                        <div data-src="<?= $hero_video ?>" data-type="video"
                             data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">Click to play audio</div>
 
                     <?php elseif ($media_type == 'youtube'): ?>
                         <?php if (!empty($hero_youtube)): ?>
-                            <div  data-src="<?= $hero_youtube ?>" data-type="iframe"
-                            data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">Click to play audio</div>
+                            <div data-src="<?= $hero_youtube ?>" data-type="iframe"
+                                data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">Click to play audio</div>
                         <?php endif; ?>
                     <?php elseif ($media_type == 'viemo'): ?>
                         <?php if (!empty($hero_viemo)): ?>
-                            <div  data-src="<?= $hero_viemo ?>" data-type="iframe"
-                            data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">Click to play audio</div>
+                            <div data-src="<?= $hero_viemo ?>" data-type="iframe"
+                                data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">Click to play audio</div>
                         <?php endif; ?>
                     <?php endif; ?>
-                    </div>
+                </div>
 
             </section>
         <?php elseif (get_row_layout() == 'slider_with_left_right') :
@@ -1716,84 +1718,103 @@ $flexible_content = get_field('flexible_content');
                     </div>
                 </div>
             </section>
-
+        <?php elseif (get_row_layout() == 'case_study') :
+            $case_study_title = get_sub_field('title');
+            $case_study_group = get_sub_field('case_study_group');
+        ?>
             <section class="our-case-studies-section bgprimary dpb-130">
                 <div class="container">
                     <div class="row">
                         <div class="col-7 pe-4">
-                            <div class="our-case-studies-cards position-relative overflow-hidden radiusX">
-                                <div class="our-case-studies-cards-img radiusX overflow-hidden">
-                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover"  alt="">
-                                </div>
-                             
-                                <div class="position-absolute bottom-0 w-100 dmb-30 px-4 z-3">
-                                    <div class="d-flex justify-content-between align-items-end">
-                                        <div>
-                                            <div class="acid-normal fontX leadingX textlightblack bgoffwhite d-inline-flex rounded-pill px-2 py-1 dmb-10">Case study</div>
-                                            <div class="acid-bold fontXM leadingM text-capitalize textlightwhite col-7">Helping Brian To Transform His Walking And Reduce Falls</div>
+                            <?php foreach ($case_study_group as $solution_list_items_custom) :
+                                $id = $solution_list_items_custom->ID;
+                                $ntitle = $solution_list_items_custom->post_title;
+                                $thumbnail_image = get_the_post_thumbnail_url($id);
+                                $permalink = get_permalink($id);
+                                $category = get_the_terms($id, 'case-term');
+                                $post_media = get_field('post_media', $id);
+                                $media_type = $post_media['media_type'];
+                                $video = $post_media['video'];
+                                $viemo = $post_media['viemo'];
+                                $youtube = $post_media['youtube'];
+                            ?>
+                                <div class="our-case-studies-cards position-relative overflow-hidden radiusX">
+                                    <div class="our-case-studies-cards-img radiusX overflow-hidden">
+                                        <?php if (!empty($thumbnail_image)): ?> <img src="<?= $thumbnail_image ?>" class="w-100 h-100 object-cover" alt=""> <?php endif; ?>
+                                        <div class="">
+                                            <?php if ($media_type == 'video'): ?>
+                                                <?php if (!empty($video)): ?>
+                                                    <video playsinline="playsinline" autoplay="autoplay" muted="muted"
+                                                        class="w-100 h-100 object-cover">
+                                                        <source src="<?= $video ?>" type="video/mp4">
+                                                        </source>
+                                                    </video>
+                                                <?php endif; ?>
+                                            <?php elseif ($media_type == 'viemo') : ?>
+                                                <?php if (!empty($viemo)): ?>
+                                                    <iframe class="w-100 h-100 object-cover embed-video"
+                                                        src="<?= $viemo; ?>?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay"
+                                                        allowfullscreen>
+                                                    </iframe>
+                                                <?php endif; ?>
+                                            <?php elseif ($media_type == 'youtube') : ?>
+                                                <?php if (!empty($youtube)): ?>
+                                                    <iframe class="w-100 h-100 object-cover embed-video"
+                                                        src="<?= $youtube; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline=<?= basename($youtube) ?>"
+                                                        allow="autoplay; fullscreen">
+                                                    </iframe>
+
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                                <img src="<?php echo get_the_post_thumbnail_url($id); ?>" class="w-100 h-100 object-cover" alt="">
+                                            <?php endif; ?>
                                         </div>
-                                        <a href="" class="arrow d-inline-block">
-                                            <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/arrow.svg" class="h-100" alt="">
-                                        </a>
+                                    </div>
+                                    <div class="position-absolute bottom-0 w-100 dmb-30 px-4 z-3">
+                                        <div class="d-flex justify-content-between align-items-end">
+                                            <div class="col-7">
+                                                <?php if (!empty($category[0]->name)): ?> <div class="acid-normal fontX leadingX textlightblack bgoffwhite d-inline-flex rounded-pill px-2 py-1 dmb-10"><?= $category[0]->name ?></div> <?php endif; ?>
+                                                <?php if (!empty($ntitle)): ?> <div class="acid-bold fontXM leadingM text-capitalize textlightwhite"><?= $ntitle ?></div> <?php endif; ?>
+                                            </div>
+                                            <a href="<?= $permalink ?>" class="arrow d-inline-block">
+                                                <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/arrow.svg" class="h-100" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="bg-layer position-absolute bottom-0 start-0 w-100">
+                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/cate-layer.svg" class="w-100 object-cover" />
                                     </div>
                                 </div>
-                                <div class="bg-layer position-absolute bottom-0 start-0 w-100">
-                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/cate-layer.svg" class="w-100 object-cover"/>
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                         <div class="col-5">
-                            <div class="acid-bold fontMX leadingXL textlightwhite dmb-20">Our case studies</div>
+                            <?php if (!empty($case_study_title)): ?>
+                                <div class="acid-bold fontMX leadingXL textlightwhite dmb-20"><?= $case_study_title; ?></div>
+                            <?php endif; ?>
                             <div class="swiper our-case-slider">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide our-case-right-cards" data-img="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" data-title="Helping Brian to transform his walking and reduce falls">
+                                <?php foreach ($case_study_group as $solution_list_items_custom) :
+                                $id = $solution_list_items_custom->ID;
+                                $ntitle = $solution_list_items_custom->post_title;
+                                $thumbnail_image = get_the_post_thumbnail_url($id);
+                                $permalink = get_permalink($id);
+                                $category = get_the_terms($id, 'case-term');
+                            ?>
+
+                                    <div class="swiper-slide our-case-right-cards" data-img="<?= $thumbnail_image ?>" data-title="Helping Brian to transform his walking and reduce falls">
                                         <div class="d-inline-flex align-items-center">
                                             <div class="col-4">
                                                 <div class="our-case-right-cards-img overflow-hidden">
-                                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover"  alt="">
+                                                <?php if (!empty($thumbnail_image)): ?>     <img src="<?= $thumbnail_image; ?>" class="w-100 h-100 object-cover" alt="" /> <?php endif; ?>
                                                 </div>
                                             </div>
                                             <div class="col-8 px-4">
-                                                <div class="acid-bold fontL leadingX textlightwhite pe-4">Helping Brian to transform his walking and reduce falls</div>
+                                            <?php if (!empty($ntitle)): ?>  <div class="acid-bold fontL leadingX textlightwhite pe-4"><?= $ntitle ?></div> <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="swiper-slide our-case-right-cards" data-img="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" data-title="Helping Brian to transform his walking and reduce falls">
-                                        <div class="d-inline-flex align-items-center">
-                                            <div class="col-4">
-                                                <div class="our-case-right-cards-img overflow-hidden">
-                                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover"  alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-8 px-4">
-                                                <div class="acid-bold fontL leadingX textlightwhite pe-4">Helping Brian to transform his walking and reduce falls</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide our-case-right-cards" data-img="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" data-title="Helping Brian to transform his walking and reduce falls">
-                                        <div class="d-inline-flex align-items-center">
-                                            <div class="col-4">
-                                                <div class="our-case-right-cards-img overflow-hidden">
-                                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover"  alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-8 px-4">
-                                                <div class="acid-bold fontL leadingX textlightwhite pe-4">Helping Brian to transform his walking and reduce falls</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide our-case-right-cards" data-img="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" data-title="Helping Brian to transform his walking and reduce falls">
-                                        <div class="d-inline-flex align-items-center">
-                                            <div class="col-4">
-                                                <div class="our-case-right-cards-img overflow-hidden">
-                                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover"  alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-8 px-4">
-                                                <div class="acid-bold fontL leadingX textlightwhite pe-4">Helping Brian to transform his walking and reduce falls</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php endforeach; ?>
+                                   
                                 </div>
                             </div>
                         </div>

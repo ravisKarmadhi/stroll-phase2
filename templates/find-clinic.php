@@ -122,9 +122,9 @@ $news = new WP_Query($args);
                                 <div class="pe-1">
                                     <div class="company-profile">
                                         <?php if (get_the_post_thumbnail_url($id)) : ?>
-                                        <img src="<?php echo get_the_post_thumbnail_url($id); ?>" class="" alt="" />
+                                        <img src="<?php echo get_the_post_thumbnail_url($id); ?>" class="h-100 w-100" alt="" />
                                         <?php else: ?>
-                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/text-1.png" class="" alt="" />
+                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/text-1.png"  class="h-100 w-100"  alt="" />
                                         <?php endif; ?>
                                     </div>
                                     <h6 class="acid-normal textlightblack lh-1 fontS dmt-15 text-center"><?php echo $miles; ?>
