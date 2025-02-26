@@ -461,46 +461,42 @@ $flexible_content = get_field('flexible_content');
             <!-- case studies section -->
             <section class="<?php if (! get_sub_field('disable_background_colour')) : ?>bglightblack<?php else: ?><?php endif; ?> radius-bottom-right testimonial ">
                 <div class="container px-p-0" data-aos="fade-up">
-                    <div class="row">
-                        <div class="col-lg-7 mx-auto dpt-105 tpt-65 col-11 px-p-p">
-                            <?php if (!empty($review_heading)) : ?>
-                                <h3 class="text-white acid-bold fontMM leadingSS text-center resfontXL resleadingMM"><?php echo $review_heading; ?></h3>
-                            <?php endif; ?>
-                            <?php if (!empty($review_button['url'])) :
-                                $target = ($review_button['target'] == '_blank') ? "_blank" : "";
-                            ?>
-                                <a href="<?php echo $review_button['url']; ?>" target="<?php echo $target; ?>" class="text-white mx-auto acid-bold d-flex align-items-center fontXX justify-content-center text-decoration-none bgsecondary radiusX dmt-30 tmt-40 btnS"><?php echo $review_button['title']; ?></a>
-                            <?php endif; ?>
-                        </div>
-                        <?php if (!empty($review_items)) : ?>
-                            <div class="col-lg-12 dpt-125 tpt-40 dpb-145 tpb-100">
-                                <div class="swiper testtimonialSwiper ps-p-p">
-                                    <div class="swiper-wrapper">
-                                        <?php foreach ($review_items as $review_items_custom) :
-                                            $id = $review_items_custom->ID;
-                                            $rating = get_field('rating', $id);
-                                            $role_and_name = get_field('role_and_name', $id);
-                                        ?>
-                                            <div class="swiper-slide testimonal-card bg-white radiusXS">
-                                                <h3 class="acid-bold textlightblack fontXL lh-1"><?php echo $review_items_custom->post_title; ?></h3>
-                                                <h6 class="acid-normal textlightblack fontL leadingM dmt-25"><?php echo $review_items_custom->post_content; ?></h6>
-                                                <h5 class="textlightblack acid-bold lh-1 fontM dmt-30"><?php echo $role_and_name; ?>
-                                                </h5>
-                                                <div class="dmt-25 d-flex align-items-center">
-                                                    <?php
-                                                    for ($i = 0; $i < $rating; $i++) : ?>
-                                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/star.svg" alt="" class="me-2">
-                                                    <?php endfor; ?>
-                                                </div>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
-
-                                </div>
-
-                            </div>
+                    <div class="col-lg-7 mx-auto dpt-105 tpt-65 col-11 px-p-p">
+                        <?php if (!empty($review_heading)) : ?>
+                            <h3 class="text-white acid-bold fontMM leadingSS text-center resfontXL resleadingMM"><?php echo $review_heading; ?></h3>
+                        <?php endif; ?>
+                        <?php if (!empty($review_button['url'])) :
+                            $target = ($review_button['target'] == '_blank') ? "_blank" : "";
+                        ?>
+                            <a href="<?php echo $review_button['url']; ?>" target="<?php echo $target; ?>" class="text-white mx-auto acid-bold d-flex align-items-center fontXX justify-content-center text-decoration-none bgsecondary radiusX dmt-30 tmt-40 btnS"><?php echo $review_button['title']; ?></a>
                         <?php endif; ?>
                     </div>
+                    <?php if (!empty($review_items)) : ?>
+                        <div class="col-11 mx-auto px-5 ps-p-p">
+                            <div class="testimonials d-flex flex-wrap dpt-125 tpt-40 dpb-145 tpb-100">
+                                <?php foreach ($review_items as $review_items_custom) :
+                                    $id = $review_items_custom->ID;
+                                    $rating = get_field('rating', $id);
+                                    $role_and_name = get_field('role_and_name', $id);
+                                ?>
+                                    <div class="testimonal-cards w-100 dmb-15">
+                                        <div class="testimonal-card bg-white radiusXS">
+                                            <div class="rating-icon d-flex align-items-center dmb-20">
+                                                <?php
+                                                for ($i = 0; $i < $rating; $i++) : ?>
+                                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/star.svg" alt="" class="h-100 me-2">
+                                                <?php endfor; ?>
+                                            </div>
+                                            <h3 class="acid-bold textlightblack fontXX leadingS"><?php echo $review_items_custom->post_title; ?></h3>
+                                            <h6 class="acid-normal textlightblack fontM leadingX dmt-15"><?php echo $review_items_custom->post_content; ?></h6>
+                                            <h5 class="textlightblack acid-bold lh-1 fontM dmt-30"><?php echo $role_and_name; ?>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </section>
         <?php elseif (get_row_layout() == 'middle_content') :
@@ -1573,7 +1569,7 @@ $flexible_content = get_field('flexible_content');
             $slider_group = get_sub_field('slider_group');
         ?>
 
-            <section class="left-right-slider-section bglightwhite position-relative overflow-hidden">
+            <section class="left-right-slider-section tpt-80 tpb-100 bglightwhite position-relative overflow-hidden">
                 <div class="container h-100">
                     <div class="h-100 d-flex align-items-center">
                         <div class="swiper left-right-slider">
@@ -1581,7 +1577,7 @@ $flexible_content = get_field('flexible_content');
                                 <?php foreach ($slider_group as $sliders): ?>
                                     <div class="swiper-slide h-100 d-flex align-items-center">
                                         <div class="h-100">
-                                            <div class="col-12 h-100 d-flex flex-column flex-lg-row align-items-center <?= $sliders['image_position'] == 'right' ? ' flex-column-reverse' : '' ?> ">
+                                            <div class="col-12 h-100 d-flex flex-lg-row align-items-center flex-column tmb-50 <?= $sliders['image_position'] == 'right' ? ' flex-column' : 'flex-column-reverse' ?> ">
                                                 <?php if ($sliders['image_position'] == 'left'): ?>
                                                     <div class="col-lg-6 col-12">
                                                         <div class="col-lg-10 ">
@@ -1633,7 +1629,7 @@ $flexible_content = get_field('flexible_content');
                             </div>
                         </div>
                     </div>
-                        <div class="swiper-pagination"></div>
+                    <div class="swiper-pagination"></div>
                 </div>
             </section>
 

@@ -483,13 +483,27 @@ body {
 .left-right-slider-section {
   height: 100vh;
 
+  @include media-breakpoint-down(lg) {
+    height: auto !important;
+  }
+
   .left-right-slider {
     height: 685px !important;
+
+    @include media-breakpoint-down(lg) {
+      height: auto !important;
+    }
   }
 
   .swiper-pagination {
     right: auto !important;
     left: 40px !important;
+
+    @include media-breakpoint-down(lg){
+      left: 0px !important;
+      bottom: 65px !important;
+    }
+
     .swiper-pagination-bullet {
       width: 7px;
       height: 7px;
@@ -504,7 +518,7 @@ body {
 
   .left-right-img {
     @include media-breakpoint-down(lg) {
-      height: 280px;
+      height: 280px !important;
       border-radius: 5px !important;
     }
   }

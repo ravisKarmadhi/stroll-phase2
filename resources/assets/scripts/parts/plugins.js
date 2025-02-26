@@ -150,6 +150,15 @@ export class Plugins {
                         el: ".left-right-slider-section .swiper-pagination",
                         clickable: true,
                     },
+                    breakpoints: {
+                        769: {
+                            direction: "vertical", // Desktop (>=768px) -> Vertical
+                        },
+                        0: {
+                            direction: "horizontal", // Mobile (<768px) -> Horizontal
+                        },
+                    },
+
                 });
             }
         });
