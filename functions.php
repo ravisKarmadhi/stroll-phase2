@@ -781,3 +781,11 @@ function create_project_testimonial()
   );
   flush_rewrite_rules();
 }
+
+
+function enqueue_swiper_scripts()
+{
+  wp_enqueue_style('swiper-css', get_template_directory_uri() . '/resources/node_modules/swiper/swiper-bundle.min.css');
+  wp_enqueue_script('swiper-js', get_template_directory_uri() . '/resources/node_modules/swiper/swiper-bundle.min.js', array('jquery'), null, true);
+}
+add_action('wp_enqueue_scripts', 'enqueue_swiper_scripts');

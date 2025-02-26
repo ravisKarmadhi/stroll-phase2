@@ -2,7 +2,7 @@ import $ from 'jquery';
 import '@popperjs/core';
 import 'bootstrap/dist/js/bootstrap';
 import 'select2/dist/js/select2.js';
-
+import Aos from 'aos';
 import { App } from './parts/app.js'
 import { Plugins } from './parts/plugins.js'
 import { Parts } from './parts/parts.js'
@@ -36,6 +36,11 @@ $(function () {
 // ===========================================================================
 
 $(document).ready(function () {
+  Aos.init({
+    once: true,
+    duration: 900,
+  });
+
   $(".filter-button").click(function () {
     var value = $(this).attr('data-filter');
     if (value == "all") {
@@ -197,9 +202,9 @@ $(document).ready(function () {
         $('.nav-menu li a .white-arrow-down').removeClass('d-lg-block');
         $('.nav-menu li a .black-arrow-down').removeClass('d-lg-none').addClass('d-block');
 
-        $(window).on('scroll', function() {
+        $(window).on('scroll', function () {
           var scrollPosition = $(this).scrollTop();
-        
+
           if (scrollPosition > 0) {
             // Change logo and arrows to white
             $('.white-logo').removeClass('d-none').addClass('d-inline-block');
@@ -210,7 +215,7 @@ $(document).ready(function () {
             // Change logo and arrows back to black
             if ($('header').hasClass('header-black')) {
               $('.white-logo').addClass('d-none').removeClass('d-inline-block');
-              $('.black-logo').removeClass('d-none').addClass('d-inline-block');   
+              $('.black-logo').removeClass('d-none').addClass('d-inline-block');
               $('.nav-menu li a .white-arrow-down').removeClass('d-lg-block');
               $('.nav-menu li a .black-arrow-down').removeClass('d-lg-none').addClass('d-block');
             }
