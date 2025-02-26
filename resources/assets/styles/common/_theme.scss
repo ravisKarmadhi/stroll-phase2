@@ -110,6 +110,15 @@
     padding-right: 23px;
   }
 }
+.row16 {
+  margin-left: -16px;
+  margin-right: -16px;
+
+  &>* {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
 
 
 .res-w-100 {

@@ -491,9 +491,51 @@ body {
 .left-right-slider-section {
     .left-right-img {
         height: 685px;
+
         @include media-breakpoint-down(lg) {
             height: 280px;
             border-radius: 5px !important;
         }
+    }
+}
+
+.the-benefits-section {
+    .font36 {
+        font-size: 36px;
+
+        @include media-breakpoint-down(lg) {
+            font-size: 26px;
+        }
+    }
+
+    .benefits-cards {
+        padding: 20px;
+        border-radius: 15px;
+        background-color: #4448B8;
+
+        .benefits-img {
+            border-radius: 15px;
+            height: 250px;
+        }
+
+        @include media-breakpoint-down(lg) {
+            padding: 15px;
+            border-radius: 5px;
+
+            .benefits-img {
+                border-radius: 5px;
+            }
+        }
+
+        &:hover {
+            .benefits-main-img {
+                display: none;
+            }
+
+            .benefits-media {
+                display: block;
+            }
+        }
+
     }
 }
