@@ -553,5 +553,37 @@ body {
         height: 35px;
         border-radius: 26px;
         background-color: rgba($color: $white, $alpha: 0.1);
+
+        @include media-breakpoint-down(lg) {
+            border-radius: 15px;
+        }
+    }
+}
+
+
+.our-case-studies-section {
+    .our-case-studies-cards {
+        .our-case-studies-cards-img {
+            height: 540px;
+        }
+
+        .arrow {
+            height: 67px;
+        }
+
+        .bg-layer {
+            height: 151px;
+        }
+    }
+
+    .our-case-right-cards {
+        padding: 15px;
+        background-color: rgba($color: $lightwhite, $alpha: 0.05);
+        border-radius: 15px;
+
+        .our-case-right-cards-img {
+            height: 121px;
+            border-radius: 15px;
+        }
     }
 }

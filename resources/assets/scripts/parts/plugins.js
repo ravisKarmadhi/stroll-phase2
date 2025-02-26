@@ -6,8 +6,34 @@ export class Plugins {
         this.WhyChooseSlider();
         this.TestimonialSlider();
         this.LeftRightSlider();
+        this.OurCaseStudies();
     }
 
+    OurCaseStudies() {
+        document.addEventListener("DOMContentLoaded", function () {
+            var swiper = new Swiper(".our-case-slider", {
+                direction: "vertical",
+                slidesPerView: 3,
+                spaceBetween: 20,
+                loop: true,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                on: {
+                    slideChange: function () {
+                        var activeSlide = document.querySelector(".swiper-slide-active");
+                        var newImg = activeSlide.getAttribute("data-img");
+                        var newTitle = activeSlide.getAttribute("data-title");
+
+                        // Update main case study card
+                        document.querySelector(".our-case-studies-cards-img img").src = newImg;
+                        document.querySelector(".our-case-studies-cards .acid-bold.text-capitalize").innerText = newTitle;
+                    }
+                }
+            });
+        });
+    }
 
     LogoSlider() {
         jQuery(document).ready(function ($) {

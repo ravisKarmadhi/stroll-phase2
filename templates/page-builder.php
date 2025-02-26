@@ -1597,7 +1597,7 @@ $flexible_content = get_field('flexible_content');
         <?php elseif (get_row_layout() == 'slider_with_left_right') :
             $slider_group = get_sub_field('slider_group');
         ?>
-            <section class="left-right-slider-section dpt-185 dpb-170 tpt-80 tpb-80 bglightwhite">
+            <!-- <section class="left-right-slider-section dpt-185 dpb-170 tpt-80 tpb-80 bglightwhite">
                 <div class="container">
                     <div class="swiper left-right-slider">
                         <div class="swiper-wrapper">
@@ -1656,7 +1656,7 @@ $flexible_content = get_field('flexible_content');
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
         <?php elseif (get_row_layout() == 'the_benefits') :
             $benefits_card_group = get_sub_field('benefits_card_group');
@@ -1717,11 +1717,85 @@ $flexible_content = get_field('flexible_content');
                 </div>
             </section>
 
-            <section class="our-case-studies-section">
+            <section class="our-case-studies-section bgprimary dpb-130">
                 <div class="container">
                     <div class="row">
-                        <div class="col-6">
-                            
+                        <div class="col-7 pe-4">
+                            <div class="our-case-studies-cards position-relative overflow-hidden radiusX">
+                                <div class="our-case-studies-cards-img radiusX overflow-hidden">
+                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover"  alt="">
+                                </div>
+                             
+                                <div class="position-absolute bottom-0 w-100 dmb-30 px-4 z-3">
+                                    <div class="d-flex justify-content-between align-items-end">
+                                        <div>
+                                            <div class="acid-normal fontX leadingX textlightblack bgoffwhite d-inline-flex rounded-pill px-2 py-1 dmb-10">Case study</div>
+                                            <div class="acid-bold fontXM leadingM text-capitalize textlightwhite col-7">Helping Brian To Transform His Walking And Reduce Falls</div>
+                                        </div>
+                                        <a href="" class="arrow d-inline-block">
+                                            <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/arrow.svg" class="h-100" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="bg-layer position-absolute bottom-0 start-0 w-100">
+                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/cate-layer.svg" class="w-100 object-cover"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="acid-bold fontMX leadingXL textlightwhite dmb-20">Our case studies</div>
+                            <div class="swiper our-case-slider">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide our-case-right-cards" data-img="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" data-title="Helping Brian to transform his walking and reduce falls">
+                                        <div class="d-inline-flex align-items-center">
+                                            <div class="col-4">
+                                                <div class="our-case-right-cards-img overflow-hidden">
+                                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover"  alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-8 px-4">
+                                                <div class="acid-bold fontL leadingX textlightwhite pe-4">Helping Brian to transform his walking and reduce falls</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide our-case-right-cards" data-img="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" data-title="Helping Brian to transform his walking and reduce falls">
+                                        <div class="d-inline-flex align-items-center">
+                                            <div class="col-4">
+                                                <div class="our-case-right-cards-img overflow-hidden">
+                                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover"  alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-8 px-4">
+                                                <div class="acid-bold fontL leadingX textlightwhite pe-4">Helping Brian to transform his walking and reduce falls</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide our-case-right-cards" data-img="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" data-title="Helping Brian to transform his walking and reduce falls">
+                                        <div class="d-inline-flex align-items-center">
+                                            <div class="col-4">
+                                                <div class="our-case-right-cards-img overflow-hidden">
+                                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover"  alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-8 px-4">
+                                                <div class="acid-bold fontL leadingX textlightwhite pe-4">Helping Brian to transform his walking and reduce falls</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide our-case-right-cards" data-img="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" data-title="Helping Brian to transform his walking and reduce falls">
+                                        <div class="d-inline-flex align-items-center">
+                                            <div class="col-4">
+                                                <div class="our-case-right-cards-img overflow-hidden">
+                                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover"  alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-8 px-4">
+                                                <div class="acid-bold fontL leadingX textlightwhite pe-4">Helping Brian to transform his walking and reduce falls</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
