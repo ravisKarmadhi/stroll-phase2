@@ -145,12 +145,9 @@ export class Plugins {
         $(document).ready(function () {
             if (typeof Swiper !== "undefined") {
                 var swiper = new Swiper(".left-right-slider", {
-                    direction: 'vertical', // Change direction to vertical
-                    slidesPerView: 1,
-                    spaceBetween: 30,
-                    mousewheel: true,
+                    direction: "vertical",
                     pagination: {
-                        el: ".swiper-pagination",
+                        el: ".left-right-slider-section .swiper-pagination",
                         clickable: true,
                     },
                 });
