@@ -78,10 +78,14 @@ $flexible_content = get_field('flexible_content');
                         <div class="row">
                             <div class="col-lg-9 col-12 mx-auto">
 
-                                <div class="companylogoslider">
-                                    <?php foreach ($logo_items as $logo_items_custom) : ?>
-                                        <img src="<?php echo $logo_items_custom['image']['url']; ?>" class="" alt="">
-                                    <?php endforeach; ?>
+                                <div class="swiper companyLogoSwiper">
+                                    <div class="swiper-wrapper h-100">
+                                        <?php foreach ($logo_items as $logo_items_custom) : ?>
+                                            <div class="swiper-slide h-100">
+                                                <img src="<?php echo $logo_items_custom['image']['url']; ?>" class="h-100" alt="">
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
 
                             </div>
@@ -236,43 +240,45 @@ $flexible_content = get_field('flexible_content');
                                 <?php endif; ?>
                             </div>
                             <div class="col-lg-12 dmt-50">
-                                <div class="videoSlider">
-                                    <?php
+                                <div class="swiper videoSwiper">
+                                    <div class="swiper-wrapper">
+                                        <?php
 
-                                    $args = array(
-                                        'order' => 'DESC',
-                                        'orderby' => 'date',
-                                        'posts_per_page' => -1,
-                                        'post_type' => 'casestudies'
-                                    );
+                                        $args = array(
+                                            'order' => 'DESC',
+                                            'orderby' => 'date',
+                                            'posts_per_page' => -1,
+                                            'post_type' => 'casestudies'
+                                        );
 
-                                    $the_query = new WP_Query($args);
+                                        $the_query = new WP_Query($args);
 
-                                    if ($the_query->have_posts()) :
-                                        while ($the_query->have_posts()) : $the_query->the_post();
-                                    ?>
-                                            <div class="pe-4">
-                                                <a href="<?php echo get_permalink($id); ?>" class="d-block video-card-main text-decoration-none card-hover-new">
-                                                    <div class="position-relative video-card overflow-hidden radiusX resradiusES">
-                                                        <img src="<?php echo get_the_post_thumbnail_url($id); ?>" class="w-100 h-100 object-cover hover-img " alt="">
-                                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/cate-layer.svg" alt="" class="position-absolute bottom-0 start-0 w-100">
-                                                        <div class="position-absolute bottom-0 start-0 w-100 d-flex align-items-center p-3 card-inner-content">
+                                        if ($the_query->have_posts()) :
+                                            while ($the_query->have_posts()) : $the_query->the_post();
+                                        ?>
+                                                <div class="swiper-slide">
+                                                    <a href="<?php echo get_permalink($id); ?>" class="d-block video-card-main text-decoration-none card-hover-new">
+                                                        <div class="position-relative video-card overflow-hidden radiusX resradiusES">
+                                                            <img src="<?php echo get_the_post_thumbnail_url($id); ?>" class="w-100 h-100 object-cover hover-img " alt="">
+                                                            <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/cate-layer.svg" alt="" class="position-absolute bottom-0 start-0 w-100">
+                                                            <div class="position-absolute bottom-0 start-0 w-100 d-flex align-items-center p-3 card-inner-content">
 
 
-                                                            <button data-fancybox data-src="<?php the_field('individual_video_link'); ?>" class="bg-transparent p-0 border-0 transition">
-                                                                <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/play.svg" alt="">
-                                                            </button>
-                                                            <h5 class="ms-3 acid-bold fontL textlightwhite lh-1"><?php echo get_field('time'); ?></h5>
+                                                                <button data-fancybox data-src="<?php the_field('individual_video_link'); ?>" class="bg-transparent p-0 border-0 transition">
+                                                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/play.svg" alt="">
+                                                                </button>
+                                                                <h5 class="ms-3 acid-bold fontL textlightwhite lh-1"><?php echo get_field('time'); ?></h5>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <h4 class="acid-bold textlightblack dmt-25 me-5 pe-5 leadingXX resfontXS fontXM">
-                                                        <?php the_title(); ?>
-                                                    </h4>
-                                                </a>
-                                            </div>
-                                    <?php endwhile;
-                                    endif;
-                                    wp_reset_query(); ?>
+                                                        <h4 class="acid-bold textlightblack dmt-25 me-5 pe-5 leadingXX resfontXS fontXM">
+                                                            <?php the_title(); ?>
+                                                        </h4>
+                                                    </a>
+                                                </div>
+                                        <?php endwhile;
+                                        endif;
+                                        wp_reset_query(); ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1593,57 +1599,61 @@ $flexible_content = get_field('flexible_content');
         ?>
             <section class="left-right-slider-section dpt-185 dpb-170 tpt-80 tpb-80 bglightwhite">
                 <div class="container">
-                    <div class="left-right-slider">
-                        <?php foreach ($slider_group as $sliders): ?>
-                            <div class="">
-                                <div class="col-12 d-flex flex-column flex-lg-row align-items-center <?= $sliders['image_position'] == 'right' ? ' flex-column-reverse' : '' ?> ">
-                                    <?php if ($sliders['image_position'] == 'left'): ?>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="col-lg-10 ">
-                                                <?php if (!empty($sliders['prefix'])): ?>
-                                                    <div class="acid-normal fontX leadingX textlightblack bgoffwhite radiusEX d-inline-block px-3 py-1 dmb-15 tmb-10"> <?= $sliders['prefix'] ?> </div>
-                                                <?php endif; ?>
-                                                <?php if (!empty($sliders['title'])): ?>
-                                                    <div class="acid-bold fontLX leadingSL textlightblack dmb-20 resfontXXS resleadingXM"> <?= $sliders['title'] ?> </div>
-                                                <?php endif; ?>
-                                                <?php if (!empty($sliders['description'])): ?>
-                                                    <div class="acid-normal fontXX leadingXX textlightblack dmb-15 pe-lg-5 text-truncate3 resfontLL resleadingL"> <?= $sliders['description'] ?> </div>
-                                                <?php endif; ?>
-                                                <?php if (!empty($sliders['button'])): ?>
-                                                    <a href="<?= $sliders['button']['url'] ?>" target="<?= $sliders['button']['target'] ?>" class="text-white acid-bold d-flex align-items-center fontXX justify-content-center text-decoration-none bgsecondary radiusX dmt-30 btnY"> <?= $sliders['button']['title'] ?> </a>
+                    <div class="swiper left-right-slider">
+                        <div class="swiper-wrapper">
+                            <?php foreach ($slider_group as $sliders): ?>
+                                <div class="swiper-slide">
+                                    <div class="">
+                                        <div class="col-12 d-flex flex-column flex-lg-row align-items-center <?= $sliders['image_position'] == 'right' ? ' flex-column-reverse' : '' ?> ">
+                                            <?php if ($sliders['image_position'] == 'left'): ?>
+                                                <div class="col-lg-6 col-12">
+                                                    <div class="col-lg-10 ">
+                                                        <?php if (!empty($sliders['prefix'])): ?>
+                                                            <div class="acid-normal fontX leadingX textlightblack bgoffwhite radiusEX d-inline-block px-3 py-1 dmb-15 tmb-10"> <?= $sliders['prefix'] ?> </div>
+                                                        <?php endif; ?>
+                                                        <?php if (!empty($sliders['title'])): ?>
+                                                            <div class="acid-bold fontLX leadingSL textlightblack dmb-20 resfontXXS resleadingXM"> <?= $sliders['title'] ?> </div>
+                                                        <?php endif; ?>
+                                                        <?php if (!empty($sliders['description'])): ?>
+                                                            <div class="acid-normal fontXX leadingXX textlightblack dmb-15 pe-lg-5 text-truncate3 resfontLL resleadingL"> <?= $sliders['description'] ?> </div>
+                                                        <?php endif; ?>
+                                                        <?php if (!empty($sliders['button'])): ?>
+                                                            <a href="<?= $sliders['button']['url'] ?>" target="<?= $sliders['button']['target'] ?>" class="text-white acid-bold d-flex align-items-center fontXX justify-content-center text-decoration-none bgsecondary radiusX dmt-30 btnY"> <?= $sliders['button']['title'] ?> </a>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                            <?php endif; ?>
+                                            <div class="col-lg-6 col-12">
+                                                <?php if (!empty($sliders['image'])): ?>
+                                                    <div class="radiusX left-right-img overflow-hidden tmb-35">
+                                                        <img src="<?= $sliders['image'] ?>" alt="sliders image" class="w-100 h-100 object-cover">
+                                                    </div>
                                                 <?php endif; ?>
                                             </div>
-                                        </div>
-                                    <?php endif; ?>
-                                    <div class="col-lg-6 col-12">
-                                        <?php if (!empty($sliders['image'])): ?>
-                                            <div class="radiusX left-right-img overflow-hidden tmb-35">
-                                                <img src="<?= $sliders['image'] ?>" alt="sliders image" class="w-100 h-100 object-cover">
-                                            </div>
-                                        <?php endif; ?>
-                                    </div>
 
-                                    <?php if ($sliders['image_position'] == 'right'): ?>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="col-lg-10 ms-auto">
-                                                <?php if (!empty($sliders['prefix'])): ?>
-                                                    <div class="acid-normal fontX leadingX textlightblack bgoffwhite radiusEX d-inline-block px-3 py-1 dmb-15 tmb-10"> <?= $sliders['prefix'] ?> </div>
-                                                <?php endif; ?>
-                                                <?php if (!empty($sliders['title'])): ?>
-                                                    <div class="acid-bold fontLX leadingSL textlightblack dmb-20 resfontXXS resleadingXM"> <?= $sliders['title'] ?> </div>
-                                                <?php endif; ?>
-                                                <?php if (!empty($sliders['description'])): ?>
-                                                    <div class="acid-normal fontXX leadingXX textlightblack dmb-15 pe-lg-5 text-truncate3 resfontLL resleadingL"> <?= $sliders['description'] ?> </div>
-                                                <?php endif; ?>
-                                                <?php if (!empty($sliders['button'])): ?>
-                                                    <a href="<?= $sliders['button']['url'] ?>" target="<?= $sliders['button']['target'] ?>" class="text-white acid-bold d-flex align-items-center fontXX justify-content-center text-decoration-none bgsecondary radiusX dmt-30 btnY"> <?= $sliders['button']['title'] ?> </a>
-                                                <?php endif; ?>
-                                            </div>
+                                            <?php if ($sliders['image_position'] == 'right'): ?>
+                                                <div class="col-lg-6 col-12">
+                                                    <div class="col-lg-10 ms-auto">
+                                                        <?php if (!empty($sliders['prefix'])): ?>
+                                                            <div class="acid-normal fontX leadingX textlightblack bgoffwhite radiusEX d-inline-block px-3 py-1 dmb-15 tmb-10"> <?= $sliders['prefix'] ?> </div>
+                                                        <?php endif; ?>
+                                                        <?php if (!empty($sliders['title'])): ?>
+                                                            <div class="acid-bold fontLX leadingSL textlightblack dmb-20 resfontXXS resleadingXM"> <?= $sliders['title'] ?> </div>
+                                                        <?php endif; ?>
+                                                        <?php if (!empty($sliders['description'])): ?>
+                                                            <div class="acid-normal fontXX leadingXX textlightblack dmb-15 pe-lg-5 text-truncate3 resfontLL resleadingL"> <?= $sliders['description'] ?> </div>
+                                                        <?php endif; ?>
+                                                        <?php if (!empty($sliders['button'])): ?>
+                                                            <a href="<?= $sliders['button']['url'] ?>" target="<?= $sliders['button']['target'] ?>" class="text-white acid-bold d-flex align-items-center fontXX justify-content-center text-decoration-none bgsecondary radiusX dmt-30 btnY"> <?= $sliders['button']['title'] ?> </a>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
-                                    <?php endif; ?>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
             </section>
