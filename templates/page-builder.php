@@ -1623,42 +1623,61 @@ $flexible_content = get_field('flexible_content');
                 </div>
             </section>
 
-
-
+        <?php elseif (get_row_layout() == 'the_benefits') :
+            $benefits_card_group = get_sub_field('benefits_card_group');
+            $benefits_title = get_sub_field('title');
+        ?>
             <section class="the-benefits-section bgprimary dpt-100 dpb-165 tpt-50 tpb-50">
                 <div class="container">
-                    <div class="acid-bold font36 leadingXS textlightwhite">The benefits</div>
+                    <?php if (!empty($benefits_title)): ?>
+                        <div class="acid-bold font36 leadingXS textlightwhite"><?= $benefits_title ?></div>
+                    <?php endif; ?>
                     <div class="row row16">
-                        <div class="col-lg-4 dmt-50 tmt-35">
-                            <div class="benefits-cards h-100">
-                                <div class="benefits-img overflow-hidden dmb-30 tmb-15 cursor-pointer">
-                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover benefits-main-img transition" alt="">
-                                    <div class="benefits-media transition">
-                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover" alt="">
-                                        <!-- <video playsinline="playsinline" autoplay="autoplay" muted="muted"
-                                            class="w-100 h-100 object-cover position-absolute top-0 start-0">
-                                            <source src="assets/video/emblem.mp4" type="video/mp4">
-                                            </source>
-                                        </video> -->
-    
-                                        <!-- <iframe class="w-100 h-100 object-cover embed-video position-absolute"
-                                            src="https://www.youtube.com/embed/jmoPo11ktN4?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline=jmoPo11ktN4"
-                                            allow="autoplay; fullscreen">
-                                        </iframe> -->
-                                        <!-- <iframe class="w-100 h-100 object-cover embed-video position-absolute"
-                                            src="https://player.vimeo.com/video/1018833878?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay"
-                                            allowfullscreen>
-                                        </iframe> -->
+                        <?php foreach ($benefits_card_group as $benefits_cards): ?>
+                            <div class="col-lg-4 dmt-50 tmt-35">
+                                <div class="benefits-cards h-100">
+                                    <div class="benefits-img overflow-hidden dmb-30 tmb-15 cursor-pointer">
+                                        <?php if (!empty($benefits_cards['benefit_image'])): ?>
+                                            <img src="<?= $benefits_cards['benefit_image'] ?>" class="w-100 h-100 object-cover benefits-main-img transition" alt="">
+                                        <?php endif; ?>
+                                        <div class="benefits-media transition">
+                                            <?php if ($benefits_cards['hover_media_type'] == 'video'): ?>
+                                                <?php if (!empty($benefits_cards['benefit_video'])): ?>
+                                                    <video playsinline="playsinline" autoplay="autoplay" muted="muted"
+                                                        class="w-100 h-100 object-cover">
+                                                        <source src="<?= $benefits_cards['benefit_video'] ?>" type="video/mp4">
+                                                        </source>
+                                                    </video>
+                                                <?php endif; ?>
+                                            <?php elseif (($benefits_cards['hover_media_type']) == 'youtube'): ?>
+                                                <?php if (!empty($benefits_cards['benefit_youtube'])): ?>
+                                                    <iframe class="w-100 h-100 object-cover embed-video"
+                                                        src="<?= $benefits_cards['benefit_youtube'] ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline=<?= basename($benefits_cards['benefit_youtube']) ?>"
+                                                        allow="autoplay; fullscreen">
+                                                    </iframe>
+                                                <?php endif; ?>
+                                            <?php elseif (($benefits_cards['hover_media_type']) == 'vimeo'): ?>
+                                                <iframe class="w-100 h-100 object-cover embed-video"
+                                                    src="<?= $benefits_cards['benefit_vimeo'] ?>?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay"
+                                                    allowfullscreen>
+                                                </iframe>
+                                            <?php else: ?>
+                                                <?php if (!empty($benefits_cards['benefit_image'])): ?>
+                                                    <img src="<?= $benefits_cards['benefit_image'] ?>" class="w-100 h-100 object-cover" alt="">
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="px-lg-3 px-1">
-                                    <div class="acid-bold fontXL leadingXX textlightwhite dmb-10 pe-lg-5">Monitor from your laptop or computer.</div>
-                                    <div class="acid-normal fontM leadingS textlightwhite dmb-20 tmb-0">
-                                    Strolll’s clinician web portal provides you with a simple, fast and easy way to manage patients, create and prescribe individually personalised rehabilitation programs and monitor your patients adherence, performance and progression through your clinical dashboard and automated clinician notes.
+                                    <div class="px-lg-3 px-1">
+                                        <?php if (!empty($benefits_cards['benefit_title'])): ?> <div class="acid-bold fontXL leadingXX textlightwhite dmb-10 pe-lg-5"><?= $benefits_cards['benefit_title'] ?></div><?php endif; ?>
+                                        <?php if (!empty($benefits_cards['benefit_description'])): ?> <div class="acid-normal fontM leadingS textlightwhite dmb-20 tmb-0">
+                                                <?= $benefits_cards['benefit_description'] ?>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </section>
