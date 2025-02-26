@@ -1,0 +1,66 @@
+.search-input-clinic {
+    input {
+        padding: 26px 90px 26px 35px;
+
+        @include media-breakpoint-down(lg) {
+            padding: 22px 80px 22px 35px;
+        }
+
+        &::placeholder {
+            color: $lightblack;
+        }
+    }
+
+    button {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+
+        @include media-breakpoint-down(lg) {
+            width: 47px;
+            height: 47px;
+            min-width: 47px;
+        }
+    }
+}
+
+.help-hero {
+    .input-box {
+        .input-help {
+            padding-left: 35px !important;
+            padding-right: 100px !important;
+
+            &::placeholder {
+                color: $lightblack;
+            }
+        }
+    }
+}
+
+.vacancies-form {
+    input {
+        height: 75px;
+        padding-left: 40px;
+        padding-right: 40px;
+        border-radius: 38px;
+
+        &::placeholder {
+            color: $lightblack;
+        }
+    }
+
+    .uploadFile-row {
+        label {
+            height: 75px;
+            border: 2px dashed #01014183;
+            border-radius: 38px;
+            overflow: hidden;
+
+            .wpcf7-form-control-wrap {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}

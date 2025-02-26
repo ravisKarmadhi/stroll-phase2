@@ -1,0 +1,35 @@
+.blog-section {
+    .blog-first-img {
+        height: 450px;
+
+        @include media-breakpoint-down(lg) {
+            height: 265px;
+        }
+    }
+
+    .aurthor-details-img {
+        height: 47px;
+        width: 47px;
+        min-width: 47px;
+    }
+
+    .single-blog-card {
+        .single-blog-img {
+            height: 233px;
+        }
+
+    }
+}
+
+.author-detail-blog {
+    // >div {
+    //     &:first-child {
+    //         display: block !important;
+    //     }
+    // }
+
+    .aurthor-details-img {
+        height: 70px !important;
+        width: 70px !important;
+    }
+}

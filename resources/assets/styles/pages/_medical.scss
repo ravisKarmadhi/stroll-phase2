@@ -1,0 +1,11 @@
+.medical-accordion {
+    .accordion-header {
+        .accordion-button {
+            padding: 25px 28px 25px 36px !important;
+
+            @include media-breakpoint-down(lg) {
+                padding: 30px 21px !important;
+            }
+        }
+    }
+}

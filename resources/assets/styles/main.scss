@@ -1,0 +1,50 @@
+@import "common/_variables";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/swiper/swiper.scss";
+@import "../../node_modules/select2/src/scss/core.scss";
+
+// Automatically injected Bower dependencies via wiredep (never manually edit this block)
+// bower:scss
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px,
+);
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/reboot";
+@import "../../node_modules/bootstrap/scss/grid";
+@import "../../node_modules/bootstrap/scss/utilities";
+// endbower
+@import "common/_fonts";
+@import "common/_global";
+@import "common/_theme";
+@import "common/_variables";
+@import "common/_utilities";
+@import "components/_buttons";
+@import "components/_forms";
+@import "components/_cards";
+@import "components/_modal";
+@import "components/_slick";
+@import "layouts/_header";
+@import "layouts/_footer";
+@import "layouts/_pages";
+// pages css
+@import "pages/_home";
+@import "pages/_solutions";
+@import "pages/_product";
+@import "pages/_case-studies";
+@import "pages/_clinic";
+@import "pages/_blog";
+@import "pages/_about";
+@import "pages/_medical";
+@import "pages/_help";
+@import "pages/_helpsearch";
+@import "pages/_helphowto";
+@import "pages/_helpmedia";
+@import "pages/_pricing";
+@import "pages/_helpinvestor";

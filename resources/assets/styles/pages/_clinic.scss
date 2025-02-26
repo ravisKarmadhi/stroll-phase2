@@ -1,0 +1,55 @@
+.open-clinic-img {
+    height: 646px;
+
+}
+
+.map-section-main {
+    .map-section {
+        height: 650px;
+
+        @include media-breakpoint-down(lg) {
+            height: 338px;
+        }
+    }
+
+    .map-section-content {
+        height: 650px;
+
+        @include media-breakpoint-down(lg) {
+            height: auto;
+        }
+
+        .company-list {
+            height: 420px;
+            overflow-y: auto;
+
+            @include media-breakpoint-down(lg) {
+                height: auto;
+            }
+
+            .company-profile {
+                width: 74px;
+                height: 74px;
+                min-width: 74px;
+            }
+        }
+    }
+}
+
+.clinic-open-img {
+    img {
+        @include media-breakpoint-down(lg) {
+            width: 117px;
+        }
+    }
+}
+
+.custom-medical-content-main {
+    >div {
+        &:last-child {
+            .custom-border {
+                display: none !important;
+            }
+        }
+    }
+}

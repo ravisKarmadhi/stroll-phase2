@@ -1,0 +1,94 @@
+footer {
+    @include media-breakpoint-down(lg) {
+        background-color: $primary;
+        overflow: hidden;
+
+        .lets-start-container {
+            background-color: $lightwhite;
+            border-radius: 0 0 30px 30px;
+        }
+    }
+
+    .lets-start-sec {
+        @include media-breakpoint-down(lg) {
+            background-color: transparent;
+
+            .image-bag-res {
+                transform: scale(1.5) translate(-10px, -40px) !important;
+            }
+        }
+
+        .left-side-content {
+            padding: 140px 0 140px 80px;
+
+            @include media-breakpoint-down(lg) {
+                padding: 0;
+                padding-top: 45px !important;
+
+                label {
+                    background-color: $offwhite;
+                }
+            }
+
+            .mail-chip-input {
+                input {
+                    padding: 22px 210px 22px 35px;
+
+                    @include media-breakpoint-down(lg) {
+                        padding: 22px 60px 22px 30px;
+                    }
+
+                    &::placeholder {
+                        color: $lightblack;
+                    }
+                }
+
+                .button-res {
+                    width: 57px;
+                    height: 57px;
+                }
+            }
+        }
+    }
+
+    .footer-logo {
+        max-width: 105px;
+    }
+
+    .footer-menu {
+        li {
+            &:last-child {
+                padding-bottom: 0 !important;
+            }
+        }
+    }
+
+    .social-icons {
+        .icons {
+            &:last-child {
+                padding-right: 0 !important;
+            }
+        }
+    }
+
+    .footer-menutab {
+        &:last-child {
+            @include media-breakpoint-up(lg) {
+                margin-bottom: 0 !important;
+            }
+        }
+    }
+
+    .currency-menu {
+        height: 18px;
+        width: 18px;
+    }
+}
+
+.submit-button-position {
+    top: 6px !important;
+
+    @include media-breakpoint-down(lg) {
+        top: 8px !important;
+    }
+}

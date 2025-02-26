@@ -1,0 +1,48 @@
+.help-hero {
+    .help-img {
+        img {
+            transform: translate(40%, 5%);
+
+            @include media-breakpoint-down(xl) {
+                transform: translate(52%, 0%);
+            }
+
+            @include media-breakpoint-down(lg) {
+                transform: translate(52%, -8%);
+            }
+
+            @include media-breakpoint-down(md) {
+                transform: translate(80%, -2%);
+            }
+        }
+    }
+}
+.help-menu-section {
+    .help-card {
+        @include media-breakpoint-down(lg) {
+            &:last-child {
+                border: none !important;
+            }
+        }
+        .help-img-bg {
+            width: 116px;
+            height: 116px;
+            .help-img {
+                height: 65px;
+            }
+            @include media-breakpoint-down(lg) {
+                width: 86px;
+                height: 86px;
+                .help-img {
+                    height: 45px;
+                }
+            }
+        }
+        .help-info {
+            .filter-inver {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    }
+}

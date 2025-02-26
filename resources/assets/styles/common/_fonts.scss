@@ -1,0 +1,34 @@
+@font-face {
+    font-family: "AcidGrotesk-Bold";
+    src: url("/wp-content/themes/strolll/assets/fonts/AcidGrotesk-Bold.otf");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "AcidGrotesk-Normal";
+    src: url("/wp-content/themes/strolll/assets/fonts/AcidGrotesk-Normal.otf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+.acid-bold {
+    font-family: "AcidGrotesk-Bold";
+}
+
+.resacid-bold {
+    @include media-breakpoint-down(lg) {
+        font-family: "AcidGrotesk-Bold" !important;
+    }
+}
+
+.acid-normal {
+    font-family: "AcidGrotesk-Normal";
+}
+
+
+.res-acid-normal {
+    @include media-breakpoint-down(lg) {
+        font-family: "AcidGrotesk-Normal";
+    }
+}

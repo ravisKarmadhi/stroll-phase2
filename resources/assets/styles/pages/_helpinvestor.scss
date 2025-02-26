@@ -1,0 +1,15 @@
+.static-img {
+    height: 517px !important;
+
+    @include media-breakpoint-down(lg) {
+        height: 338px !important;
+    }
+
+    .static-data {
+        padding: 45px !important;
+
+        @include media-breakpoint-down(lg) {
+            padding: 33px 37px 50px 37px !important;
+        }
+    }
+}

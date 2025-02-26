@@ -1,0 +1,29 @@
+.how-work-accordion {
+    .bg-accordion {
+        background-color: rgba(220, 223, 239, 0.20);
+
+        .accordion-button {
+            padding: 27px 30px;
+
+            @include media-breakpoint-down(lg) {
+                padding: 25px 22px;
+            }
+
+            &::after {
+                background-image: url('/wp-content/uploads/2023/12/light-arrow-small.svg');
+                width: 53px;
+                height: 53px;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+        }
+
+        .accordion-body {
+            padding: 0 0 30px 38px;
+
+            @include media-breakpoint-down(lg) {
+                padding: 0 35px 10px 22px;
+            }
+        }
+    }
+}

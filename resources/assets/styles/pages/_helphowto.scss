@@ -1,0 +1,27 @@
+.help-how-img {
+    img {
+        height: 582px !important;
+
+        @include media-breakpoint-down(lg) {
+            height: 305px !important;
+        }
+    }
+}
+// Related 
+.related-post-section {
+    .related-pattern {
+        img {
+            top: 220px;
+            left: -316px;
+        }
+    }
+    .related-item {
+        &:first-child {
+            padding-top: 0px !important;
+        }
+        .filter-inver {
+            width: 55px;
+            height: 55px;
+        }
+    }
+}

@@ -1,0 +1,465 @@
+.fontX {
+    font-size: $fontX;
+}
+
+.fontS {
+    font-size: $fontS;
+}
+
+.fontM {
+    font-size: $fontM;
+}
+
+.fontL {
+    font-size: $fontL;
+}
+
+.fontXX {
+    font-size: $fontXX;
+}
+
+.fontXS {
+    font-size: $fontXS;
+}
+
+.fontXM {
+    font-size: $fontXM;
+}
+
+.fontXL {
+    font-size: $fontXL;
+}
+
+.fontSX {
+    font-size: $fontSX;
+}
+
+.fontSS {
+    font-size: $fontSS;
+}
+
+.fontSM {
+    font-size: $fontSM;
+}
+
+.fontLM {
+    font-size: $fontLM;
+}
+
+.fontSL {
+    font-size: $fontSL;
+}
+
+.fontMX {
+    font-size: $fontMX;
+}
+
+.fontMS {
+    font-size: $fontMS;
+}
+
+.fontMM {
+    font-size: $fontMM;
+}
+
+.fontML {
+    font-size: $fontML;
+}
+
+.fontLX {
+    font-size: $fontLX;
+}
+
+.fontLS {
+    font-size: $fontLS;
+}
+
+// LINE HEIGHT
+
+.leadingX {
+    line-height: $leadingX;
+}
+
+.leadingS {
+    line-height: $leadingS;
+}
+
+.leadingM {
+    line-height: $leadingM;
+}
+
+.leadingL {
+    line-height: $leadingL;
+}
+
+.leadingXX {
+    line-height: $leadingXX;
+}
+
+.leadingXS {
+    line-height: $leadingXS;
+}
+
+.leadingXM {
+    line-height: $leadingXM;
+}
+
+.leadingXL {
+    line-height: $leadingXL;
+}
+
+.leadingSX {
+    line-height: $leadingSX;
+}
+
+.leadingSS {
+    line-height: $leadingSS;
+}
+
+.leadingSM {
+    line-height: $leadingSM;
+}
+
+.leadingSL {
+    line-height: $leadingSL;
+}
+
+.leadingMX {
+    line-height: $leadingMX;
+}
+
+// TEXT COLOR
+
+.textprimary {
+    color: $primary;
+}
+
+.textsecondary {
+    color: $secondary;
+}
+
+.textlightblack {
+    color: $lightblack;
+}
+
+.textoffwhite {
+    color: $offwhite;
+}
+
+.textlightwhite {
+    color: $lightwhite;
+}
+
+.textlightgray {
+    color: $lightGray;
+}
+
+@include media-breakpoint-down(lg) {
+    .restextlightblack {
+        color: $lightblack !important;
+    }
+}
+
+// BACKGOUND COLOR
+
+.bgprimary {
+    background-color: $primary;
+}
+
+.bgsecondary {
+    background-color: $secondary;
+}
+
+.bglightblack {
+    background-color: $lightblack;
+}
+
+.bgoffwhite {
+    background-color: $offwhite;
+}
+
+.bglightwhite {
+    background-color: $lightwhite;
+}
+
+.bggray {
+    background-color: $gray;
+}
+
+.bggrayNew {
+    background-color: $grayNew;
+}
+
+// BORDER RADIUS
+
+.radiusX {
+    border-radius: $radiusX;
+}
+
+.radiusS {
+    border-radius: $radiusS;
+}
+
+.radius-bottom-right {
+    border-radius: 0 0 $radiusM $radiusM;
+
+    @include media-breakpoint-down(lg) {
+        border-radius: 0 0 $radiusX $radiusX;
+    }
+}
+
+.radius-top {
+    border-radius: $radiusSS $radiusSS 0 0;
+}
+
+.radiusX-top {
+    border-radius: $radiusX $radiusX 0 0;
+}
+
+.radiusEX {
+    border-radius: $radiusEX;
+}
+
+.radiusXS {
+    border-radius: $radiusXS;
+}
+
+.radiusL {
+    border-radius: $radiusL;
+}
+
+.radiusES {
+    border-radius: $radiusES;
+}
+
+.radiusSS {
+    border-radius: $radiusSS;
+}
+
+.radiusXX {
+    border-radius: $radiusXX;
+}
+
+.radiusLL {
+    border-radius: $radiusLL;
+}
+
+.resradiusX {
+    @include media-breakpoint-down(lg) {
+        border-radius: $radiusX !important;
+    }
+}
+
+.resleadingXX {
+    @include media-breakpoint-down(lg) {
+        line-height: $leadingXX ;
+    }
+}
+
+// BORDER CUSTOM
+
+.border-lightPrimary {
+    border: 1px solid $lightPrimary;
+}
+
+.border-offwhite {
+    border: 1px solid $offwhite;
+}
+
+.border-lightblack {
+    border: 1px solid $lightblack;
+}
+
+// responsive page design
+
+// responsive font size
+
+.resfontSL {
+    @include media-breakpoint-down(lg) {
+        font-size: $fontSL !important;
+    }
+}
+
+.resfontXS {
+    @include media-breakpoint-down(lg) {
+        font-size: $fontXS !important;
+    }
+}
+
+.resfontL {
+    @include media-breakpoint-down(lg) {
+        font-size: $fontL !important;
+    }
+}
+
+.resfontLM {
+    @include media-breakpoint-down(lg) {
+        font-size: $resfontLM !important;
+    }
+}
+
+
+.resfontLL {
+    @include media-breakpoint-down(lg) {
+        font-size: $resfontLL !important;
+    }
+}
+
+.resfontXXX {
+    @include media-breakpoint-down(lg) {
+        font-size: $resfontXXX !important;
+    }
+}
+
+.resfontXXS {
+    @include media-breakpoint-down(lg) {
+        font-size: $resfontXXS !important;
+    }
+}
+
+.resfontLS {
+    @include media-breakpoint-down(lg) {
+        font-size: $fontLS !important;
+    }
+}
+
+.resfontSSS {
+    @include media-breakpoint-down(lg) {
+        font-size: $resfontSSS !important;
+    }
+}
+
+.resfontXL {
+    @include media-breakpoint-down(lg) {
+        font-size: $fontXL !important;
+    }
+}
+
+.resfontXXM {
+    @include media-breakpoint-down(lg) {
+        font-size: $resfontXXM !important;
+    }
+}
+
+.resfontXXL {
+    @include media-breakpoint-down(lg) {
+        font-size: $resfontXXL !important;
+    }
+}
+
+.resfontM {
+    @include media-breakpoint-down(lg) {
+        font-size: $fontM !important;
+    }
+}
+
+.resfontSM {
+    @include media-breakpoint-down(lg) {
+        font-size: $fontSM !important;
+    }
+}
+
+.resfontSSX {
+    @include media-breakpoint-down(lg) {
+        font-size: $resfontSSX !important;
+    }
+}
+
+.resfontSX {
+    @include media-breakpoint-down(lg) {
+        font-size: $fontSX !important;
+    }
+}
+
+.resfontLM {
+    @include media-breakpoint-down(lg) {
+        font-size: $resfontLM !important;
+    }
+}
+
+// responsive line height 
+
+.resleadingL {
+    @include media-breakpoint-down(lg) {
+        line-height: $leadingL !important;
+    }
+}
+
+.resleadingM {
+    @include media-breakpoint-down(lg) {
+        line-height: $leadingM !important;
+    }
+}
+
+.resleadingMS {
+    @include media-breakpoint-down(lg) {
+        line-height: $resleadingMS !important;
+    }
+}
+
+.resleadingMM {
+    @include media-breakpoint-down(lg) {
+        line-height: $resleadingMM !important;
+    }
+}
+
+.resleadingXM {
+    @include media-breakpoint-down(lg) {
+        line-height: $leadingXM !important;
+    }
+}
+
+.resleadingML {
+    @include media-breakpoint-down(lg) {
+        line-height: $resleadingML !important;
+    }
+}
+
+// responsive border radius
+
+.resradiusES {
+    @include media-breakpoint-down(lg) {
+        border-radius: $radiusES;
+    }
+}
+
+.resradiusX {
+    @include media-breakpoint-down(lg) {
+        border-radius: $radiusX !important;
+    }
+}
+
+.resradiusX-top {
+    @include media-breakpoint-down(lg) {
+        border-radius: $radiusX $radiusX 0 0;
+    }
+}
+
+.resbgsecondary {
+    @include media-breakpoint-down(lg) {
+        background-color: $secondary !important;
+    }
+}
+
+.restextwhite {
+    @include media-breakpoint-down(lg) {
+        color: #fff !important;
+    }
+}
+
+// OPACITY CUSTOM
+.opacityX {
+    opacity: 40%;
+}
+
+.border-b-lightPrimary {
+    border-bottom: 1px solid $lightPrimary;
+}
+
+.border-b-lightblack {
+    border-bottom: 1px solid $lightblack;
+}
+
+.border-b-offwhite {
+    border-bottom: 1px solid $offwhite;
+}

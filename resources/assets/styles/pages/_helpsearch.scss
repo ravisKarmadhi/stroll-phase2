@@ -1,0 +1,29 @@
+.help-search {
+    .help-content-data {
+        div {
+            &:last-child {
+                @include media-breakpoint-down(lg) {
+                    // border-bottom: transparent !important;
+                }
+            }
+        }
+    }
+
+    .help-search-img {
+        img {
+            transform: translate(42%, -40%);
+
+            @include media-breakpoint-down(xl) {
+                transform: translate(45%, -40%);
+            }
+
+            @include media-breakpoint-down(lg) {
+                transform: translate(62%, -60%);
+            }
+
+            @include media-breakpoint-down(md) {
+                transform: translate(80%, -55%);
+            }
+        }
+    }
+}

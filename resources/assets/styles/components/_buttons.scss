@@ -1,0 +1,99 @@
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    appearance: none !important;
+    -moz-appearance: none !important;
+    -webkit-appearance: none !important;
+}
+
+.btnW {
+    width: 193px;
+    height: 60px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        opacity: 0.6;
+    }
+}
+
+.btnX {
+    width: 210px;
+    height: 60px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        opacity: 0.6;
+    }
+}
+
+.btnY {
+    width: 258px;
+    height: 60px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        opacity: 0.6;
+    }
+}
+
+.btnS {
+    width: 225px;
+    height: 60px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        opacity: 0.6;
+    }
+}
+
+.res-btnY {
+    @include media-breakpoint-down(lg) {
+        width: 258px;
+        height: 60px;
+    }
+}
+
+.btnZ {
+    width: 225px;
+    height: 60px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        opacity: 0.6;
+    }
+}
+
+.filter-button-row {
+    .active {
+        background-color: $primary !important;
+        color: $white;
+        border: 1px solid $primary !important;
+    }
+
+    .filter-button {
+        &:hover {
+            background-color: $primary !important;
+            border: 1px solid $primary !important;
+            color: $white !important;
+        }
+    }
+}
+
+.next-prev-icon {
+    margin-right: -80px !important;
+
+    button {
+        &:hover {
+            svg {
+                path {
+                    fill: rgba(221, 224, 239, 0.80) !important;
+                }
+            }
+        }
+    }
+}
+
+.close-modal-btn {
+    z-index: 9999;
+}
