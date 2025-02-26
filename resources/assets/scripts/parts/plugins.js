@@ -7,31 +7,65 @@ export class Plugins {
         this.TestimonialSlider();
         this.LeftRightSlider();
         this.OurCaseStudies();
+        this.OurCaseInnerSlider();
     }
 
     OurCaseStudies() {
-        document.addEventListener("DOMContentLoaded", function () {
-            var swiper = new Swiper(".our-case-slider", {
-                direction: "vertical",
-                slidesPerView: 3,
-                spaceBetween: 20,
-                loop: true,
-                navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
-                },
-                on: {
-                    slideChange: function () {
-                        var activeSlide = document.querySelector(".swiper-slide-active");
-                        var newImg = activeSlide.getAttribute("data-img");
-                        var newTitle = activeSlide.getAttribute("data-title");
+        var caseSlider = new Swiper('.our-case-slider', {
+            direction: 'vertical',
+            slidesPerView: 3,
+            slidesPerGroup: 1,
+            spaceBetween: 0,
+            loop: true,
+            autoplay: {
+                delay: 10000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            mousewheel: true,
+        });
 
-                        // Update main case study card
-                        document.querySelector(".our-case-studies-cards-img img").src = newImg;
-                        document.querySelector(".our-case-studies-cards .acid-bold.text-capitalize").innerText = newTitle;
-                    }
-                }
+        function syncCaseStudies(index) {
+            document.querySelectorAll('.our-case-right-cards').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.our-case-studies-cards').forEach(card => card.style.display = 'none');
+
+            let activeRightCard = document.querySelectorAll('.our-case-right-cards')[index];
+            let activeLeftCard = document.querySelectorAll('.our-case-studies-cards')[index];
+
+            if (activeRightCard) activeRightCard.classList.add('active');
+            if (activeLeftCard) activeLeftCard.style.display = 'block';
+        }
+
+        caseSlider.on('slideChange', function () {
+            let currentIndex = caseSlider.realIndex;
+            syncCaseStudies(currentIndex);
+        });
+        document.querySelectorAll('.our-case-right-cards').forEach((slide, index) => {
+            slide.addEventListener('click', function () {
+                caseSlider.slideToLoop(index);
+                syncCaseStudies(index);
             });
+        });
+        syncCaseStudies(0);
+    }
+
+    OurCaseInnerSlider() {
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            draggable: true,
         });
     }
 

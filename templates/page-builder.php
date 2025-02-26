@@ -1722,10 +1722,10 @@ $flexible_content = get_field('flexible_content');
             $case_study_title = get_sub_field('title');
             $case_study_group = get_sub_field('case_study_group');
         ?>
-            <section class="our-case-studies-section bgprimary dpb-130">
+            <section class="our-case-studies-section bgprimary dpb-130 tpb-0 d-lg-block d-none">
                 <div class="container">
                     <div class="row">
-                        <div class="col-7 pe-4">
+                        <div class="col-lg-7 col-12 pe-lg-4">
                             <?php foreach ($case_study_group as $solution_list_items_custom) :
                                 $id = $solution_list_items_custom->ID;
                                 $ntitle = $solution_list_items_custom->post_title;
@@ -1738,7 +1738,7 @@ $flexible_content = get_field('flexible_content');
                                 $viemo = $post_media['viemo'];
                                 $youtube = $post_media['youtube'];
                             ?>
-                                <div class="our-case-studies-cards position-relative overflow-hidden radiusX">
+                                <div class="our-case-studies-cards position-relative overflow-hidden radiusX ">
                                     <div class="our-case-studies-cards-img radiusX overflow-hidden">
                                         <?php if (!empty($thumbnail_image)): ?> <img src="<?= $thumbnail_image ?>" class="w-100 h-100 object-cover" alt=""> <?php endif; ?>
                                         <div class="">
@@ -1785,9 +1785,10 @@ $flexible_content = get_field('flexible_content');
                                         <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/cate-layer.svg" class="w-100 object-cover" />
                                     </div>
                                 </div>
+                               
                             <?php endforeach; ?>
                         </div>
-                        <div class="col-5">
+                        <div class="col-lg-5 col-12">
                             <?php if (!empty($case_study_title)): ?>
                                 <div class="acid-bold fontMX leadingXL textlightwhite dmb-20"><?= $case_study_title; ?></div>
                             <?php endif; ?>
@@ -1801,7 +1802,7 @@ $flexible_content = get_field('flexible_content');
                                 $category = get_the_terms($id, 'case-term');
                             ?>
 
-                                    <div class="swiper-slide our-case-right-cards" data-img="<?= $thumbnail_image ?>" data-title="Helping Brian to transform his walking and reduce falls">
+                                    <div class="swiper-slide our-case-right-cards d-flex align-items-center cursor-pointer" data-img="<?= $thumbnail_image ?>" data-title="Helping Brian to transform his walking and reduce falls">
                                         <div class="d-inline-flex align-items-center">
                                             <div class="col-4">
                                                 <div class="our-case-right-cards-img overflow-hidden">
@@ -1815,6 +1816,79 @@ $flexible_content = get_field('flexible_content');
                                     </div>
                                     <?php endforeach; ?>
                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="our-case-studies-section2 bgprimary dpb-130 tpb-0 d-lg-none">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7 col-12 pe-lg-4">
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    <?php foreach ($case_study_group as $solution_list_items_custom) :
+                                        $id = $solution_list_items_custom->ID;
+                                        $ntitle = $solution_list_items_custom->post_title;
+                                        $thumbnail_image = get_the_post_thumbnail_url($id);
+                                        $permalink = get_permalink($id);
+                                        $category = get_the_terms($id, 'case-term');
+                                        $post_media = get_field('post_media', $id);
+                                        $media_type = $post_media['media_type'];
+                                        $video = $post_media['video'];
+                                        $viemo = $post_media['viemo'];
+                                        $youtube = $post_media['youtube'];
+                                    ?>
+                                        <div class="swiper-slide">
+                                            <div class="our-case-studies-cards2 position-relative overflow-hidden radiusX">
+                                                <div class="our-case-studies-cards-img radiusX overflow-hidden">
+                                                    <?php if (!empty($thumbnail_image)): ?> 
+                                                        <img src="<?= $thumbnail_image ?>" class="w-100 h-100 object-cover" alt=""> 
+                                                    <?php endif; ?>
+                                                    <div class="">
+                                                        <?php if ($media_type == 'video'): ?>
+                                                            <?php if (!empty($video)): ?>
+                                                                <video playsinline autoplay muted class="w-100 h-100 object-cover">
+                                                                    <source src="<?= $video ?>" type="video/mp4">
+                                                                </video>
+                                                            <?php endif; ?>
+                                                        <?php elseif ($media_type == 'viemo') : ?>
+                                                            <?php if (!empty($viemo)): ?>
+                                                                <iframe class="w-100 h-100 object-cover embed-video" src="<?= $viemo; ?>?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay" allowfullscreen></iframe>
+                                                            <?php endif; ?>
+                                                        <?php elseif ($media_type == 'youtube') : ?>
+                                                            <?php if (!empty($youtube)): ?>
+                                                                <iframe class="w-100 h-100 object-cover embed-video" src="<?= $youtube; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0" allow="autoplay; fullscreen"></iframe>
+                                                            <?php endif; ?>
+                                                        <?php else: ?>
+                                                            <img src="<?php echo get_the_post_thumbnail_url($id); ?>" class="w-100 h-100 object-cover" alt="">
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                                <div class="position-absolute bottom-0 w-100 dmb-30 px-4 z-3">
+                                                    <div class="d-flex justify-content-between align-items-end">
+                                                        <div class="col-9">
+                                                            <?php if (!empty($category[0]->name)): ?> 
+                                                                <div class="acid-normal fontX leadingX textlightblack bgoffwhite d-inline-flex rounded-pill px-2 py-1 dmb-10">
+                                                                    <?= $category[0]->name ?>
+                                                                </div> 
+                                                            <?php endif; ?>
+                                                            <?php if (!empty($ntitle)): ?> 
+                                                                <div class="acid-bold fontXM leadingM text-capitalize textlightwhite">
+                                                                    <?= $ntitle ?>
+                                                                </div> 
+                                                            <?php endif; ?>
+                                                        </div>
+                                                            <a href="<?= $permalink ?>" class="arrow d-inline-block">
+                                                                <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/arrow.svg" class="h-100" alt="">
+                                                            </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>

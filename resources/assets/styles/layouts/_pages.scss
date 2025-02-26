@@ -561,14 +561,24 @@ body {
 }
 
 
-.our-case-studies-section {
-    .our-case-studies-cards {
+.our-case-studies-section,
+.our-case-studies-section2 {
+
+    .our-case-studies-cards,
+    .our-case-studies-cards2 {
         .our-case-studies-cards-img {
             height: 540px;
+
+            @include media-breakpoint-down(lg) {
+                height: 350px;
+            }
         }
 
         .arrow {
             height: 67px;
+            @include media-breakpoint-down(lg){
+                height: 35px;
+            }
         }
 
         .bg-layer {
@@ -576,14 +586,23 @@ body {
         }
     }
 
-    .our-case-right-cards {
+    .our-case-right-cards,
+    .our-case-right-cards2 {
+        height: 157px !important;
         padding: 15px;
-        background-color: rgba($color: $lightwhite, $alpha: 0.05);
         border-radius: 15px;
 
         .our-case-right-cards-img {
             height: 121px;
             border-radius: 15px;
         }
+
+        &.swiper-slide-active {
+            background-color: rgba($color: $lightwhite, $alpha: 0.05);
+        }
+    }
+
+    .our-case-slider {
+        height: 470px;
     }
 }
