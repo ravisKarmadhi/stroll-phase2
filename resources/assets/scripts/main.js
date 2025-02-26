@@ -2,6 +2,7 @@ import $ from 'jquery';
 import '@popperjs/core';
 import 'bootstrap/dist/js/bootstrap';
 import 'select2/dist/js/select2.js';
+import '../../node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min';
 
 import { App } from './parts/app.js'
 import { Plugins } from './parts/plugins.js'

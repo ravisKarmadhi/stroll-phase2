@@ -540,3 +540,18 @@ body {
 
     }
 }
+
+.hero-video-section {
+    @include media-breakpoint-down(lg) {
+        height: 700px;
+    }
+
+    border-bottom-right-radius: $radiusS;
+    border-bottom-left-radius: $radiusS;
+
+    .hero-text {
+        height: 35px;
+        border-radius: 26px;
+        background-color: rgba($color: $white, $alpha: 0.1);
+    }
+}

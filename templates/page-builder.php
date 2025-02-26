@@ -1526,17 +1526,10 @@ $flexible_content = get_field('flexible_content');
             $hero_youtube = get_sub_field('hero_youtube');
             $hero_viemo = get_sub_field('hero_viemo');
         ?>
-            <section class="hero-video">
-                <div class="container">
-                    <?php if (!empty($hero_video_title)): ?>
-                        <?= $hero_video_title ?>
-                    <?php endif; ?>
-                    <?php if (!empty($hero_video_button)): ?>
-                        <a href="<?= $hero_video_button['url'] ?>"><?= $hero_video_button['title'] ?></a>
-                    <?php endif; ?>
+            <section class="hero-video-section h-vh position-relative overflow-hidden">
                     <?php if ($media_type == 'image'): ?>
                         <?php if (!empty($hero_image)): ?>
-                            <img src="<?= $hero_image; ?>" alt="">
+                            <img src="<?= $hero_image; ?>" class="w-100 h-100 object-cover" alt="">
                         <?php endif; ?>
                     <?php elseif ($media_type == 'video'): ?>
                         <?php if (!empty($hero_video)): ?>
@@ -1561,7 +1554,39 @@ $flexible_content = get_field('flexible_content');
                             </iframe>
                         <?php endif; ?>
                     <?php endif; ?>
-                </div>
+
+                    <div class="position-absolute top-center w-100">
+                        <div class="container h-100">
+                            <div class="col-lg-7 col-10">
+                                <?php if (!empty($hero_video_title)): ?>
+                                    <div class="acid-bold fontLS leadingMX text-white resfontLM resleadingMS">
+                                        <?= $hero_video_title ?>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if (!empty($hero_video_button)): ?>
+                                    <a href="<?= $hero_video_button['url'] ?>" target="<?= $hero_video_button['target'] ?>" class="text-white acid-bold d-flex align-items-center fontXX justify-content-center text-decoration-none bgsecondary radiusX dmt-30 btnY"> <?= $hero_video_button['title'] ?> </a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="position-absolute bottom-0 end-0">
+                    <?php if ($media_type == 'video'): ?>
+                        <div  data-src="<?= $hero_video ?>" data-type="video"
+                            data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">Click to play audio</div>
+
+                    <?php elseif ($media_type == 'youtube'): ?>
+                        <?php if (!empty($hero_youtube)): ?>
+                            <div  data-src="<?= $hero_youtube ?>" data-type="iframe"
+                            data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">Click to play audio</div>
+                        <?php endif; ?>
+                    <?php elseif ($media_type == 'viemo'): ?>
+                        <?php if (!empty($hero_viemo)): ?>
+                            <div  data-src="<?= $hero_viemo ?>" data-type="iframe"
+                            data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">Click to play audio</div>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                    </div>
+
             </section>
         <?php elseif (get_row_layout() == 'slider_with_left_right') :
             $slider_group = get_sub_field('slider_group');
@@ -1678,6 +1703,16 @@ $flexible_content = get_field('flexible_content');
                                 </div>
                             </div>
                         <?php endforeach; ?>
+                    </div>
+                </div>
+            </section>
+
+            <section class="our-case-studies-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                            
+                        </div>
                     </div>
                 </div>
             </section>
