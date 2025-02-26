@@ -1580,17 +1580,23 @@ $flexible_content = get_field('flexible_content');
                 <div class="position-absolute bottom-0 end-0">
                     <?php if ($media_type == 'video'): ?>
                         <div data-src="<?= $hero_video ?>" data-type="video"
-                            data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">Click to play audio</div>
+                            data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
+                            <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                            Click to play audio</div>
 
                     <?php elseif ($media_type == 'youtube'): ?>
                         <?php if (!empty($hero_youtube)): ?>
                             <div data-src="<?= $hero_youtube ?>" data-type="iframe"
-                                data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">Click to play audio</div>
+                                data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
+                                <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                                Click to play audio</div>
                         <?php endif; ?>
                     <?php elseif ($media_type == 'viemo'): ?>
                         <?php if (!empty($hero_viemo)): ?>
                             <div data-src="<?= $hero_viemo ?>" data-type="iframe"
-                                data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">Click to play audio</div>
+                                data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
+                                <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                                Click to play audio</div>
                         <?php endif; ?>
                     <?php endif; ?>
                 </div>

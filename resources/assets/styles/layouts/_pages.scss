@@ -557,6 +557,10 @@ body {
         @include media-breakpoint-down(lg) {
             border-radius: 15px;
         }
+
+        .icon {
+            height: 18px;
+        }
     }
 }
 
@@ -576,7 +580,8 @@ body {
 
         .arrow {
             height: 67px;
-            @include media-breakpoint-down(lg){
+
+            @include media-breakpoint-down(lg) {
                 height: 35px;
             }
         }
