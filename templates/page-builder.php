@@ -536,22 +536,33 @@ $flexible_content = get_field('flexible_content');
             <?php elseif (get_row_layout() == 'faq') :
             $faq_heading = get_sub_field('heading');
             $faq_items = get_sub_field('items');
+            $faq_categories = get_terms(array(
+                'taxonomy' => 'faq-cat',
+                'hide_empty' => false,
+            ));
             if (!empty($faq_items)) :
             ?>
                 <section>
                     <div class="container" data-aos="fade-up">
                         <div class="row">
-                            <?php if (!empty($faq_heading)) : ?>
-                                <div class="col-lg-2">
-                                    <h3 class="textlightblack acid-bold lh-1 resfontXXS fontMM"><?php echo $faq_heading; ?></h3>
-                                </div>
-                            <?php endif; ?>
+                            <div class="col-lg-2">
+                                <?php if (!empty($faq_heading)) : ?>
+                                    <h3 class="textlightblack acid-bold lh-1 resfontXXS fontMM dmb-15"><?php echo $faq_heading; ?></h3>
+                                <?php endif; ?>
+                                <?php if (!empty($faq_categories) && !is_wp_error($faq_categories)) : ?>
+                                    <?php foreach ($faq_categories as $index => $category) : ?>
+                                        <button class="bgoffwhite textlightblack rounded-pill fontM dmb-10 acid-bold text-center leadingM border-0 d-block btnA filter-btn <?php echo ($index === 0) ? 'active' : ''; ?>"
+                                            data-category="<?php echo esc_attr($category->slug); ?>">
+                                            <?php echo esc_html($category->name); ?>
+                                        </button>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
                             <div class="col-lg-10 ps-lg-2 tmt-25">
-                                <div class="accordion custom-accordion" id="accordionExample">
+                                <!-- <div class="accordion custom-accordion" id="accordionExample">
                                     <?php foreach ($faq_items as $key => $faq_items_custom) :
                                         $clssname = ($key == '0') ? "show" : "";
                                         $clssname_value = ($key == '0') ? "true" : "false";
-                                        // $category = get_the_terms(   ,'');
                                     ?>
                                         <div class="bg-white border-0 mb-3 radiusES overflow-hidden">
                                             <h2 class="accordion-header" id="heading<?php echo $key; ?>">
@@ -568,7 +579,28 @@ $flexible_content = get_field('flexible_content');
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
-                                </div>
+                                </div> -->
+
+                                <div class="accordion custom-accordion" id="accordionExample"></div>
+                                <script id="faq-template" type="text/x-handlebars-template">
+                                    {{#each posts}}
+                                        <div class="bg-white border-0 mb-3 radiusES overflow-hidden">
+                                            <h2 class="accordion-header" id="heading{{@index}}">
+                                                <button class="accordion-button resfontXXM shadow-none radiusES bg-white acid-bold textlightblack fontXL" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{@index}}" aria-expanded="{{#if @first}}true{{else}}false{{/if}}" aria-controls="collapse{{@index}}">
+                                                    {{title}}
+                                                </button>
+                                            </h2>
+                                            <div id="collapse{{@index}}" class="accordion-collapse collapse {{#if @first}}show{{/if}}" aria-labelledby="heading{{@index}}" data-bs-parent="#accordionExample">
+                                                <div class="accordion-body col-10">
+                                                    <h6 class="acid-normal textlightblack fontL leadingL mb-3">
+                                                        {{content}}
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {{/each}}
+                                </script>
+
                             </div>
                         </div>
                     </div>
@@ -1582,21 +1614,24 @@ $flexible_content = get_field('flexible_content');
                         <div data-src="<?= $hero_video ?>" data-type="video"
                             data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
                             <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
-                            Click to play audio</div>
+                            Click to play audio
+                        </div>
 
                     <?php elseif ($media_type == 'youtube'): ?>
                         <?php if (!empty($hero_youtube)): ?>
                             <div data-src="<?= $hero_youtube ?>" data-type="iframe"
                                 data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
                                 <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
-                                Click to play audio</div>
+                                Click to play audio
+                            </div>
                         <?php endif; ?>
                     <?php elseif ($media_type == 'viemo'): ?>
                         <?php if (!empty($hero_viemo)): ?>
                             <div data-src="<?= $hero_viemo ?>" data-type="iframe"
                                 data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
                                 <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
-                                Click to play audio</div>
+                                Click to play audio
+                            </div>
                         <?php endif; ?>
                     <?php endif; ?>
                 </div>
@@ -1791,7 +1826,7 @@ $flexible_content = get_field('flexible_content');
                                         <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/cate-layer.svg" class="w-100 object-cover" />
                                     </div>
                                 </div>
-                               
+
                             <?php endforeach; ?>
                         </div>
                         <div class="col-lg-5 col-12">
@@ -1800,28 +1835,28 @@ $flexible_content = get_field('flexible_content');
                             <?php endif; ?>
                             <div class="swiper our-case-slider">
                                 <div class="swiper-wrapper">
-                                <?php foreach ($case_study_group as $solution_list_items_custom) :
-                                $id = $solution_list_items_custom->ID;
-                                $ntitle = $solution_list_items_custom->post_title;
-                                $thumbnail_image = get_the_post_thumbnail_url($id);
-                                $permalink = get_permalink($id);
-                                $category = get_the_terms($id, 'case-term');
-                            ?>
+                                    <?php foreach ($case_study_group as $solution_list_items_custom) :
+                                        $id = $solution_list_items_custom->ID;
+                                        $ntitle = $solution_list_items_custom->post_title;
+                                        $thumbnail_image = get_the_post_thumbnail_url($id);
+                                        $permalink = get_permalink($id);
+                                        $category = get_the_terms($id, 'case-term');
+                                    ?>
 
-                                    <div class="swiper-slide our-case-right-cards d-flex align-items-center cursor-pointer" data-img="<?= $thumbnail_image ?>" data-title="Helping Brian to transform his walking and reduce falls">
-                                        <div class="d-inline-flex align-items-center">
-                                            <div class="col-4">
-                                                <div class="our-case-right-cards-img overflow-hidden">
-                                                <?php if (!empty($thumbnail_image)): ?>     <img src="<?= $thumbnail_image; ?>" class="w-100 h-100 object-cover" alt="" /> <?php endif; ?>
+                                        <div class="swiper-slide our-case-right-cards d-flex align-items-center cursor-pointer" data-img="<?= $thumbnail_image ?>" data-title="Helping Brian to transform his walking and reduce falls">
+                                            <div class="d-inline-flex align-items-center">
+                                                <div class="col-4">
+                                                    <div class="our-case-right-cards-img overflow-hidden">
+                                                        <?php if (!empty($thumbnail_image)): ?> <img src="<?= $thumbnail_image; ?>" class="w-100 h-100 object-cover" alt="" /> <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                                <div class="col-8 px-4">
+                                                    <?php if (!empty($ntitle)): ?> <div class="acid-bold fontL leadingX textlightwhite pe-4"><?= $ntitle ?></div> <?php endif; ?>
                                                 </div>
                                             </div>
-                                            <div class="col-8 px-4">
-                                            <?php if (!empty($ntitle)): ?>  <div class="acid-bold fontL leadingX textlightwhite pe-4"><?= $ntitle ?></div> <?php endif; ?>
-                                            </div>
                                         </div>
-                                    </div>
                                     <?php endforeach; ?>
-                                   
+
                                 </div>
                             </div>
                         </div>
@@ -1850,8 +1885,8 @@ $flexible_content = get_field('flexible_content');
                                         <div class="swiper-slide">
                                             <div class="our-case-studies-cards2 position-relative overflow-hidden radiusX">
                                                 <div class="our-case-studies-cards-img radiusX overflow-hidden">
-                                                    <?php if (!empty($thumbnail_image)): ?> 
-                                                        <img src="<?= $thumbnail_image ?>" class="w-100 h-100 object-cover" alt=""> 
+                                                    <?php if (!empty($thumbnail_image)): ?>
+                                                        <img src="<?= $thumbnail_image ?>" class="w-100 h-100 object-cover" alt="">
                                                     <?php endif; ?>
                                                     <div class="">
                                                         <?php if ($media_type == 'video'): ?>
@@ -1876,20 +1911,20 @@ $flexible_content = get_field('flexible_content');
                                                 <div class="position-absolute bottom-0 w-100 dmb-30 px-4 z-3">
                                                     <div class="d-flex justify-content-between align-items-end">
                                                         <div class="col-9">
-                                                            <?php if (!empty($category[0]->name)): ?> 
+                                                            <?php if (!empty($category[0]->name)): ?>
                                                                 <div class="acid-normal fontX leadingX textlightblack bgoffwhite d-inline-flex rounded-pill px-2 py-1 dmb-10">
                                                                     <?= $category[0]->name ?>
-                                                                </div> 
+                                                                </div>
                                                             <?php endif; ?>
-                                                            <?php if (!empty($ntitle)): ?> 
+                                                            <?php if (!empty($ntitle)): ?>
                                                                 <div class="acid-bold fontXM leadingM text-capitalize textlightwhite">
                                                                     <?= $ntitle ?>
-                                                                </div> 
+                                                                </div>
                                                             <?php endif; ?>
                                                         </div>
-                                                            <a href="<?= $permalink ?>" class="arrow d-inline-block">
-                                                                <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/arrow.svg" class="h-100" alt="">
-                                                            </a>
+                                                        <a href="<?= $permalink ?>" class="arrow d-inline-block">
+                                                            <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/arrow.svg" class="h-100" alt="">
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

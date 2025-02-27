@@ -64,6 +64,17 @@ button,
     }
 }
 
+.btnA {
+    width: 130px;
+    height: 46px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        opacity: 0.6;
+    }
+
+}
+
 .filter-button-row {
     .active {
         background-color: $primary !important;
@@ -96,4 +107,11 @@ button,
 
 .close-modal-btn {
     z-index: 9999;
+}
+
+.filter-btn {
+    &.active {
+        background-color: $lightblack;
+        color: $lightwhite;
+    }
 }
