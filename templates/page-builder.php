@@ -459,7 +459,7 @@ $flexible_content = get_field('flexible_content');
             $review_items = get_sub_field('items');
         ?>
             <!-- case studies section -->
-            <section class="<?php if (! get_sub_field('disable_background_colour')) : ?>bglightblack<?php else: ?><?php endif; ?> radius-bottom-right testimonial ">
+            <section class="<?php if (! get_sub_field('disable_background_colour')) : ?>bglightblack<?php else: ?><?php endif; ?> radius-bottom-right testimonial position-relative overflow-hidden">
                 <div class="container px-p-0" data-aos="fade-up">
                     <div class="col-lg-7 mx-auto dpt-105 tpt-65 col-11 px-p-p">
                         <?php if (!empty($review_heading)) : ?>
@@ -473,7 +473,7 @@ $flexible_content = get_field('flexible_content');
                     </div>
                     <?php if (!empty($review_items)) : ?>
                         <div class="col-11 mx-auto px-5 ps-p-p">
-                            <div class="testimonials d-flex flex-wrap dpt-125 tpt-40 dpb-145 tpb-100">
+                            <div class="testimonials dpt-125 tpt-40 dpb-145 tpb-100">
                                 <?php foreach ($review_items as $review_items_custom) :
                                     $id = $review_items_custom->ID;
                                     $rating = get_field('rating', $id);
@@ -498,6 +498,7 @@ $flexible_content = get_field('flexible_content');
                         </div>
                     <?php endif; ?>
                 </div>
+                <div class="bg-testimonial-layer position-absolute w-100 bottom-0 start-0"></div>
             </section>
         <?php elseif (get_row_layout() == 'middle_content') :
             $middle_content_heading = get_sub_field('heading');
