@@ -8,6 +8,7 @@ export class Plugins {
         this.LeftRightSlider();
         this.OurCaseStudies();
         this.OurCaseInnerSlider();
+        this.ImgSlider();
     }
 
     OurCaseStudies() {
@@ -66,6 +67,39 @@ export class Plugins {
                 clickable: true,
             },
             draggable: true,
+        });
+    }
+
+    ImgSlider() {
+        var swiper = new Swiper(".img-slider", {
+            slidesPerView: 3, 
+            spaceBetween: 30,
+            grabCursor: true,
+            a11y: false,
+            freeMode: true, 
+            speed: 1500,
+            loop: true, 
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
+            },
+            allowTouchMove: false, 
+            loopAdditionalSlides: 3, 
+            centeredSlides: true, 
+            loopFillGroupWithBlank: true, 
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            on: {
+                init: function () {
+                    document.querySelector('.swiper-wrapper').style.transitionTimingFunction = 'linear'; // Smooth effect
+                }
+            }
         });
     }
 
