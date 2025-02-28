@@ -306,6 +306,35 @@
 
     .img-slider-img {
         height: 360px;
+
+        @include media-breakpoint-down(lg) {
+            height: 280px;
+        }
+    }
+}
+
+
+.why-wrok-for-section {
+    .why-we-work-img {
+        height: 730px;
+
+        @include media-breakpoint-down(lg) {
+            height: 360px;
+        }
+    }
+
+    .hero-text {
+        height: 35px;
+        border-radius: 26px;
+        background-color: rgba($color: $white, $alpha: 0.1);
+
+        @include media-breakpoint-down(lg) {
+            border-radius: 15px;
+        }
+
+        .icon {
+            height: 18px;
+        }
     }
 }
   
