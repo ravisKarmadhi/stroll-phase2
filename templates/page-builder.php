@@ -474,14 +474,14 @@ $flexible_content = get_field('flexible_content');
                     </div>
                     <?php if (!empty($review_items)) : ?>
                         <div class="col-11 mx-auto px-5 ps-p-p">
-                            <div class="testimonials d-flex flex-wrap dpt-125 tpt-40 dpb-145 tpb-100">
-                                <?php foreach ($review_items as $review_items_custom) :
+                            <div class="testimonials dpt-125 tpt-40 dpb-145 tpb-100">
+                                <?php foreach ($review_items  as $key => $review_items_custom) :
                                     $id = $review_items_custom->ID;
                                     $rating = get_field('rating', $id);
                                     $role_and_name = get_field('role_and_name', $id);
                                 ?>
-                                    <div class="testimonal-cards">
-                                        <div class="testimonal-card bg-white radiusXS">
+                                    <div class="testimonal-cards w-100 <?php echo (count($review_items) <= 3) ? 'three-cards' : ''; ?>">
+                                        <div class="testimonal-card bg-white radiusXS dmb-15">
                                             <div class="rating-icon d-flex align-items-center dmb-20">
                                                 <?php
                                                 for ($i = 0; $i < $rating; $i++) : ?>
@@ -642,19 +642,22 @@ $flexible_content = get_field('flexible_content');
             $how_it_works_hero_section_button = get_sub_field('button');
             $how_it_works_hero_section_video_image = get_sub_field('video_image');
             $how_it_works_hero_section_video_url = get_sub_field('video_url');
+            $content_type = get_sub_field('content_type');
         ?>
             <section class="position-relative hero-sections-product">
                 <div class="how-work-section position-relative bgprimary radius-bottom-right overflow-hidden">
                     <div class="dpt-235 tpt-135"></div>
                     <div class="container" data-aos="fade-right" data-aos-duration="1500">
                         <div class="row ">
-                            <div class="col-lg-6 d-lg-flex flex-lg-column  justify-content-lg-center">
-                                <?php if (!empty($how_it_works_hero_section_heading)) : ?>
-                                    <h3 class="text-white acid-bold fontLS lh-1 resfontXXS"><?php echo $how_it_works_hero_section_heading; ?></h3>
-                                <?php endif; ?>
-                                <?php if (!empty($how_it_works_hero_section_content)) : ?>
-                                    <h6 class="text-white acid-normal fontSX dmt-25 mmt-20 resfontL leadingXS resleadingM">
-                                        <?php echo $how_it_works_hero_section_content; ?></h6>
+                            <div class="col-lg-6 d-lg-flex flex-lg-column  justify-content-lg-center <?= $content_type == 'with_content' ? 'order-2 order-lg-1' : '' ?>">
+                                <?php if($content_type == 'with_image') : ?>
+                                    <?php if (!empty($how_it_works_hero_section_heading)) : ?>
+                                        <h3 class="text-white acid-bold fontLS lh-1 resfontXXS"><?php echo $how_it_works_hero_section_heading; ?></h3>
+                                    <?php endif; ?>
+                                    <?php if (!empty($how_it_works_hero_section_content)) : ?>
+                                        <h6 class="text-white acid-normal fontSX dmt-25 mmt-20 resfontL leadingXS resleadingM">
+                                            <?php echo $how_it_works_hero_section_content; ?></h6>
+                                    <?php endif; ?>
                                 <?php endif; ?>
                                 <?php
                                 if (!empty($how_it_works_hero_section_items)) : ?>
@@ -685,7 +688,18 @@ $flexible_content = get_field('flexible_content');
                                     <a href="<?php echo $how_it_works_hero_section_button['url']; ?>" target="<?php echo $target; ?>" class="text-white acid-bold d-flex align-items-center mx-lg-0 mx-auto justify-content-center fontXX text-decoration-none bgsecondary radiusX btnZ "><?php echo $how_it_works_hero_section_button['title']; ?></a>
                                 <?php endif; ?>
                             </div>
-                            <?php if (!empty($how_it_works_hero_section_image['url'])) : ?>
+                            <div class="col-lg-6 ps-lg-5 order-1 order-lg-2">
+                                <?php if ($content_type == 'with_content') : ?>
+                                <?php if (!empty($how_it_works_hero_section_heading)) : ?>
+                                        <h3 class="text-white acid-bold fontLS lh-1 resfontXXS ps-lg-4"><?php echo $how_it_works_hero_section_heading; ?></h3>
+                                    <?php endif; ?>
+                                    <?php if (!empty($how_it_works_hero_section_content)) : ?>
+                                        <h6 class="text-white acid-normal fontSX dmt-25 mmt-20 resfontL leadingXS resleadingM ps-lg-4">
+                                            <?php echo $how_it_works_hero_section_content; ?></h6>
+                                    <?php endif; ?>
+                                    <?php endif; ?>
+                            </div>
+                            <?php if($content_type == "with_image") : if (!empty($how_it_works_hero_section_image['url'])) : ?>
                                 <div class="col-lg-5 me-5  position-absolute end-0 image-content p-initial dmt-65 tmt-50">
 
                                     <?php if (! get_sub_field('hide_background_shape')) : ?>
@@ -694,7 +708,7 @@ $flexible_content = get_field('flexible_content');
 
                                     <img src="<?php echo $how_it_works_hero_section_image['url']; ?>" class="top-left-center position-absolute w-100 <?php if (get_sub_field('hide_background_shape')) : ?>radiusES<?php endif; ?>" alt="">
                                 </div>
-                            <?php endif; ?>
+                            <?php endif; endif; ?>
                         </div>
                     </div>
                     <?php if (!$how_it_works_hero_section_video_image['url'] == ""): ?>
@@ -1565,6 +1579,10 @@ $flexible_content = get_field('flexible_content');
             $hero_video = get_sub_field('hero_video');
             $hero_youtube = get_sub_field('hero_youtube');
             $hero_viemo = get_sub_field('hero_viemo');
+            $fancy_box_video_type = get_sub_field('fancy_box_video_type');
+            $fancy_box_video = get_sub_field('fancy_box_video');
+            $fancy_box_youtube = get_sub_field('fancy_box_youtube');
+            $fancy_box_vimeo = get_sub_field('fancy_box_vimeo');
         ?>
             <section class="hero-video-section h-vh position-relative overflow-hidden">
                 <?php if ($media_type == 'image'): ?>
@@ -1594,7 +1612,6 @@ $flexible_content = get_field('flexible_content');
                         </iframe>
                     <?php endif; ?>
                 <?php endif; ?>
-
                 <div class="position-absolute top-center w-100">
                     <div class="container h-100">
                         <div class="col-lg-7 col-10">
@@ -1610,24 +1627,24 @@ $flexible_content = get_field('flexible_content');
                     </div>
                 </div>
                 <div class="position-absolute bottom-0 end-0">
-                    <?php if ($media_type == 'video'): ?>
-                        <div data-src="<?= $hero_video ?>" data-type="video"
+                    <?php if ($fancy_box_video_type == 'fancy_box_video'): ?>
+                        <div data-src="<?= $fancy_box_video ?>" data-type="video"
                             data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
                             <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
                             Click to play audio
                         </div>
 
-                    <?php elseif ($media_type == 'youtube'): ?>
-                        <?php if (!empty($hero_youtube)): ?>
-                            <div data-src="<?= $hero_youtube ?>" data-type="iframe"
+                    <?php elseif ($fancy_box_video_type == 'fancy_box_youtube'): ?>
+                        <?php if (!empty($fancy_box_youtube)): ?>
+                            <div data-src="<?= $fancy_box_youtube ?>?autoplay=1" data-type="iframe"
                                 data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
                                 <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
                                 Click to play audio
                             </div>
                         <?php endif; ?>
-                    <?php elseif ($media_type == 'viemo'): ?>
-                        <?php if (!empty($hero_viemo)): ?>
-                            <div data-src="<?= $hero_viemo ?>" data-type="iframe"
+                    <?php elseif ($fancy_box_video_type == 'viemo'): ?>
+                        <?php if (!empty($fancy_box_vimeo)): ?>
+                            <div data-src="<?= $fancy_box_vimeo ?>?autoplay=1" data-type="iframe"
                                 data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
                                 <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
                                 Click to play audio
@@ -1763,6 +1780,7 @@ $flexible_content = get_field('flexible_content');
                     </div>
                 </div>
             </section>
+
         <?php elseif (get_row_layout() == 'case_study') :
             $case_study_title = get_sub_field('title');
             $case_study_group = get_sub_field('case_study_group');
@@ -1945,93 +1963,149 @@ $flexible_content = get_field('flexible_content');
             </section>
 
 
-            <section class="img-slider-section overflow-hidden bgprimary">
-                <div class="container">
-                    <div class="swiper img-slider col-lg-9">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide px-1">
-                                <div class="img-slider-img radiusX overflow-hidden">
-                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide px-1">
-                                <div class="img-slider-img radiusX overflow-hidden">
-                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide px-1">
-                                <div class="img-slider-img radiusX overflow-hidden">
-                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide px-1">
-                                <div class="img-slider-img radiusX overflow-hidden">
-                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide px-1">
-                                <div class="img-slider-img radiusX overflow-hidden">
-                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide px-1">
-                                <div class="img-slider-img radiusX overflow-hidden">
-                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>                                        
+        <?php elseif(get_row_layout() == 'why_work_for_section' ) :
+            $main_heading = get_sub_field('main_heading');
+            $main_button = get_sub_field('main_button');
+            $media_type = get_sub_field('media_type');
+            $image = get_sub_field('image');
+            $video = get_sub_field('video');
+            $youtube = get_sub_field('youtube');
+            $vimeo = get_sub_field('vimeo');
+            $content_heading = get_sub_field('content_heading');
+            $content_description = get_sub_field('content_description');
+            $fancy_box_type = get_sub_field('fancy_box_type');
+            $fancy_box_video = get_sub_field('fancy_box_video');
+            $fancy_box_youtube = get_sub_field('fancy_box_youtube');
+            $fancy_box_vimeo = get_sub_field('fancy_box_vimeo');
+        ?>
+
+        <section class="why-wrok-for-section bgprimary dpt-180 dpb-140 tpt-50 tpb-80">
+            <div class="container">
+                <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end dmb-80">
+                <?php if (!empty($main_heading)): ?>
+                    <div class="acid-bold fontLS leadingMX text-white col-lg-6 resfontLM resleadingMS"><?= $main_heading ?></div>
+                <?php endif; ?>
+                <?php if (!empty($main_button)): ?>
+                    <a href="<?= $main_button['url'] ?>" target="<?= $main_button['target'] ?>" class="text-white acid-bold d-flex align-items-center justify-content-center fontXX text-decoration-none bgsecondary radiusX tmt-25 btnY "><?= $main_button['title'] ?></a>
+                <?php endif; ?>
                 </div>
-            </section>
-
-
-            <section class="why-wrok-for-section bgprimary">
-                <div class="container">
-                    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end dmb-80">
-                        <div class="acid-bold fontLS leadingMX text-white col-lg-6 resfontLM resleadingMS">Comopany Culture Why work for Strolll</div>
-                        <a href="" target="<?php echo $target; ?>" class="text-white acid-bold d-flex align-items-center justify-content-center fontXX text-decoration-none bgsecondary radiusX dmt-30 tmt-25 btnY ">View vacancies</a>
-                    </div>
-                    <div class="why-we-work-img radiusXS overflow-hidden position-relative dmb-100 tmb-50">
-                        <img src="<?php echo get_home_url() ?>/wp-content/uploads/2024/01/Strolll-Shoot24020245364-scaled.jpg" class="w-100 h-100 object-cover" alt="">
-                          <!-- <video playsinline="playsinline" autoplay="autoplay" muted="muted" class="w-100 h-100 object-cover">
-                            <source src="<?= $hero_video ?>" type="video/mp4">
+                <div class="why-we-work-img radiusXS overflow-hidden position-relative dmb-100 tmb-50">
+                <?php if ($media_type == 'image'): ?>
+                    <?php if (!empty($image)): ?>
+                        <img src="<?= $image; ?>" class="w-100 h-100 object-cover" alt="">
+                    <?php endif; ?>
+                <?php elseif ($media_type == 'video'): ?>
+                    <?php if (!empty($video)): ?>
+                        <video playsinline="playsinline" autoplay="autoplay" muted="muted" class="w-100 h-100 object-cover">
+                            <source src="<?= $video ?>" type="video/mp4">
                             </source>
                         </video>
+                    <?php endif; ?>
+
+                <?php elseif ($media_type == 'youtube'): ?>
+                    <?php if (!empty($youtube)): ?>
                         <iframe class="w-100 h-100 object-cover embed-video"
-                            src="?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline="
+                            src="<?= $youtube; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline=<?= basename($youtube) ?>"
                             allow="autoplay; fullscreen">
                         </iframe>
+                    <?php endif; ?>
+                <?php elseif ($media_type == 'vimeo'): ?>
+                    <?php if (!empty($vimeo)): ?>
                         <iframe class="w-100 h-100 object-cover embed-video"
-                            src="?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay"
+                            src="<?= $vimeo; ?>?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay"
                             allowfullscreen>
-                        </iframe> -->
-                        <div class="position-absolute bottom-0 end-0">
-                                <div data-src="" data-type="video"
-                                    data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-lg-4 px-3 mb-lg-5 mb-3 me-5 cursor-pointer">
+                        </iframe>
+                    <?php endif; ?>
+                <?php endif; ?>
+
+                    <div class="position-absolute bottom-0 end-0">
+                        <?php if ($fancy_box_type == 'fancy_box_video'): ?>
+                            <div data-src="<?= $fancy_box_video ?>" data-type="video"
+                                data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
+                                <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                                Click to play audio
+                            </div>
+
+                        <?php elseif ($fancy_box_type == 'fancy_box_youtube'): ?>
+                            <?php if (!empty($fancy_box_youtube)): ?>
+                                <div data-src="<?= $fancy_box_youtube ?>?autoplay=1" 
+                                        data-type="iframe" 
+                                        data-fancybox="gallery" 
+                                        class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
+                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                                        Click to play audio
+                                    </div>
+                            <?php endif; ?>
+                        <?php elseif ($fancy_box_type == 'fancy_box_vimeo'): ?>
+                            <?php if (!empty($fancy_box_vimeo)): ?>
+                                <div data-src="<?= $fancy_box_vimeo ?>?autoplay=1" data-type="iframe"
+                                    data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer position-relative z-3">
                                     <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
-                                    Click to play audio</div>
-                                    <!-- <div data-src="" data-type="iframe"
-                                        data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-lg-4 px-3 mb-lg-5 mb-3 me-5 cursor-pointer">
-                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
-                                        Click to play audio</div>
-                                    <div data-src="" data-type="iframe"
-                                        data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-lg-4 px-3 mb-lg-5 mb-3 me-5 cursor-pointer">
-                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
-                                        Click to play audio</div> -->
-                        </div>
-                    </div>
-                    <div class="row">
-                       <div class="row">
-                        <div class="col-lg-4 col-12">
-                            <div class="acid-bold fontSX leadingXS textlightwhite tmb-25">At Strolll, we’re more than just a company—we’re a team united by a shared mission: to revolutionize neuro-rehabilitation and improve the lives of patients worldwide</div>
-                        </div>
-                        <div class="col-lg-8 col-12">
-                            <div class="acid-normal fontXX leadingXX textlightwhite col-lg-9 mx-auto">Driven by our personal connection to neurodegenerative conditions like Parkinson’s, our co-founders and staff are deeply invested in creating the most effective and accessible AR-powered neuro-rehabilitation software on the market. It’s this passion and commitment to meaningful change that fuels everything we do, and we recruit the best in the business to get our job done. We believe in creating a work environment that reflects the values we stand for—positivity, collaboration, and growth. Based in a dynamic office space in Stafford, Strolll also embraces the flexibility of remote work, making our team a diverse and inclusive group that stays connected no matter where we are. Whether it’s through regular Teams meetings, our all-hands office days, or unforgettable team-building activities, we make sure that every voice is heard and every contribution is celebrated.</div>
-                        </div>
-                       </div>                                     
+                                    Click to play audio
+                                </div>
+                            <?php endif; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
-            </section>
+                <div class="row">
+                    <div class="row">
+                        <div class="col-lg-4 col-12">
+                            <?php if(!empty($content_heading)) : ?>
+                                <div class="acid-bold fontSX leadingXS textlightwhite tmb-25"><?= $content_heading ?></div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="col-lg-8 col-12">
+                            <?php if(!empty($content_description)) :?>
+                            <div class="acid-normal fontXX leadingXX textlightwhite col-lg-9 mx-auto"><?= $content_description ?></div>
+                            <?php endif ?>
+                        </div>
+                    </div>                                     
+                </div>
+            </div>
+        </section>
+
+
+        <?php elseif(get_row_layout() == 'img_slider_section' ) :
+            $image_group = get_sub_field('image_group');
+            $heading = get_sub_field('heading');
+            $description = get_sub_field('description');
+            $link = get_sub_field('link');
+        ?>
+
+        <section class="img-slider-section overflow-hidden bgprimary dpb-180 tpb-80">
+            <div class="container">
+                <div class="swiper img-slider col-lg-9">
+                    <div class="swiper-wrapper">
+                        <?php foreach($image_group as $image_group_data) :
+                            $image = $image_group_data['image'];
+                        ?>
+                            <div class="swiper-slide px-1">
+                                <?php if(!empty($image)) :?>
+                                <div class="img-slider-img radiusX overflow-hidden">
+                                    <img src="<?= $image ?>" class="w-100 h-100 object-cover" alt="">
+                                </div>
+                                <?php endif ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>                                        
+                <div class="dmt-140 tmt-50 col-lg-7 mx-auto">
+                    <?php if(!empty($heading)) :?>
+                        <div class="acid-bold fontSX leadingXS textlightwhite dmb-35">
+                            <?= $heading ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if(!empty($description)) :?>
+                        <div class="acid-normal fontXX leadingXS textlightwhite dmb-35">
+                            <?= $description ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if(!empty($link)) :?>
+                        <a href="<?= $link['url'] ?>" target="<?= $link['target'] ?>" class="text-white acid-bold d-flex align-items-center fontXX justify-content-center text-decoration-none bgsecondary radiusX dmt-30 btnY "><?= $link['title'] ?></a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </section>
 <?php
         endif;
     endwhile;

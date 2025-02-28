@@ -95,23 +95,20 @@
 }
 
 .testimonials {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px; /* Ensures equal spacing between rows */
-  align-items: start; /* Ensures only taller cards expand */
-  grid-auto-rows: minmax(auto, 1fr);
+  columns: 3;
 
   .testimonal-cards {
     height: fit-content;
     width: 33.33%;
     break-inside: avoid;
-
+  
     .testimonal-card {
       padding: 35px 35px 40px;
 
       @include media-breakpoint-down(lg) {
         padding: 55px 34px 45px;
       }
+
       .rating-icon {
         height: 15px;
       }
