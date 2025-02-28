@@ -1868,6 +1868,9 @@ $flexible_content = get_field('flexible_content');
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-7 col-12 pe-lg-4">
+                        <?php if (!empty($case_study_title)): ?>
+                                <div class="acid-bold fontMX leadingXL textlightwhite dmb-20 resfontXXS"><?= $case_study_title; ?></div>
+                            <?php endif; ?>
                             <div class="swiper mySwiper">
                                 <div class="swiper-wrapper">
                                     <?php foreach ($case_study_group as $solution_list_items_custom) :
@@ -1934,6 +1937,46 @@ $flexible_content = get_field('flexible_content');
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
+
+
+            <section class="img-slider-section overflow-hidden bgprimary">
+                <div class="container">
+                    <div class="swiper img-slider col-lg-9">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide px-1">
+                                <div class="img-slider-img radiusX overflow-hidden">
+                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover" alt="">
+                                </div>
+                            </div>
+                            <div class="swiper-slide px-1">
+                                <div class="img-slider-img radiusX overflow-hidden">
+                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover" alt="">
+                                </div>
+                            </div>
+                            <div class="swiper-slide px-1">
+                                <div class="img-slider-img radiusX overflow-hidden">
+                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover" alt="">
+                                </div>
+                            </div>
+                            <div class="swiper-slide px-1">
+                                <div class="img-slider-img radiusX overflow-hidden">
+                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover" alt="">
+                                </div>
+                            </div>
+                            <div class="swiper-slide px-1">
+                                <div class="img-slider-img radiusX overflow-hidden">
+                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover" alt="">
+                                </div>
+                            </div>
+                            <div class="swiper-slide px-1">
+                                <div class="img-slider-img radiusX overflow-hidden">
+                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2024/11/Screenshot-2024-11-05-at-15.01.45.png" class="w-100 h-100 object-cover" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>                                        
                 </div>
             </section>
 <?php

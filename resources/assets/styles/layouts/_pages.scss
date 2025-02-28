@@ -611,3 +611,19 @@ body {
         height: 470px;
     }
 }
+
+.img-slider-section {
+    .swiper {
+        overflow: visible;
+
+        .swiper-wrapper {
+            -webkit-transition-timing-function: linear !important;
+            -o-transition-timing-function: linear !important;
+            transition-timing-function: linear !important;
+        }
+    }
+
+    .img-slider-img {
+        height: 360px;
+    }
+}
