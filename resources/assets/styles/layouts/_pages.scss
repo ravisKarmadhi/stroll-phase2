@@ -223,209 +223,238 @@
         }
     }
 
-    .hero-video-section {
+}
+
+.hero-video-section {
+    @include media-breakpoint-down(lg) {
+        height: 700px;
+    }
+
+    border-bottom-right-radius: $radiusS;
+    border-bottom-left-radius: $radiusS;
+
+    .hero-text {
+        height: 35px;
+        border-radius: 26px;
+        background-color: rgba($color: $white, $alpha: 0.1);
+
         @include media-breakpoint-down(lg) {
-            height: 700px;
+            border-radius: 15px;
         }
 
-        border-bottom-right-radius: $radiusS;
-        border-bottom-left-radius: $radiusS;
+        .icon {
+            height: 18px;
+        }
+    }
+}
 
-        .hero-text {
-            height: 35px;
-            border-radius: 26px;
-            background-color: rgba($color: $white, $alpha: 0.1);
+.our-case-studies-section,
+.our-case-studies-section2 {
+
+    .our-case-studies-cards,
+    .our-case-studies-cards2 {
+        .our-case-studies-cards-img {
+            height: 540px;
 
             @include media-breakpoint-down(lg) {
-                border-radius: 15px;
+                height: 350px;
             }
+        }
 
-            .icon {
-                height: 18px;
+        .arrow {
+            height: 67px;
+
+            @include media-breakpoint-down(lg) {
+                height: 35px;
             }
+        }
+
+        .bg-layer {
+            height: 151px;
         }
     }
 
+    .our-case-right-cards,
+    .our-case-right-cards2 {
+        height: 157px !important;
+        padding: 15px;
+        border-radius: 15px;
 
-    .our-case-studies-section,
-    .our-case-studies-section2 {
-
-        .our-case-studies-cards,
-        .our-case-studies-cards2 {
-            .our-case-studies-cards-img {
-                height: 540px;
-
-                @include media-breakpoint-down(lg) {
-                    height: 350px;
-                }
-            }
-
-            .arrow {
-                height: 67px;
-
-                @include media-breakpoint-down(lg) {
-                    height: 35px;
-                }
-            }
-
-            .bg-layer {
-                height: 151px;
-            }
-        }
-
-        .our-case-right-cards,
-        .our-case-right-cards2 {
-            height: 157px !important;
-            padding: 15px;
+        .our-case-right-cards-img {
+            height: 121px;
             border-radius: 15px;
-
-            .our-case-right-cards-img {
-                height: 121px;
-                border-radius: 15px;
-            }
-
-            &.swiper-slide-active {
-                background-color: rgba($color: $lightwhite, $alpha: 0.05);
-            }
         }
 
-        .our-case-slider {
-            height: 470px;
+        &.swiper-slide-active {
+            background-color: rgba($color: $lightwhite, $alpha: 0.05);
         }
     }
 
-    .img-slider-section {
-        .swiper {
-            overflow: visible;
+    .our-case-slider {
+        height: 470px;
+    }
+}
 
-            .swiper-wrapper {
-                -webkit-transition-timing-function: linear !important;
-                -o-transition-timing-function: linear !important;
-                transition-timing-function: linear !important;
-            }
+.img-slider-section {
+    .swiper {
+        overflow: visible;
+
+        .swiper-wrapper {
+            -webkit-transition-timing-function: linear !important;
+            -o-transition-timing-function: linear !important;
+            transition-timing-function: linear !important;
         }
+    }
 
-        .img-slider-img {
+    .img-slider-img {
+        height: 360px;
+
+        @include media-breakpoint-down(lg) {
+            height: 280px;
+        }
+    }
+}
+
+
+.why-wrok-for-section {
+    .why-we-work-img {
+        height: 730px;
+
+        @include media-breakpoint-down(lg) {
             height: 360px;
         }
     }
 
+    .hero-text {
+        height: 35px;
+        border-radius: 26px;
+        background-color: rgba($color: $white, $alpha: 0.1);
 
-    .medical-trial-content {
-        .medical-content {
-            &:first-child {
-                padding: 190px 0 0;
+        @include media-breakpoint-down(lg) {
+            border-radius: 15px;
+        }
 
-                @include media-breakpoint-down(lg) {
-                    padding: 0 !important;
-                }
+        .icon {
+            height: 18px;
+        }
+    }
+}
+
+
+.medical-trial-content {
+    .medical-content {
+        &:first-child {
+            padding: 190px 0 0;
+
+            @include media-breakpoint-down(lg) {
+                padding: 0 !important;
             }
+        }
 
-            .table {
-                margin-bottom: 0px !important;
-                --bs-table-bg: transparent !important;
-                --bs-table-hover-bg: transparent !important;
+        .table {
+            margin-bottom: 0px !important;
+            --bs-table-bg: transparent !important;
+            --bs-table-hover-bg: transparent !important;
 
-                thead {
-                    tr {
-                        border-bottom: 2px solid $offwhite;
+            thead {
+                tr {
+                    border-bottom: 2px solid $offwhite;
+
+                    @include media-breakpoint-down(lg) {
+                        border-bottom: transparent !important;
+                    }
+
+                    th {
+                        border-right: 2px solid $offwhite;
 
                         @include media-breakpoint-down(lg) {
-                            border-bottom: transparent !important;
+                            border-right: transparent !important;
+                        }
+                    }
+
+                    th,
+                    td {
+                        display: revert;
+
+                        @include media-breakpoint-down(lg) {
+                            display: none;
+                        }
+                    }
+
+                    td {
+                        padding: 0px 35px 15px 35px !important;
+
+                        @include media-breakpoint-down(xl) {
+                            padding-left: 10px !important;
+                            padding-right: 10px !important;
                         }
 
-                        th {
-                            border-right: 2px solid $offwhite;
-
-                            @include media-breakpoint-down(lg) {
-                                border-right: transparent !important;
-                            }
+                        .stage-count {
+                            width: 53px;
+                            height: 53px;
+                            border-radius: 50%;
                         }
 
-                        th,
-                        td {
-                            display: revert;
-
-                            @include media-breakpoint-down(lg) {
-                                display: none;
-                            }
-                        }
-
-                        td {
-                            padding: 0px 35px 15px 35px !important;
-
-                            @include media-breakpoint-down(xl) {
-                                padding-left: 10px !important;
-                                padding-right: 10px !important;
-                            }
-
-                            .stage-count {
-                                width: 53px;
-                                height: 53px;
-                                border-radius: 50%;
-                            }
-
-                            &:nth-child(2) {
-                                padding-left: 20px !important;
-                            }
+                        &:nth-child(2) {
+                            padding-left: 20px !important;
                         }
                     }
                 }
+            }
 
-                tbody {
-                    tr {
-                        border-bottom: 2px solid $offwhite;
+            tbody {
+                tr {
+                    border-bottom: 2px solid $offwhite;
+
+                    @include media-breakpoint-down(lg) {
+                        border-bottom: transparent !important;
+                        display: flex;
+                        flex-direction: column;
+                        padding-bottom: 45px !important;
+                    }
+
+                    &:last-child {
+                        border-bottom: transparent !important;
+                    }
+
+                    th {
+                        border-right: 2px solid $offwhite;
+                        padding: 20px 35px 20px 0px !important;
 
                         @include media-breakpoint-down(lg) {
-                            border-bottom: transparent !important;
-                            display: flex;
-                            flex-direction: column;
-                            padding-bottom: 45px !important;
+                            border-right: transparent !important;
+                            padding: 0 0 17px 0 !important;
                         }
+                    }
 
-                        &:last-child {
-                            border-bottom: transparent !important;
-                        }
+                    td {
+                        padding: 25px 20px !important;
 
-                        th {
-                            border-right: 2px solid $offwhite;
-                            padding: 20px 35px 20px 0px !important;
+                        @include media-breakpoint-down(lg) {
+                            padding: 0 0 17px 0 !important;
 
-                            @include media-breakpoint-down(lg) {
-                                border-right: transparent !important;
-                                padding: 0 0 17px 0 !important;
+                            &:last-child {
+                                padding: 0px !important;
                             }
                         }
 
-                        td {
-                            padding: 25px 20px !important;
+                        .progress {
+                            --bs-progress-height: 12px;
+                            --bs-progress-border-radius: 4px !important;
+                            --bs-progress-bg: #dde0ef !important;
+                            margin: 2.5px 0 !important;
 
                             @include media-breakpoint-down(lg) {
-                                padding: 0 0 17px 0 !important;
-
-                                &:last-child {
-                                    padding: 0px !important;
-                                }
+                                --bs-progress-height: 11px;
+                                --bs-progress-border-radius: 11px !important;
+                                margin: 0 !important;
                             }
 
-                            .progress {
-                                --bs-progress-height: 12px;
-                                --bs-progress-border-radius: 4px !important;
-                                --bs-progress-bg: #dde0ef !important;
-                                margin: 2.5px 0 !important;
+                            .progress-bar {
+                                border-radius: 4px !important;
 
                                 @include media-breakpoint-down(lg) {
-                                    --bs-progress-height: 11px;
-                                    --bs-progress-border-radius: 11px !important;
-                                    margin: 0 !important;
-                                }
-
-                                .progress-bar {
-                                    border-radius: 4px !important;
-
-                                    @include media-breakpoint-down(lg) {
-                                        border-radius: 11px !important;
-                                    }
+                                    border-radius: 11px !important;
                                 }
                             }
                         }
@@ -435,6 +464,7 @@
         }
     }
 }
+
 
 .related-post-section {
     .related-pattern {
