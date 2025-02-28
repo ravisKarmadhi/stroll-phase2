@@ -474,13 +474,13 @@ $flexible_content = get_field('flexible_content');
                     </div>
                     <?php if (!empty($review_items)) : ?>
                         <div class="col-11 mx-auto px-5 ps-p-p">
-                            <div class="testimonials dpt-125 tpt-40 dpb-145 tpb-100">
+                            <div class="testimonials d-flex flex-wrap dpt-125 tpt-40 dpb-145 tpb-100">
                                 <?php foreach ($review_items as $review_items_custom) :
                                     $id = $review_items_custom->ID;
                                     $rating = get_field('rating', $id);
                                     $role_and_name = get_field('role_and_name', $id);
                                 ?>
-                                    <div class="testimonal-cards w-100 dmb-15">
+                                    <div class="testimonal-cards">
                                         <div class="testimonal-card bg-white radiusXS">
                                             <div class="rating-icon d-flex align-items-center dmb-20">
                                                 <?php
@@ -495,6 +495,9 @@ $flexible_content = get_field('flexible_content');
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
+                            </div>
+                            <div class="button-container">
+                                <button onclick="loadMore()">View more</button>
                             </div>
                         </div>
                     <?php endif; ?>

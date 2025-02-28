@@ -95,16 +95,16 @@
 }
 
 .testimonials {
-  column-count: 3;
-  column-gap: 14px;
-  grid-template-rows: 1fr auto;
-  break-inside: avoid;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px; /* Ensures equal spacing between rows */
+  align-items: start; /* Ensures only taller cards expand */
+  grid-auto-rows: minmax(auto, 1fr);
 
   .testimonal-cards {
-    // &:first-child,
-    // &:nth-child(3) {
-    //   padding-top: 30px;
-    // }
+    height: fit-content;
+    width: 33.33%;
+    break-inside: avoid;
 
     .testimonal-card {
       padding: 35px 35px 40px;
@@ -121,7 +121,7 @@
 
 .bg-testimonial-layer {
   height: 363px;
-  background-image: linear-gradient(180deg, #1e22aa00, #1e22aa);
+  background-image: linear-gradient(180deg, #1e22aa00, #010141);
 }
 
 .banner-img-digital {
