@@ -74,18 +74,17 @@
   margin-left: -0px;
   margin-right: -0px;
 
-  &>* {
+  & > * {
     padding-left: 0px;
     padding-right: 0px;
   }
 }
 
-
 .rowX {
   margin-left: -15px;
   margin-right: -15px;
 
-  &>* {
+  & > * {
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -95,7 +94,7 @@
   margin-left: -10px;
   margin-right: -10px;
 
-  &>* {
+  & > * {
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -105,7 +104,7 @@
   margin-left: -23px;
   margin-right: -23px;
 
-  &>* {
+  & > * {
     padding-left: 23px;
     padding-right: 23px;
   }
@@ -114,12 +113,21 @@
   margin-left: -16px;
   margin-right: -16px;
 
-  &>* {
+  & > * {
     padding-left: 16px;
     padding-right: 16px;
   }
 }
 
+.row7 {
+  margin-left: -7px;
+  margin-right: -7px;
+
+  & > * {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+}
 
 .res-w-100 {
   @include media-breakpoint-down(lg) {
@@ -170,7 +178,6 @@
 
 .custom-list-style-blog {
   li {
-
     &::after {
       background-color: $lightblack !important;
     }
@@ -184,7 +191,7 @@
 
     &::after {
       position: absolute;
-      content: '';
+      content: "";
       display: block;
       background-color: $white;
       border-radius: 50%;
