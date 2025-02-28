@@ -72,21 +72,21 @@ export class Plugins {
 
     ImgSlider() {
         var swiper = new Swiper(".img-slider", {
-            slidesPerView: 3, 
+            slidesPerView: 3, // Default for large screens
             spaceBetween: 30,
             grabCursor: true,
             a11y: false,
-            freeMode: true, 
-            speed: 1500,
-            loop: true, 
+            freeMode: true,
+            speed: 2000,
+            loop: true,
             autoplay: {
                 delay: 0,
                 disableOnInteraction: false,
             },
-            allowTouchMove: false, 
-            loopAdditionalSlides: 3, 
-            centeredSlides: true, 
-            loopFillGroupWithBlank: true, 
+            allowTouchMove: false,
+            loopAdditionalSlides: 3,
+            centeredSlides: true,
+            loopFillGroupWithBlank: true,
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
@@ -95,9 +95,23 @@ export class Plugins {
                 el: ".swiper-pagination",
                 clickable: true,
             },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1, // Mobile screens
+                    spaceBetween: 10
+                },
+                768: {
+                    slidesPerView: 2, // Tablets
+                    spaceBetween: 20
+                },
+                1024: {
+                    slidesPerView: 3, // Default for desktops
+                    spaceBetween: 30
+                }
+            },
             on: {
                 init: function () {
-                    document.querySelector('.swiper-wrapper').style.transitionTimingFunction = 'linear'; // Smooth effect
+                    document.querySelector('.swiper-wrapper').style.transitionTimingFunction = 'linear';
                 }
             }
         });

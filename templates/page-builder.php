@@ -1944,6 +1944,55 @@ $flexible_content = get_field('flexible_content');
                     </div>                                        
                 </div>
             </section>
+
+
+            <section class="why-wrok-for-section bgprimary">
+                <div class="container">
+                    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end dmb-80">
+                        <div class="acid-bold fontLS leadingMX text-white col-lg-6 resfontLM resleadingMS">Comopany Culture Why work for Strolll</div>
+                        <a href="" target="<?php echo $target; ?>" class="text-white acid-bold d-flex align-items-center justify-content-center fontXX text-decoration-none bgsecondary radiusX dmt-30 tmt-25 btnY ">View vacancies</a>
+                    </div>
+                    <div class="why-we-work-img radiusXS overflow-hidden position-relative dmb-100 tmb-50">
+                        <img src="<?php echo get_home_url() ?>/wp-content/uploads/2024/01/Strolll-Shoot24020245364-scaled.jpg" class="w-100 h-100 object-cover" alt="">
+                          <!-- <video playsinline="playsinline" autoplay="autoplay" muted="muted" class="w-100 h-100 object-cover">
+                            <source src="<?= $hero_video ?>" type="video/mp4">
+                            </source>
+                        </video>
+                        <iframe class="w-100 h-100 object-cover embed-video"
+                            src="?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline="
+                            allow="autoplay; fullscreen">
+                        </iframe>
+                        <iframe class="w-100 h-100 object-cover embed-video"
+                            src="?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay"
+                            allowfullscreen>
+                        </iframe> -->
+                        <div class="position-absolute bottom-0 end-0">
+                                <div data-src="" data-type="video"
+                                    data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-lg-4 px-3 mb-lg-5 mb-3 me-5 cursor-pointer">
+                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                                    Click to play audio</div>
+                                    <!-- <div data-src="" data-type="iframe"
+                                        data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-lg-4 px-3 mb-lg-5 mb-3 me-5 cursor-pointer">
+                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                                        Click to play audio</div>
+                                    <div data-src="" data-type="iframe"
+                                        data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-lg-4 px-3 mb-lg-5 mb-3 me-5 cursor-pointer">
+                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                                        Click to play audio</div> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                       <div class="row">
+                        <div class="col-lg-4 col-12">
+                            <div class="acid-bold fontSX leadingXS textlightwhite tmb-25">At Strolll, we’re more than just a company—we’re a team united by a shared mission: to revolutionize neuro-rehabilitation and improve the lives of patients worldwide</div>
+                        </div>
+                        <div class="col-lg-8 col-12">
+                            <div class="acid-normal fontXX leadingXX textlightwhite col-lg-9 mx-auto">Driven by our personal connection to neurodegenerative conditions like Parkinson’s, our co-founders and staff are deeply invested in creating the most effective and accessible AR-powered neuro-rehabilitation software on the market. It’s this passion and commitment to meaningful change that fuels everything we do, and we recruit the best in the business to get our job done. We believe in creating a work environment that reflects the values we stand for—positivity, collaboration, and growth. Based in a dynamic office space in Stafford, Strolll also embraces the flexibility of remote work, making our team a diverse and inclusive group that stays connected no matter where we are. Whether it’s through regular Teams meetings, our all-hands office days, or unforgettable team-building activities, we make sure that every voice is heard and every contribution is celebrated.</div>
+                        </div>
+                       </div>                                     
+                    </div>
+                </div>
+            </section>
 <?php
         endif;
     endwhile;
