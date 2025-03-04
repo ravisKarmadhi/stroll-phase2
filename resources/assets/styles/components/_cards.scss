@@ -95,12 +95,16 @@
 }
 
 .testimonials {
-  columns: 3;
-
+.testimonial-card{
+    &:nth-child(3n + 2){
+        margin-top: -20px;
+        @include media-breakpoint-down(lg){
+            margin-top: 0px;
+        }
+    }
+}
   .testimonal-cards {
     height: fit-content;
-    width: 33.33%;
-    break-inside: avoid;
   
     .testimonal-card {
       padding: 35px 35px 40px;

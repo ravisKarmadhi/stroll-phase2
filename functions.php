@@ -50,9 +50,18 @@ if (function_exists('acf_add_options_page')) {
             'menu_slug' => 'footer-options',
             'capability' => 'edit_posts',
             'redirect' => false
-        )
-    );
-    acf_add_options_page(
+            )
+        );
+        acf_add_options_page(
+            array(
+                'page_title' => 'Theme setting',
+                'menu_title' => 'Theme setting',
+                'menu_slug' => 'theme-options',
+                'capability' => 'edit_posts',
+                'redirect' => false
+            )
+        );
+        acf_add_options_page(
         array(
             'page_title' => 'Search Page Content',
             'menu_title' => 'Search Page Content',
@@ -896,71 +905,10 @@ function load_faq()
 add_action('wp_ajax_load_faqs', 'load_faq');
 add_action('wp_ajax_nopriv_load_faqs', 'load_faq');
 
-function enqueue_custom_scripts()
-{
+function enqueue_custom_scripts() {
     wp_enqueue_script('handlebars', 'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js', [], null, true);
+    wp_enqueue_script('custom-faq-script', get_template_directory_uri() . '/assets/scripts/main.js', ['jquery', 'handlebars'], null, true);
     wp_localize_script('custom-faq-script', 'ajaxurl', ['url' => admin_url('admin-ajax.php')]);
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
 
-
-
-
-
-function load_posts()
-{
-    $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : 'all';
-    $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
-    $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 6;
-
-    $args = [
-        'post_type'      => 'post',
-        'posts_per_page' => $posts_per_page,
-        'paged'          => $paged,
-        'orderby'        => 'date',
-        'order'          => 'DESC',
-    ];
-
-    if ($category !== 'all') {
-        $args['tax_query'] = [
-            [
-                'taxonomy' => 'category',
-                'field'    => 'slug',
-                'terms'    => $category,
-            ],
-        ];
-    }
-
-    $query = new WP_Query($args);
-    $posts = [];
-
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-            $id = get_the_ID();
-            $categories = get_the_terms($id, 'category');
-            $category_data = [];
-            if (!empty($categories) && !is_wp_error($categories)) {
-                foreach ($categories as $category) {
-                    $category_data[] = [
-                        'name' => $category->name,
-                        'slug' => $category->slug,
-                    ];
-                }
-            }
-
-            $posts[] = [
-                'title'      => get_the_title(),
-                'link'       => get_permalink($id),
-                'thumbnail'  => get_the_post_thumbnail_url($id, 'medium'),
-                'date'       => get_the_date('d F Y', $id),
-                'categories' => $category_data,
-            ];
-        }
-        wp_reset_postdata();
-    }
-    wp_send_json_success(['posts' => $posts]);
-}
-
-add_action('wp_ajax_load_posts', 'load_posts');
-add_action('wp_ajax_nopriv_load_posts', 'load_posts');

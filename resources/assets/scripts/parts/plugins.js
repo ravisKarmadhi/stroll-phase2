@@ -74,20 +74,16 @@ export class Plugins {
         var swiper = new Swiper(".img-slider", {
             slidesPerView: 3, // Default for large screens
             spaceBetween: 30,
-            grabCursor: true,
+            loop: true,
             a11y: false,
             freeMode: true,
-            speed: 2000,
-            loop: true,
+            speed: 3000,
             autoplay: {
                 delay: 0,
                 disableOnInteraction: false,
             },
             allowTouchMove: false,
-            loopAdditionalSlides: 3,
-            centeredSlides: true,
-            loopFillGroupWithBlank: true,
-            navigation: {
+             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
             },
@@ -254,6 +250,7 @@ export class Plugins {
             if (typeof Swiper !== "undefined") {
                 var swiper = new Swiper(".left-right-slider", {
                     direction: "vertical",
+                    mousewheel: true,
                     pagination: {
                         el: ".left-right-slider-section .swiper-pagination",
                         clickable: true,

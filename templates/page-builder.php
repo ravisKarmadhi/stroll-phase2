@@ -120,7 +120,8 @@ $flexible_content = get_field('flexible_content');
                                                     <div class="position-relative category-card overflow-hidden radiusX resradiusES">
                                                         <img src="<?php echo get_the_post_thumbnail_url($id); ?>" class="w-100 h-100 object-cover hover-img category-img " alt="">
                                                         <div class="hover-media h-100 w-100 ">
-                                                            <?php if ($media_type == 'video'): ?>
+                                                            <?php
+                                                            if ($media_type == 'video'): ?>
                                                                 <?php if (!empty($video)): ?>
                                                                     <video playsinline="playsinline" autoplay="autoplay" muted="muted"
                                                                         class="w-100 h-100 object-cover">
@@ -454,13 +455,13 @@ $flexible_content = get_field('flexible_content');
                     </div>
                 </section>
             <?php endif; ?>
-            <?php elseif (get_row_layout() == 'review') :
+        <?php elseif (get_row_layout() == 'review') :
             $review_heading = get_sub_field('heading');
             $review_button = get_sub_field('button');
             $review_items = get_sub_field('items');
-            ?>23
+        ?>
             <!-- case studies section -->
-            <section class="<?php if (! get_sub_field('disable_background_colour')) : ?>bglightblack<?php else: ?><?php endif; ?> radius-bottom-right testimonial position-relative overflow-hidden">
+            <section class="<?php if (! get_sub_field('disable_background_colour')) : ?>bgprimary<?php else: ?><?php endif; ?> radius-bottom-right testimonial position-relative overflow-hidden">
                 <div class="container px-p-0" data-aos="fade-up">
                     <div class="col-lg-7 mx-auto dpt-105 tpt-65 col-11 px-p-p">
                         <?php if (!empty($review_heading)) : ?>
@@ -473,33 +474,46 @@ $flexible_content = get_field('flexible_content');
                         <?php endif; ?>
                     </div>
                     <?php if (!empty($review_items)) : ?>
-                        <div class="col-11 mx-auto px-5 ps-p-p">
-                            <div class="testimonials dpt-125 tpt-40 dpb-145 tpb-100">
-                                <?php foreach ($review_items  as $key => $review_items_custom) :
-                                    $id = $review_items_custom->ID;
-                                    $rating = get_field('rating', $id);
-                                    $role_and_name = get_field('role_and_name', $id);
-                                ?>
-                                    <div class="testimonal-cards w-100 <?php echo (count($review_items) <= 3) ? 'three-cards' : ''; ?>">
-                                        <div class="testimonal-card bg-white radiusXS dmb-15">
-                                            <div class="rating-icon d-flex align-items-center dmb-20">
-                                                <?php
-                                                for ($i = 0; $i < $rating; $i++) : ?>
-                                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/star.svg" alt="" class="h-100 me-2">
-                                                <?php endfor; ?>
+                        <div class="col-11 mx-auto px-lg-5">
+                            <div class="testimonials dpt-125 tpt-40 row row7">
+                                <?php
+                                $columns = [[], [], []]; // 3 empty arrays for 3 columns
+                                $column_index = 0;
+
+                                foreach ($review_items as $review_items_custom) {
+                                    $columns[$column_index][] = $review_items_custom;
+                                    $column_index = ($column_index + 1) % 3; // Cycle through 0,1,2
+                                }
+
+                                foreach ($columns as $column) : ?>
+                                    <div class="col-lg-4 testimonial-card">
+                                        <?php foreach ($column as $review_items_custom) :
+                                            $id = $review_items_custom->ID;
+                                            $rating = get_field('rating', $id);
+                                            $role_and_name = get_field('role_and_name', $id);
+                                        ?>
+                                            <div class="testimonal-cards w-100">
+                                                <div class="testimonal-card bg-white radiusXS dmb-15">
+                                                    <div class="rating-icon d-flex align-items-center dmb-20">
+                                                        <?php for ($i = 0; $i < $rating; $i++) : ?>
+                                                            <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/star.svg" alt="" class="h-100 me-2">
+                                                        <?php endfor; ?>
+                                                    </div>
+                                                    <h3 class="acid-bold textlightblack fontXX leadingS"><?php echo $review_items_custom->post_title; ?></h3>
+                                                    <h6 class="acid-normal textlightblack fontM leadingX dmt-15"><?php echo $review_items_custom->post_content; ?></h6>
+                                                    <h5 class="textlightblack acid-bold lh-1 fontM dmt-30"><?php echo $role_and_name; ?></h5>
+                                                </div>
                                             </div>
-                                            <h3 class="acid-bold textlightblack fontXX leadingS"><?php echo $review_items_custom->post_title; ?></h3>
-                                            <h6 class="acid-normal textlightblack fontM leadingX dmt-15"><?php echo $review_items_custom->post_content; ?></h6>
-                                            <h5 class="textlightblack acid-bold lh-1 fontM dmt-30"><?php echo $role_and_name; ?>
-                                            </h5>
-                                        </div>
+                                        <?php endforeach; ?>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
-                            <div class="button-container">
-                                <button onclick="loadMore()">View more</button>
+
+                            <div class="button-container position-relative z-1 dmb-50 d-flex justify-content-center">
+                                <button class="text-white acid-bold fontXX text-decoration-none bgsecondary radiusX dmt-30 btnW border-0 load-more-testimonial">View more</button>
                             </div>
                         </div>
+                        <div class="col-lg-4"></div>
                     <?php endif; ?>
                 </div>
                 <div class="bg-testimonial-layer position-absolute w-100 bottom-0 start-0"></div>
@@ -642,6 +656,7 @@ $flexible_content = get_field('flexible_content');
             $how_it_works_hero_section_button = get_sub_field('button');
             $how_it_works_hero_section_video_image = get_sub_field('video_image');
             $how_it_works_hero_section_video_url = get_sub_field('video_url');
+            $accordion_position = get_sub_field('accordion_position');
             $content_type = get_sub_field('content_type');
         ?>
             <section class="position-relative hero-sections-product">
@@ -649,8 +664,9 @@ $flexible_content = get_field('flexible_content');
                     <div class="dpt-235 tpt-135"></div>
                     <div class="container" data-aos="fade-right" data-aos-duration="1500">
                         <div class="row ">
-                            <div class="col-lg-6 d-lg-flex flex-lg-column  justify-content-lg-center <?= $content_type == 'with_content' ? 'order-2 order-lg-1' : '' ?>">
-                                <?php if($content_type == 'with_image') : ?>
+                            <?php if($accordion_position == 'left'): ?>
+                            <div class="<?= $content_type == 'with_content' ? 'col-lg-7' : 'col-lg-6'?>  d-lg-flex flex-lg-column  justify-content-lg-center <?= $content_type == 'with_content' ? 'order-2 order-lg-1' : '' ?>">
+                                <?php if ($content_type == 'with_image') : ?>
                                     <?php if (!empty($how_it_works_hero_section_heading)) : ?>
                                         <h3 class="text-white acid-bold fontLS lh-1 resfontXXS"><?php echo $how_it_works_hero_section_heading; ?></h3>
                                     <?php endif; ?>
@@ -661,7 +677,7 @@ $flexible_content = get_field('flexible_content');
                                 <?php endif; ?>
                                 <?php
                                 if (!empty($how_it_works_hero_section_items)) : ?>
-                                    <div class="accordion how-work-accordion dmt-35" id="accordionExampleTwo">
+                                    <div class="accordion how-work-accordion <?= $content_type == 'with_content' ? '' : 'dmt-35' ?>" id="accordionExampleTwo">
                                         <?php foreach ($how_it_works_hero_section_items as $key => $how_it_works_hero_section_items_custom) :
                                             $clssname_value = ($key == '0') ? "true" : "false";
                                         ?>
@@ -688,27 +704,70 @@ $flexible_content = get_field('flexible_content');
                                     <a href="<?php echo $how_it_works_hero_section_button['url']; ?>" target="<?php echo $target; ?>" class="text-white acid-bold d-flex align-items-center mx-lg-0 mx-auto justify-content-center fontXX text-decoration-none bgsecondary radiusX btnZ "><?php echo $how_it_works_hero_section_button['title']; ?></a>
                                 <?php endif; ?>
                             </div>
-                            <div class="col-lg-6 ps-lg-5 order-1 order-lg-2">
+                            <?php endif; ?>
+                            <div class="col-lg-5 <?= $accordion_position == 'left' ? 'order-1 order-lg-2 ps-lg-5' : 'pe-lg-5' ?>">
                                 <?php if ($content_type == 'with_content') : ?>
-                                <?php if (!empty($how_it_works_hero_section_heading)) : ?>
+                                    <?php if (!empty($how_it_works_hero_section_heading)) : ?>
                                         <h3 class="text-white acid-bold fontLS lh-1 resfontXXS ps-lg-4"><?php echo $how_it_works_hero_section_heading; ?></h3>
                                     <?php endif; ?>
                                     <?php if (!empty($how_it_works_hero_section_content)) : ?>
                                         <h6 class="text-white acid-normal fontSX dmt-25 mmt-20 resfontL leadingXS resleadingM ps-lg-4">
                                             <?php echo $how_it_works_hero_section_content; ?></h6>
                                     <?php endif; ?>
-                                    <?php endif; ?>
+                                <?php endif; ?>
                             </div>
-                            <?php if($content_type == "with_image") : if (!empty($how_it_works_hero_section_image['url'])) : ?>
-                                <div class="col-lg-5 me-5  position-absolute end-0 image-content p-initial dmt-65 tmt-50">
+                            <?php if ($content_type == "with_image") : if (!empty($how_it_works_hero_section_image['url'])) : ?>
+                                    <div class="col-lg-5 me-5  position-absolute end-0 image-content p-initial dmt-65 tmt-50">
 
-                                    <?php if (! get_sub_field('hide_background_shape')) : ?>
-                                        <div class="shape-bg-image bg-white position-absolute left-center h-100"></div>
+                                        <?php if (! get_sub_field('hide_background_shape')) : ?>
+                                            <div class="shape-bg-image bg-white position-absolute left-center h-100"></div>
+                                        <?php endif; ?>
+
+                                        <img src="<?php echo $how_it_works_hero_section_image['url']; ?>" class="top-left-center position-absolute w-100 <?php if (get_sub_field('hide_background_shape')) : ?>radiusES<?php endif; ?>" alt="">
+                                    </div>
+                            <?php endif;
+                            endif; ?>
+                             <?php if($accordion_position == 'right'): ?>
+                            <div class="<?= $content_type == 'with_content' ? 'col-lg-7' : 'col-lg-6'?>  d-lg-flex flex-lg-column  justify-content-lg-center">
+                                <?php if ($content_type == 'with_image') : ?>
+                                    <?php if (!empty($how_it_works_hero_section_heading)) : ?>
+                                        <h3 class="text-white acid-bold fontLS lh-1 resfontXXS"><?php echo $how_it_works_hero_section_heading; ?></h3>
                                     <?php endif; ?>
-
-                                    <img src="<?php echo $how_it_works_hero_section_image['url']; ?>" class="top-left-center position-absolute w-100 <?php if (get_sub_field('hide_background_shape')) : ?>radiusES<?php endif; ?>" alt="">
-                                </div>
-                            <?php endif; endif; ?>
+                                    <?php if (!empty($how_it_works_hero_section_content)) : ?>
+                                        <h6 class="text-white acid-normal fontSX dmt-25 mmt-20 resfontL leadingXS resleadingM">
+                                            <?php echo $how_it_works_hero_section_content; ?></h6>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                <?php
+                                if (!empty($how_it_works_hero_section_items)) : ?>
+                                    <div class="accordion how-work-accordion <?= $content_type == 'with_content' ? '' : 'dmt-35' ?>" id="accordionExampleTwo">
+                                        <?php foreach ($how_it_works_hero_section_items as $key => $how_it_works_hero_section_items_custom) :
+                                            $clssname_value = ($key == '0') ? "true" : "false";
+                                        ?>
+                                            <div class="bg-accordion border-0 mb-3 radiusES overflow-hidden">
+                                                <h2 class="accordion-header" id="heading<?php echo $key; ?>">
+                                                    <button class="bg-transparent accordion-button shadow-none radiusES acid-bold text-white fontXL" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo $key; ?>" aria-expanded="<?php echo $clssname_value; ?>" aria-controls="collapse<?php echo $key; ?>">
+                                                        <?php echo $how_it_works_hero_section_items_custom['heading']; ?>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapse<?php echo $key; ?>" class="accordion-collapse collapse <?php if (get_sub_field('accordion_open') && ($key == '0')) : ?>show<?php endif; ?>" aria-labelledby="heading<?php echo $key; ?>" data-bs-parent="#accordionExampleTwo">
+                                                    <div class="accordion-body col-lg-10">
+                                                        <h6 class="acid-normal text-white fontL leadingL mb-3">
+                                                            <?php echo $how_it_works_hero_section_items_custom['content']; ?>
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if (!empty($how_it_works_hero_section_button['url'])) :
+                                    $target = ($how_it_works_hero_section_button['target'] == '_blank') ? "_blank" : "";
+                                ?>
+                                    <a href="<?php echo $how_it_works_hero_section_button['url']; ?>" target="<?php echo $target; ?>" class="text-white acid-bold d-flex align-items-center mx-lg-0 mx-auto justify-content-center fontXX text-decoration-none bgsecondary radiusX btnZ "><?php echo $how_it_works_hero_section_button['title']; ?></a>
+                                <?php endif; ?>
+                            </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <?php if (!$how_it_works_hero_section_video_image['url'] == ""): ?>
@@ -1629,7 +1688,7 @@ $flexible_content = get_field('flexible_content');
                 <div class="position-absolute bottom-0 end-0">
                     <?php if ($fancy_box_video_type == 'fancy_box_video'): ?>
                         <div data-src="<?= $fancy_box_video ?>" data-type="video"
-                            data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
+                            data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
                             <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
                             Click to play audio
                         </div>
@@ -1637,7 +1696,7 @@ $flexible_content = get_field('flexible_content');
                     <?php elseif ($fancy_box_video_type == 'fancy_box_youtube'): ?>
                         <?php if (!empty($fancy_box_youtube)): ?>
                             <div data-src="<?= $fancy_box_youtube ?>?autoplay=1" data-type="iframe"
-                                data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
+                                data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
                                 <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
                                 Click to play audio
                             </div>
@@ -1645,7 +1704,7 @@ $flexible_content = get_field('flexible_content');
                     <?php elseif ($fancy_box_video_type == 'viemo'): ?>
                         <?php if (!empty($fancy_box_vimeo)): ?>
                             <div data-src="<?= $fancy_box_vimeo ?>?autoplay=1" data-type="iframe"
-                                data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
+                                data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
                                 <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
                                 Click to play audio
                             </div>
@@ -1720,7 +1779,7 @@ $flexible_content = get_field('flexible_content');
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-            </section> 
+            </section>
 
         <?php elseif (get_row_layout() == 'the_benefits') :
             $benefits_card_group = get_sub_field('benefits_card_group');
@@ -1739,7 +1798,7 @@ $flexible_content = get_field('flexible_content');
                                         <?php if (!empty($benefits_cards['benefit_image'])): ?>
                                             <img src="<?= $benefits_cards['benefit_image'] ?>" class="w-100 h-100 object-cover benefits-main-img transition" alt="">
                                         <?php endif; ?>
-                                        <div class="benefits-media transition">
+                                        <div class="benefits-media transition h-100">
                                             <?php if ($benefits_cards['hover_media_type'] == 'video'): ?>
                                                 <?php if (!empty($benefits_cards['benefit_video'])): ?>
                                                     <video playsinline="playsinline" autoplay="autoplay" muted="muted"
@@ -1800,11 +1859,12 @@ $flexible_content = get_field('flexible_content');
                                 $video = $post_media['video'];
                                 $viemo = $post_media['viemo'];
                                 $youtube = $post_media['youtube'];
+                                print_r($post_media['youtube']);
                             ?>
                                 <div class="our-case-studies-cards position-relative overflow-hidden radiusX ">
                                     <div class="our-case-studies-cards-img radiusX overflow-hidden">
-                                        <?php if (!empty($thumbnail_image)): ?> <img src="<?= $thumbnail_image ?>" class="w-100 h-100 object-cover" alt=""> <?php endif; ?>
-                                        <div class="">
+                                        <?php if (!empty($thumbnail_image)): ?> <img src="<?= $thumbnail_image ?>" class="w-100 h-100 object-cover case-studies-img" alt=""> <?php endif; ?>
+                                        <div class="hover-media h-100">
                                             <?php if ($media_type == 'video'): ?>
                                                 <?php if (!empty($video)): ?>
                                                     <video playsinline="playsinline" autoplay="autoplay" muted="muted"
@@ -1890,7 +1950,7 @@ $flexible_content = get_field('flexible_content');
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-7 col-12 pe-lg-4">
-                        <?php if (!empty($case_study_title)): ?>
+                            <?php if (!empty($case_study_title)): ?>
                                 <div class="acid-bold fontMX leadingXL textlightwhite dmb-20 resfontXXS"><?= $case_study_title; ?></div>
                             <?php endif; ?>
                             <div class="swiper mySwiper">
@@ -1963,7 +2023,7 @@ $flexible_content = get_field('flexible_content');
             </section>
 
 
-        <?php elseif(get_row_layout() == 'why_work_for_section' ) :
+        <?php elseif (get_row_layout() == 'why_work_for_section') :
             $main_heading = get_sub_field('main_heading');
             $main_button = get_sub_field('main_button');
             $media_type = get_sub_field('media_type');
@@ -1979,133 +2039,149 @@ $flexible_content = get_field('flexible_content');
             $fancy_box_vimeo = get_sub_field('fancy_box_vimeo');
         ?>
 
-        <section class="why-wrok-for-section bgprimary dpt-180 dpb-140 tpt-50 tpb-80">
-            <div class="container">
-                <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end dmb-80">
-                <?php if (!empty($main_heading)): ?>
-                    <div class="acid-bold fontLS leadingMX text-white col-lg-6 resfontLM resleadingMS"><?= $main_heading ?></div>
-                <?php endif; ?>
-                <?php if (!empty($main_button)): ?>
-                    <a href="<?= $main_button['url'] ?>" target="<?= $main_button['target'] ?>" class="text-white acid-bold d-flex align-items-center justify-content-center fontXX text-decoration-none bgsecondary radiusX tmt-25 btnY "><?= $main_button['title'] ?></a>
-                <?php endif; ?>
-                </div>
-                <div class="why-we-work-img radiusXS overflow-hidden position-relative dmb-100 tmb-50">
-                <?php if ($media_type == 'image'): ?>
-                    <?php if (!empty($image)): ?>
-                        <img src="<?= $image; ?>" class="w-100 h-100 object-cover" alt="">
-                    <?php endif; ?>
-                <?php elseif ($media_type == 'video'): ?>
-                    <?php if (!empty($video)): ?>
-                        <video playsinline="playsinline" autoplay="autoplay" muted="muted" class="w-100 h-100 object-cover">
-                            <source src="<?= $video ?>" type="video/mp4">
-                            </source>
-                        </video>
-                    <?php endif; ?>
-
-                <?php elseif ($media_type == 'youtube'): ?>
-                    <?php if (!empty($youtube)): ?>
-                        <iframe class="w-100 h-100 object-cover embed-video"
-                            src="<?= $youtube; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline=<?= basename($youtube) ?>"
-                            allow="autoplay; fullscreen">
-                        </iframe>
-                    <?php endif; ?>
-                <?php elseif ($media_type == 'vimeo'): ?>
-                    <?php if (!empty($vimeo)): ?>
-                        <iframe class="w-100 h-100 object-cover embed-video"
-                            src="<?= $vimeo; ?>?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay"
-                            allowfullscreen>
-                        </iframe>
-                    <?php endif; ?>
-                <?php endif; ?>
-
-                    <div class="position-absolute bottom-0 end-0">
-                        <?php if ($fancy_box_type == 'fancy_box_video'): ?>
-                            <div data-src="<?= $fancy_box_video ?>" data-type="video"
-                                data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
-                                <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
-                                Click to play audio
-                            </div>
-
-                        <?php elseif ($fancy_box_type == 'fancy_box_youtube'): ?>
-                            <?php if (!empty($fancy_box_youtube)): ?>
-                                <div data-src="<?= $fancy_box_youtube ?>?autoplay=1" 
-                                        data-type="iframe" 
-                                        data-fancybox="gallery" 
-                                        class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer">
-                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
-                                        Click to play audio
-                                    </div>
+            <section class="why-wrok-for-section bgprimary dpt-180 dpb-140 tpt-50 tpb-80">
+                <div class="container">
+                    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end dmb-80">
+                        <?php if (!empty($main_heading)): ?>
+                            <div class="acid-bold fontLS leadingMX text-white col-lg-6 resfontLM resleadingMS"><?= $main_heading ?></div>
+                        <?php endif; ?>
+                        <?php if (!empty($main_button)): ?>
+                            <a href="<?= $main_button['url'] ?>" target="<?= $main_button['target'] ?>" class="text-white acid-bold d-flex align-items-center justify-content-center fontXX text-decoration-none bgsecondary radiusX tmt-25 btnY "><?= $main_button['title'] ?></a>
+                        <?php endif; ?>
+                    </div>
+                    <div class="why-we-work-img radiusXS overflow-hidden position-relative dmb-100 tmb-50">
+                        <?php if ($media_type == 'image'): ?>
+                            <?php if (!empty($image)): ?>
+                                <img src="<?= $image; ?>" class="w-100 h-100 object-cover" alt="">
                             <?php endif; ?>
-                        <?php elseif ($fancy_box_type == 'fancy_box_vimeo'): ?>
-                            <?php if (!empty($fancy_box_vimeo)): ?>
-                                <div data-src="<?= $fancy_box_vimeo ?>?autoplay=1" data-type="iframe"
-                                    data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer position-relative z-3">
+                        <?php elseif ($media_type == 'video'): ?>
+                            <?php if (!empty($video)): ?>
+                                <video playsinline="playsinline" autoplay="autoplay" muted="muted" class="w-100 h-100 object-cover">
+                                    <source src="<?= $video ?>" type="video/mp4">
+                                    </source>
+                                </video>
+                            <?php endif; ?>
+
+                        <?php elseif ($media_type == 'youtube'): ?>
+                            <?php if (!empty($youtube)): ?>
+                                <iframe class="w-100 h-100 object-cover embed-video"
+                                    src="<?= $youtube; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline=<?= basename($youtube) ?>"
+                                    allow="autoplay; fullscreen">
+                                </iframe>
+                            <?php endif; ?>
+                        <?php elseif ($media_type == 'vimeo'): ?>
+                            <?php if (!empty($vimeo)): ?>
+                                <iframe class="w-100 h-100 object-cover embed-video"
+                                    src="<?= $vimeo; ?>?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay"
+                                    allowfullscreen>
+                                </iframe>
+                            <?php endif; ?>
+                        <?php endif; ?>
+
+                        <div class="position-absolute bottom-0 end-0">
+                            <?php if ($fancy_box_type == 'fancy_box_video'): ?>
+                                <div data-src="<?= $fancy_box_video ?>" data-type="video"
+                                    data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
                                     <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
                                     Click to play audio
                                 </div>
+
+                            <?php elseif ($fancy_box_type == 'fancy_box_youtube'): ?>
+                                <?php if (!empty($fancy_box_youtube)): ?>
+                                    <div data-src="<?= $fancy_box_youtube ?>?autoplay=1"
+                                        data-type="iframe"
+                                        data-fancybox="gallery"
+                                        class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
+                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                                        Click to play audio
+                                    </div>
+                                <?php endif; ?>
+                            <?php elseif ($fancy_box_type == 'fancy_box_vimeo'): ?>
+                                <?php if (!empty($fancy_box_vimeo)): ?>
+                                    <div data-src="<?= $fancy_box_vimeo ?>?autoplay=1" data-type="iframe"
+                                        data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center position-relative z-3">
+                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                                        Click to play audio
+                                    </div>
+                                <?php endif; ?>
                             <?php endif; ?>
-                        <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-lg-4 col-12">
+                                <?php if (!empty($content_heading)) : ?>
+                                    <div class="acid-bold fontSX leadingXS textlightwhite tmb-25"><?= $content_heading ?></div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="col-lg-8 col-12">
+                                <?php if (!empty($content_description)) : ?>
+                                    <div class="acid-normal fontXX leadingXX textlightwhite col-lg-9 mx-auto"><?= $content_description ?></div>
+                                <?php endif ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="row">
-                        <div class="col-lg-4 col-12">
-                            <?php if(!empty($content_heading)) : ?>
-                                <div class="acid-bold fontSX leadingXS textlightwhite tmb-25"><?= $content_heading ?></div>
-                            <?php endif; ?>
-                        </div>
-                        <div class="col-lg-8 col-12">
-                            <?php if(!empty($content_description)) :?>
-                            <div class="acid-normal fontXX leadingXX textlightwhite col-lg-9 mx-auto"><?= $content_description ?></div>
-                            <?php endif ?>
-                        </div>
-                    </div>                                     
-                </div>
-            </div>
-        </section>
+            </section>
 
 
-        <?php elseif(get_row_layout() == 'img_slider_section' ) :
+        <?php elseif (get_row_layout() == 'img_slider_section') :
             $image_group = get_sub_field('image_group');
             $heading = get_sub_field('heading');
             $description = get_sub_field('description');
             $link = get_sub_field('link');
         ?>
 
-        <section class="img-slider-section overflow-hidden bgprimary dpb-180 tpb-80">
-            <div class="container">
-                <div class="swiper img-slider col-lg-9">
-                    <div class="swiper-wrapper">
-                        <?php foreach($image_group as $image_group_data) :
-                            $image = $image_group_data['image'];
-                        ?>
-                            <div class="swiper-slide px-1">
-                                <?php if(!empty($image)) :?>
-                                <div class="img-slider-img radiusX overflow-hidden">
-                                    <img src="<?= $image ?>" class="w-100 h-100 object-cover" alt="">
+            <section class="img-slider-section overflow-hidden bgprimary dpb-180 tpb-80">
+                <div class="container">
+                    <div class="swiper img-slider col-lg-9">
+                        <div class="swiper-wrapper">
+                            <?php foreach ($image_group as $image_group_data) :
+                                $image = $image_group_data['image'];
+                            ?>
+                                <div class="swiper-slide px-1">
+                                    <?php if (!empty($image)) : ?>
+                                        <div class="img-slider-img radiusX overflow-hidden">
+                                            <img src="<?= $image ?>" class="w-100 h-100 object-cover" alt="">
+                                        </div>
+                                    <?php endif ?>
                                 </div>
-                                <?php endif ?>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
-                </div>                                        
-                <div class="dmt-140 tmt-50 col-lg-7 mx-auto">
-                    <?php if(!empty($heading)) :?>
-                        <div class="acid-bold fontSX leadingXS textlightwhite dmb-35">
-                            <?= $heading ?>
-                        </div>
+                    <div class="dmt-140 tmt-50 col-lg-7 mx-auto">
+                        <?php if (!empty($heading)) : ?>
+                            <div class="acid-bold fontSX leadingXS textlightwhite dmb-35">
+                                <?= $heading ?>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (!empty($description)) : ?>
+                            <div class="acid-normal fontXX leadingXS textlightwhite dmb-35">
+                                <?= $description ?>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (!empty($link)) : ?>
+                            <a href="<?= $link['url'] ?>" target="<?= $link['target'] ?>" class="text-white acid-bold d-flex align-items-center fontXX justify-content-center text-decoration-none bgsecondary radiusX dmt-30 btnY "><?= $link['title'] ?></a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </section>
+
+        <?php elseif (get_row_layout() == 'linkedin_media') :
+            $linkdin_media = get_field('linkdin_media', 'option');
+            $linkdin_title = $linkdin_media['title'];
+            $linkdin_shortcode = $linkdin_media['linkdin_shortcode'];
+        ?>
+            <section class="bglightwhite dpt-80">
+                <div class="container">
+                    <?php if (!empty($linkdin_title)): ?>
+                        <div class="fontMS dpb-45 leadingXL textlightblack acid-bold text-center"><?= $linkdin_title ?></div>
                     <?php endif; ?>
-                    <?php if(!empty($description)) :?>
-                        <div class="acid-normal fontXX leadingXS textlightwhite dmb-35">
-                            <?= $description ?>
-                        </div>
-                    <?php endif; ?>
-                    <?php if(!empty($link)) :?>
-                        <a href="<?= $link['url'] ?>" target="<?= $link['target'] ?>" class="text-white acid-bold d-flex align-items-center fontXX justify-content-center text-decoration-none bgsecondary radiusX dmt-30 btnY "><?= $link['title'] ?></a>
+                    <?php if (!empty($linkdin_shortcode)): ?>
+                        <div class=""><?=$linkdin_shortcode ?></div>
                     <?php endif; ?>
                 </div>
-            </div>
-        </section>
+            </section>
 <?php
         endif;
     endwhile;
