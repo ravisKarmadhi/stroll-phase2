@@ -226,6 +226,9 @@
 }
 
 .hero-video-section {
+    height: 100vh;
+    z-index: 99;
+
     @include media-breakpoint-down(lg) {
         height: 700px;
     }
@@ -259,19 +262,13 @@
             @include media-breakpoint-down(lg) {
                 height: 350px;
             }
-            .hover-media{
+
+            .hover-media {
                 display: none;
             }
-            .case-studies-img{
+
+            .case-studies-img {
                 display: block;
-            }
-            &:hover{
-                .case-studies-img{
-                    display:  none;
-                }
-                .hover-media{
-                    display: block;
-                }
             }
         }
 
@@ -707,6 +704,61 @@ body {
             .benefits-media {
                 display: block;
             }
+        }
+    }
+}
+
+.faq-section {
+
+    .accordion-header,
+    .accordion-button,
+    .accordion-collapse {
+        background-color: #DDE0EF !important;
+    }
+
+    .accordion-button {
+        &::after {
+            content: "";
+            width: 46px !important;
+            height: 46px !important;
+            background-image: url("/wp-content/uploads/2025/03/light-down-arrow.svg");
+            background-size: cover;
+        }
+    }
+}
+
+.founding-video-section {
+    .hero-text {
+        height: 35px;
+        border-radius: 26px;
+        background-color: rgba($color: $white, $alpha: 0.1);
+
+        @include media-breakpoint-down(lg) {
+            border-radius: 15px;
+        }
+
+        .icon {
+            height: 18px;
+        }
+    }
+
+    .founding-video-img {
+        height: 730px;
+
+        @include media-breakpoint-down(lg) {
+            height: 450px;
+        }
+
+    }
+}
+
+.founding-content-section {
+    .quote-line {
+        border-top: 1px solid #010141;
+        border-bottom: 1px solid #010141;
+
+        img {
+            height: 50px;
         }
     }
 }

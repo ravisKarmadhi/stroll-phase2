@@ -54,8 +54,8 @@ export class HandlebarsFilter {
 		});
 
 		$(document).ready(function ($) {
-			let columns = $(".testimonials .col-lg-4"); 
-			let allTestimonials = $(".testimonal-cards"); 
+			let columns = $(".testimonials .col-lg-4");
+			let allTestimonials = $(".testimonal-cards");
 
 			allTestimonials.hide();
 
@@ -69,13 +69,15 @@ export class HandlebarsFilter {
 				for (let i = 0; i < columns.length; i++) {
 					let nextHidden = $(columns[i]).find(".testimonal-cards:hidden").first();
 					if (nextHidden.length) {
-						nextHidden.fadeIn().addClass("new-visible"); 
+						nextHidden.fadeIn().addClass("new-visible");
 						hiddenFound = true;
 					}
 				}
 
 				if (!hiddenFound) {
 					$(this).hide();
+					$('.bg-testimonial-layer').hide();
+
 				}
 			});
 		});

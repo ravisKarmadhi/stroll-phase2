@@ -91,6 +91,11 @@ $(document).ready(function () {
 // lg up header js
 $(document).ready(function () {
 	$(".nav-menu .main-menu").click(function (e) {
+
+
+		$(".nav-menu .main-menu .sub-menu").css("display", "");
+		$(".nav-menu .main-menu .sub-menu").css("height", "auto");
+
 		e.stopPropagation(); // Prevent the body click event from being triggered
 		// Remove "active" class from all menu items
 		$(".nav-menu .main-menu").removeClass("active");

@@ -72,7 +72,7 @@ export class Plugins {
 
     ImgSlider() {
         var swiper = new Swiper(".img-slider", {
-            slidesPerView: 3, // Default for large screens
+            slidesPerView: 4, // Default for large screens
             spaceBetween: 30,
             loop: true,
             a11y: false,
@@ -83,7 +83,7 @@ export class Plugins {
                 disableOnInteraction: false,
             },
             allowTouchMove: false,
-             navigation: {
+            navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
             },
@@ -101,7 +101,7 @@ export class Plugins {
                     spaceBetween: 20
                 },
                 1024: {
-                    slidesPerView: 3, // Default for desktops
+                    slidesPerView: 4, // Default for desktops
                     spaceBetween: 30
                 }
             },
@@ -250,22 +250,30 @@ export class Plugins {
             if (typeof Swiper !== "undefined") {
                 var swiper = new Swiper(".left-right-slider", {
                     direction: "vertical",
-                    mousewheel: true,
+                    mousewheel: {
+                        releaseOnEdges: true,
+                        sensitivity: 0.5, // Kam sensitivity takki smooth scroll ho
+                    },
+                    freeMode: {
+                        enabled: true, // Free scrolling ko enable karega
+                        momentum: true, // Smooth momentum effect ke liye
+                        momentumBounce: false, // Extra bounce effect remove karega
+                    },
                     pagination: {
                         el: ".left-right-slider-section .swiper-pagination",
                         clickable: true,
                     },
                     breakpoints: {
                         769: {
-                            direction: "vertical", // Desktop (>=768px) -> Vertical
+                            direction: "vertical",
                         },
                         0: {
-                            direction: "horizontal", // Mobile (<768px) -> Horizontal
+                            direction: "horizontal",
                         },
                     },
-
                 });
             }
         });
+
     }
 }

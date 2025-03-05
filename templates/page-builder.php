@@ -81,8 +81,10 @@ $flexible_content = get_field('flexible_content');
                                 <div class="swiper companyLogoSwiper">
                                     <div class="swiper-wrapper h-100">
                                         <?php foreach ($logo_items as $logo_items_custom) : ?>
-                                            <div class="swiper-slide h-100">
-                                                <img src="<?php echo $logo_items_custom['image']['url']; ?>" class="h-100" alt="">
+                                            <div class="swiper-slide h-100 px-3 me-0">
+                                                <div class="w-auto h-100 text-center">
+                                                    <img src="<?php echo $logo_items_custom['image']['url']; ?>" class="h-100" alt="">
+                                                </div>
                                             </div>
                                         <?php endforeach; ?>
                                     </div>
@@ -132,7 +134,7 @@ $flexible_content = get_field('flexible_content');
                                                             <?php elseif ($media_type == 'viemo') : ?>
                                                                 <?php if (!empty($viemo)): ?>
                                                                     <iframe class="w-100 h-100 object-cover embed-video"
-                                                                        src="<?= $viemo; ?>?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay"
+                                                                        src="<?= $viemo; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0" allow="autoplay"
                                                                         allowfullscreen>
                                                                     </iframe>
                                                                 <?php endif; ?>
@@ -319,7 +321,7 @@ $flexible_content = get_field('flexible_content');
             if ($left__right_side_image_content_left__right_image == 'right') :
             ?>
                 <!-- hero section -->
-                <section class="hero-section-solutions bgprimary 1">
+                <section class="hero-section-solutions bgprimary 1 custom-margin">
                     <div class="dpt-175 tpt-135"></div>
                     <div class="container" data-aos="fade-right" data-aos-duration="1500">
                         <div class="row align-items-center">
@@ -435,21 +437,17 @@ $flexible_content = get_field('flexible_content');
                     <div class="<?= $background_color == 'dark' ? 'bgprimary' : 'bglightwhite' ?> radius-bottom-right dpt-180 tpt-55 dpb-150 tpb-60">
                         <div class="container pe-p-0" data-aos="fade-up">
                             <div class="row">
-                                <div class="col-12">
-                                    <div class="swiper whyChooseSwiper">
-                                        <div class="swiper-wrapper">
-                                            <?php foreach ($three_icon_section_items as $three_icon_section_items_custom) : ?>
-                                                <div class="swiper-slide why-choose-card">
-                                                    <div class="icon-bg radiusEX overflow-hidden d-flex align-items-center justify-content-center">
-                                                        <img src="<?php echo $three_icon_section_items_custom['icon']['url']; ?>" alt="">
-                                                    </div>
-                                                    <h4 class="text-white acid-bold lh-1 fontXL dmt-20"><?php echo $three_icon_section_items_custom['heading']; ?></h4>
-                                                    <p class="text-white acid-normal leadingM fontL dmt-20"><?php echo $three_icon_section_items_custom['content']; ?></p>
-                                                </div>
-                                            <?php endforeach; ?>
+                                <?php foreach ($three_icon_section_items as $three_icon_section_items_custom) : ?>
+                                    <div class="col-lg-4 col-12 dmb-20 pe-lg-3">
+                                        <div class="why-choose-card">
+                                            <div class=" <?= $background_color == 'dark' ? 'icon-bg' : 'light-bg' ?> radiusEX overflow-hidden d-flex align-items-center justify-content-center">
+                                                <img src="<?php echo $three_icon_section_items_custom['icon']['url']; ?>" alt="">
+                                            </div>
+                                            <h4 class="<?= $background_color == 'dark' ? 'text-white' : 'textlightblack' ?> acid-bold lh-1 fontXL dmt-20"><?php echo $three_icon_section_items_custom['heading']; ?></h4>
+                                            <p class="<?= $background_color == 'dark' ? 'text-white' : 'textlightblack' ?> acid-normal leadingM fontL dmt-20"><?php echo $three_icon_section_items_custom['content']; ?></p>
                                         </div>
                                     </div>
-                                </div>
+                                    <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
@@ -556,7 +554,7 @@ $flexible_content = get_field('flexible_content');
             ));
             if (!empty($faq_items)) :
             ?>
-                <section>
+                <section class="faq-section">
                     <div class="container" data-aos="fade-up">
                         <div class="row">
                             <div class="col-lg-2">
@@ -660,7 +658,7 @@ $flexible_content = get_field('flexible_content');
             $content_type = get_sub_field('content_type');
         ?>
             <section class="position-relative hero-sections-product">
-                <div class="how-work-section position-relative bgprimary radius-bottom-right overflow-hidden">
+                <div class="how-work-section position-relative bgprimary radius-bottom-right overflow-hidden custom-margin">
                     <div class="dpt-235 tpt-135"></div>
                     <div class="container" data-aos="fade-right" data-aos-duration="1500">
                         <div class="row ">
@@ -1666,7 +1664,7 @@ $flexible_content = get_field('flexible_content');
                 <?php elseif ($media_type == 'viemo'): ?>
                     <?php if (!empty($hero_viemo)): ?>
                         <iframe class="w-100 h-100 object-cover embed-video"
-                            src="<?= $hero_viemo; ?>?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay"
+                            src="<?= $hero_viemo; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0" allow="autoplay"
                             allowfullscreen>
                         </iframe>
                     <?php endif; ?>
@@ -1689,7 +1687,7 @@ $flexible_content = get_field('flexible_content');
                     <?php if ($fancy_box_video_type == 'fancy_box_video'): ?>
                         <div data-src="<?= $fancy_box_video ?>" data-type="video"
                             data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
-                            <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                            <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
                             Click to play audio
                         </div>
 
@@ -1697,7 +1695,7 @@ $flexible_content = get_field('flexible_content');
                         <?php if (!empty($fancy_box_youtube)): ?>
                             <div data-src="<?= $fancy_box_youtube ?>?autoplay=1" data-type="iframe"
                                 data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
-                                <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                                <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
                                 Click to play audio
                             </div>
                         <?php endif; ?>
@@ -1705,7 +1703,7 @@ $flexible_content = get_field('flexible_content');
                         <?php if (!empty($fancy_box_vimeo)): ?>
                             <div data-src="<?= $fancy_box_vimeo ?>?autoplay=1" data-type="iframe"
                                 data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
-                                <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                                <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
                                 Click to play audio
                             </div>
                         <?php endif; ?>
@@ -1785,7 +1783,7 @@ $flexible_content = get_field('flexible_content');
             $benefits_card_group = get_sub_field('benefits_card_group');
             $benefits_title = get_sub_field('title');
         ?>
-            <section class="the-benefits-section bgprimary dpt-100 dpb-165 tpt-50 tpb-50">
+            <section class="the-benefits-section bgprimary dpt-100 dpb-165 tpt-50 tpb-50 custom-margin">
                 <div class="container">
                     <?php if (!empty($benefits_title)): ?>
                         <div class="acid-bold font36 leadingXS textlightwhite"><?= $benefits_title ?></div>
@@ -1816,7 +1814,7 @@ $flexible_content = get_field('flexible_content');
                                                 <?php endif; ?>
                                             <?php elseif (($benefits_cards['hover_media_type']) == 'vimeo'): ?>
                                                 <iframe class="w-100 h-100 object-cover embed-video"
-                                                    src="<?= $benefits_cards['benefit_vimeo'] ?>?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay"
+                                                    src="<?= $benefits_cards['benefit_vimeo'] ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0" allow="autoplay"
                                                     allowfullscreen>
                                                 </iframe>
                                             <?php else: ?>
@@ -1859,12 +1857,9 @@ $flexible_content = get_field('flexible_content');
                                 $video = $post_media['video'];
                                 $viemo = $post_media['viemo'];
                                 $youtube = $post_media['youtube'];
-                                print_r($post_media['youtube']);
                             ?>
                                 <div class="our-case-studies-cards position-relative overflow-hidden radiusX ">
                                     <div class="our-case-studies-cards-img radiusX overflow-hidden">
-                                        <?php if (!empty($thumbnail_image)): ?> <img src="<?= $thumbnail_image ?>" class="w-100 h-100 object-cover case-studies-img" alt=""> <?php endif; ?>
-                                        <div class="hover-media h-100">
                                             <?php if ($media_type == 'video'): ?>
                                                 <?php if (!empty($video)): ?>
                                                     <video playsinline="playsinline" autoplay="autoplay" muted="muted"
@@ -1876,7 +1871,7 @@ $flexible_content = get_field('flexible_content');
                                             <?php elseif ($media_type == 'viemo') : ?>
                                                 <?php if (!empty($viemo)): ?>
                                                     <iframe class="w-100 h-100 object-cover embed-video"
-                                                        src="<?= $viemo; ?>?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay"
+                                                        src="<?= $viemo; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0" allow="autoplay"
                                                         allowfullscreen>
                                                     </iframe>
                                                 <?php endif; ?>
@@ -1891,7 +1886,6 @@ $flexible_content = get_field('flexible_content');
                                             <?php else: ?>
                                                 <img src="<?php echo get_the_post_thumbnail_url($id); ?>" class="w-100 h-100 object-cover" alt="">
                                             <?php endif; ?>
-                                        </div>
                                     </div>
                                     <div class="position-absolute bottom-0 w-100 dmb-30 px-4 z-3">
                                         <div class="d-flex justify-content-between align-items-end">
@@ -1969,30 +1963,34 @@ $flexible_content = get_field('flexible_content');
                                     ?>
                                         <div class="swiper-slide">
                                             <div class="our-case-studies-cards2 position-relative overflow-hidden radiusX">
-                                                <div class="our-case-studies-cards-img radiusX overflow-hidden">
-                                                    <?php if (!empty($thumbnail_image)): ?>
-                                                        <img src="<?= $thumbnail_image ?>" class="w-100 h-100 object-cover" alt="">
-                                                    <?php endif; ?>
-                                                    <div class="">
-                                                        <?php if ($media_type == 'video'): ?>
-                                                            <?php if (!empty($video)): ?>
-                                                                <video playsinline autoplay muted class="w-100 h-100 object-cover">
-                                                                    <source src="<?= $video ?>" type="video/mp4">
-                                                                </video>
-                                                            <?php endif; ?>
-                                                        <?php elseif ($media_type == 'viemo') : ?>
-                                                            <?php if (!empty($viemo)): ?>
-                                                                <iframe class="w-100 h-100 object-cover embed-video" src="<?= $viemo; ?>?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay" allowfullscreen></iframe>
-                                                            <?php endif; ?>
-                                                        <?php elseif ($media_type == 'youtube') : ?>
-                                                            <?php if (!empty($youtube)): ?>
-                                                                <iframe class="w-100 h-100 object-cover embed-video" src="<?= $youtube; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0" allow="autoplay; fullscreen"></iframe>
-                                                            <?php endif; ?>
-                                                        <?php else: ?>
-                                                            <img src="<?php echo get_the_post_thumbnail_url($id); ?>" class="w-100 h-100 object-cover" alt="">
-                                                        <?php endif; ?>
-                                                    </div>
-                                                </div>
+                                            <div class="our-case-studies-cards-img radiusX overflow-hidden">
+                                            <?php if ($media_type == 'video'): ?>
+                                                <?php if (!empty($video)): ?>
+                                                    <video playsinline="playsinline" autoplay="autoplay" muted="muted"
+                                                        class="w-100 h-100 object-cover">
+                                                        <source src="<?= $video ?>" type="video/mp4">
+                                                        </source>
+                                                    </video>
+                                                <?php endif; ?>
+                                            <?php elseif ($media_type == 'viemo') : ?>
+                                                <?php if (!empty($viemo)): ?>
+                                                    <iframe class="w-100 h-100 object-cover embed-video"
+                                                        src="<?= $viemo; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0" allow="autoplay"
+                                                        allowfullscreen>
+                                                    </iframe>
+                                                <?php endif; ?>
+                                            <?php elseif ($media_type == 'youtube') : ?>
+                                                <?php if (!empty($youtube)): ?>
+                                                    <iframe class="w-100 h-100 object-cover embed-video"
+                                                        src="<?= $youtube; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline=<?= basename($youtube) ?>"
+                                                        allow="autoplay; fullscreen">
+                                                    </iframe>
+
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                                <img src="<?php echo get_the_post_thumbnail_url($id); ?>" class="w-100 h-100 object-cover" alt="">
+                                            <?php endif; ?>
+                                    </div>
                                                 <div class="position-absolute bottom-0 w-100 dmb-30 px-4 z-3">
                                                     <div class="d-flex justify-content-between align-items-end">
                                                         <div class="col-9">
@@ -2072,7 +2070,7 @@ $flexible_content = get_field('flexible_content');
                         <?php elseif ($media_type == 'vimeo'): ?>
                             <?php if (!empty($vimeo)): ?>
                                 <iframe class="w-100 h-100 object-cover embed-video"
-                                    src="<?= $vimeo; ?>?autoplay=1&mute=1&controls=0&fs=0&" allow="autoplay"
+                                    src="<?= $vimeo; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0" allow="autoplay"
                                     allowfullscreen>
                                 </iframe>
                             <?php endif; ?>
@@ -2082,7 +2080,7 @@ $flexible_content = get_field('flexible_content');
                             <?php if ($fancy_box_type == 'fancy_box_video'): ?>
                                 <div data-src="<?= $fancy_box_video ?>" data-type="video"
                                     data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
-                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
                                     Click to play audio
                                 </div>
 
@@ -2092,7 +2090,7 @@ $flexible_content = get_field('flexible_content');
                                         data-type="iframe"
                                         data-fancybox="gallery"
                                         class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
-                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
                                         Click to play audio
                                     </div>
                                 <?php endif; ?>
@@ -2100,7 +2098,7 @@ $flexible_content = get_field('flexible_content');
                                 <?php if (!empty($fancy_box_vimeo)): ?>
                                     <div data-src="<?= $fancy_box_vimeo ?>?autoplay=1" data-type="iframe"
                                         data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center position-relative z-3">
-                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/02/volume.png" class="icon me-1" alt="">
+                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
                                         Click to play audio
                                     </div>
                                 <?php endif; ?>
@@ -2134,7 +2132,7 @@ $flexible_content = get_field('flexible_content');
 
             <section class="img-slider-section overflow-hidden bgprimary dpb-180 tpb-80">
                 <div class="container">
-                    <div class="swiper img-slider col-lg-9">
+                    <div class="swiper img-slider col-9 col-lg-12">
                         <div class="swiper-wrapper">
                             <?php foreach ($image_group as $image_group_data) :
                                 $image = $image_group_data['image'];
@@ -2163,6 +2161,118 @@ $flexible_content = get_field('flexible_content');
                         <?php if (!empty($link)) : ?>
                             <a href="<?= $link['url'] ?>" target="<?= $link['target'] ?>" class="text-white acid-bold d-flex align-items-center fontXX justify-content-center text-decoration-none bgsecondary radiusX dmt-30 btnY "><?= $link['title'] ?></a>
                         <?php endif; ?>
+                    </div>
+                </div>
+            </section>
+
+            <?php elseif (get_row_layout() == 'founding_video_section') :
+                $heading = get_sub_field('heading');
+                $media_type = get_sub_field('media_type');
+                $image = get_sub_field('image');
+                $video = get_sub_field('video');
+                $youtube = get_sub_field('youtube');
+                $vimeo = get_sub_field('vimeo');
+                $fancy_box_type = get_sub_field('fancy_box_type');
+                $fancy_box_video = get_sub_field('fancy_box_video');
+                $fancy_box_youtube = get_sub_field('fancy_box_youtube');
+                $fancy_box_viemo = get_sub_field('fancy_box_viemo');
+            ?>
+            <section class="founding-video-section">
+                <div class="container">
+                    <?php if (!empty($heading)): ?>
+                        <div class="acid-bold fontLS leadingMX textlightblack dmb-50 resfontLM resleadingMS"><?= $heading ?></div>
+                    <?php endif; ?>
+                    <div class="founding-video-img radiusXS overflow-hidden position-relative">
+                        <?php if ($media_type == 'image'): ?>
+                            <?php if (!empty($image)): ?>
+                                <img src="<?= $image; ?>" class="w-100 h-100 object-cover" alt="">
+                            <?php endif; ?>
+                        <?php elseif ($media_type == 'video'): ?>
+                            <?php if (!empty($video)): ?>
+                                <video playsinline="playsinline" autoplay="autoplay" muted="muted" class="w-100 h-100 object-cover">
+                                    <source src="<?= $video ?>" type="video/mp4">
+                                    </source>
+                                </video>
+                            <?php endif; ?>
+
+                        <?php elseif ($media_type == 'youtube'): ?>
+                            <?php if (!empty($youtube)): ?>
+                                <iframe class="w-100 h-100 object-cover embed-video"
+                                    src="<?= $youtube; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline=<?= basename($youtube) ?>"
+                                    allow="autoplay; fullscreen">
+                                </iframe>
+                            <?php endif; ?>
+                        <?php elseif ($media_type == 'vimeo'): ?>
+                            <?php if (!empty($vimeo)): ?>
+                                <iframe class="w-100 h-100 object-cover embed-video"
+                                    src="<?= $vimeo; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0" allow="autoplay"
+                                    allowfullscreen>
+                                </iframe>
+                            <?php endif; ?>
+                        <?php endif; ?>
+
+                        <div class="position-absolute bottom-0 end-0">
+                            <?php if ($fancy_box_type == 'fancyboxvideo'): ?>
+                                <div data-src="<?= $fancy_box_video ?>" data-type="video"
+                                    data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
+                                    <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
+                                    Click to play audio
+                                </div>
+
+                            <?php elseif ($fancy_box_type == 'fancyboxyoutube'): ?>
+                                <?php if (!empty($fancy_box_youtube)): ?>
+                                    <div data-src="<?= $fancy_box_youtube ?>?autoplay=1"
+                                        data-type="iframe"
+                                        data-fancybox="gallery"
+                                        class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
+                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
+                                        Click to play audio
+                                    </div>
+                                <?php endif; ?>
+                            <?php elseif ($fancy_box_type == 'fancyboxvimeo'): ?>
+                                <?php if (!empty($fancy_box_vimeo)): ?>
+                                    <div data-src="<?= $fancy_box_vimeo ?>?autoplay=1" data-type="iframe"
+                                        data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center position-relative z-3">
+                                        <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
+                                        Click to play audio
+                                    </div>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <?php elseif (get_row_layout() == 'founding_content_section') :
+                $heading = get_sub_field('heading');
+                $content_group = get_sub_field('content_group');
+            ?>
+
+            <section class="founding-content-section">
+                <div class="container">
+                    <div class="col-lg-7 col-12 mx-auto">
+                    <?php if (!empty($heading)): ?>
+                        <div class="acid-bold fontSX leadingXS textlightblack resfontSSX"><?= $heading ?></div>
+                        <?php endif ?>
+                        <?php foreach($content_group as $content_group_data) :
+                            $content_type = $content_group_data['content_type'];
+                            $quote_content = $content_group_data['quote_content'];
+                            $content = $content_group_data['content'];
+                        ?>
+                            <?php if ($content_type == 'withquote'): ?>
+                                <?php if (!empty($quote_content)): ?>
+                                <div class="d-flex quote-line dpt-35 dpb-35 dmt-55 dmb-55">
+                                    <div class="col-1"><img src="/wp-content/uploads/2025/03/quote.svg" alt=""></div>
+                                    <div class="col-11 ps-lg-5 acid-normal fontXX leadingXX textlightblack"><?= $quote_content ?></div>
+                                </div>
+                                 <?php endif ?>
+
+                            <?php elseif($content_type == 'without'): ?>
+                                <?php if (!empty($content)): ?>
+                                <div class="acid-normal fontXX leadingXX textlightblack"><?= $content ?></div>
+                                 <?php endif ?>
+                            <?php endif; ?>
+                        <?php endforeach ?>
                     </div>
                 </div>
             </section>
