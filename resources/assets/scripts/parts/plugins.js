@@ -12,45 +12,103 @@ export class Plugins {
     }
 
     OurCaseStudies() {
-        var caseSlider = new Swiper('.our-case-slider', {
-            direction: 'vertical',
-            slidesPerView: 3,
-            slidesPerGroup: 1,
-            spaceBetween: 0,
-            loop: true,
-            autoplay: {
-                delay: 10000,
-                disableOnInteraction: false,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            mousewheel: true,
-        });
+        // var caseSlider = new Swiper('.our-case-slider', {
+        //     direction: 'vertical',
+        //     slidesPerView: 3,
+        //     slidesPerGroup: 1,
+        //     spaceBetween: 0,
+        //     loop: true,
+        //     autoplay: {
+        //         delay: 10000,
+        //         disableOnInteraction: false,
+        //     },
+        //     navigation: {
+        //         nextEl: '.swiper-button-next',
+        //         prevEl: '.swiper-button-prev',
+        //     },
+        //     mousewheel: true,
+        // });
 
-        function syncCaseStudies(index) {
-            document.querySelectorAll('.our-case-right-cards').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.our-case-studies-cards').forEach(card => card.style.display = 'none');
+        // function syncCaseStudies(index) {
+        //     // Remove active classes from all elements
+        //     document.querySelectorAll('.our-case-right-cards').forEach(el => el.classList.remove('active'));
+        //     document.querySelectorAll('.our-case-studies-cards').forEach(card => card.style.display = 'none');
+        //     document.querySelectorAll('.our-case-slider .swiper-slide').forEach(slide => slide.classList.remove('swiper-slide-active'));
 
-            let activeRightCard = document.querySelectorAll('.our-case-right-cards')[index];
-            let activeLeftCard = document.querySelectorAll('.our-case-studies-cards')[index];
+        //     let activeRightCard = document.querySelectorAll('.our-case-right-cards')[index];
+        //     let activeLeftCard = document.querySelectorAll('.our-case-studies-cards')[index];
 
-            if (activeRightCard) activeRightCard.classList.add('active');
-            if (activeLeftCard) activeLeftCard.style.display = 'block';
-        }
+        //     if (activeRightCard) activeRightCard.classList.add('active');
+        //     if (activeLeftCard) activeLeftCard.style.display = 'block';
 
-        caseSlider.on('slideChange', function () {
-            let currentIndex = caseSlider.realIndex;
-            syncCaseStudies(currentIndex);
-        });
-        document.querySelectorAll('.our-case-right-cards').forEach((slide, index) => {
-            slide.addEventListener('click', function () {
-                caseSlider.slideToLoop(index);
-                syncCaseStudies(index);
+        //     // Find the correct swiper slide & mark it active
+        //     let activeSlide = document.querySelector('.our-case-slider .swiper-slide:nth-child(' + (index + 1) + ')');
+        //     if (activeSlide) activeSlide.classList.add('swiper-slide-active');
+        // }
+
+        // // Swiper event listener for slide change
+        // caseSlider.on('slideChange', function () {
+        //     let currentIndex = caseSlider.realIndex;
+        //     syncCaseStudies(currentIndex);
+        // });
+
+        // // Click event on right-side cards
+        // document.querySelectorAll('.our-case-right-cards').forEach((slide, index) => {
+        //     slide.addEventListener('click', function () {
+        //         caseSlider.slideToLoop(index);
+        //         syncCaseStudies(index);
+        //     });
+        // });
+
+        // // Initial setup
+        // syncCaseStudies(0);
+
+        jQuery(document).ready(function ($) {
+            // Инициализация превью слайдера
+            let sliderThumbs = new Swiper('.our_slider_thumbs .our_swiper-container', {
+                direction: 'vertical',
+                slidesPerView: 1,
+                spaceBetween: 32,
+                navigation: {
+                    nextEl: '.slider__next',
+                    prevEl: '.slider__prev'
+                },
+                freeMode: true,
+                breakpoints: {
+                    0: {
+                        direction: 'horizontal',
+                    },
+                    768: {
+                        direction: 'vertical',
+                    }
+                }
+            });
+
+            // Инициализация слайдера изображений
+            let sliderImages = new Swiper('.our-slider__images .our_swiper-container', {
+                direction: 'vertical',
+                slidesPerView: 3,
+                spaceBetween: 24,
+                mousewheel: true,
+                navigation: {
+                    nextEl: '.slider__next',
+                    prevEl: '.slider__prev'
+                },
+                grabCursor: true,
+                thumbs: {
+                    swiper: sliderThumbs
+                },
+                breakpoints: {
+                    0: {
+                        direction: 'horizontal',
+                    },
+                    768: {
+                        direction: 'vertical',
+                    }
+                }
             });
         });
-        syncCaseStudies(0);
+
     }
 
     OurCaseInnerSlider() {
@@ -120,10 +178,13 @@ export class Plugins {
                     slidesPerView: 5,
                     spaceBetween: 30,
                     loop: true,
+                    speed: 3000, // Continuous speed like img-slider
                     autoplay: {
-                        delay: 3000,
+                        delay: 0, // No delay, continuous scrolling
                         disableOnInteraction: false,
                     },
+                    allowTouchMove: false, // Disable manual dragging
+                    freeMode: true, // Free-flowing effect
                     breakpoints: {
                         1200: {
                             slidesPerView: 5,
@@ -140,6 +201,11 @@ export class Plugins {
                             slidesPerView: 2,
                             spaceBetween: -30,
                             centeredSlides: true,
+                        }
+                    },
+                    on: {
+                        init: function () {
+                            document.querySelector('.companyLogoSwiper .swiper-wrapper').style.transitionTimingFunction = 'linear';
                         }
                     }
                 });

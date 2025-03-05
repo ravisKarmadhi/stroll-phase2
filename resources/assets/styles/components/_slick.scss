@@ -1,0 +1,19 @@
+.our-case-slider {
+    .our-slider__images {
+        height: 540px;
+
+        .our_swiper-container {
+            .swiper-wrapper {
+                .swiper-slide {
+                    .slider__image {
+                        height: 120px;
+                    }
+                }
+            }
+        }
+    }
+
+    .our_slider_thumbs {
+        height: 540px;
+    }
+}

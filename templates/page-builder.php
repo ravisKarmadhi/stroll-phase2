@@ -1669,7 +1669,7 @@ $flexible_content = get_field('flexible_content');
                         </iframe>
                     <?php endif; ?>
                 <?php endif; ?>
-                <div class="position-absolute top-center w-100">
+                <div class="position-absolute top-center w-100 z-3">
                     <div class="container h-100">
                         <div class="col-lg-7 col-10">
                             <?php if (!empty($hero_video_title)): ?>
@@ -1683,7 +1683,7 @@ $flexible_content = get_field('flexible_content');
                         </div>
                     </div>
                 </div>
-                <div class="position-absolute bottom-0 end-0">
+                <div class="position-absolute bottom-0 end-0 z-3">
                     <?php if ($fancy_box_video_type == 'fancy_box_video'): ?>
                         <div data-src="<?= $fancy_box_video ?>" data-type="video"
                             data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
@@ -1709,7 +1709,7 @@ $flexible_content = get_field('flexible_content');
                         <?php endif; ?>
                     <?php endif; ?>
                 </div>
-
+                <div class="position-absolute top-0 start-0 w-100 h-100 hero-video-bg-layer"></div>
             </section>
         <?php elseif (get_row_layout() == 'slider_with_left_right') :
             $slider_group = get_sub_field('slider_group');
@@ -1842,7 +1842,7 @@ $flexible_content = get_field('flexible_content');
             $case_study_title = get_sub_field('title');
             $case_study_group = get_sub_field('case_study_group');
         ?>
-            <section class="our-case-studies-section bgprimary dpb-130 tpb-0 d-lg-block d-none">
+                <section class="our-case-studies-section bgprimary dpb-130 tpb-0 d-lg-block d-none">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-7 col-12 pe-lg-4">
