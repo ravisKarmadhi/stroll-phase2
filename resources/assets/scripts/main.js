@@ -4,6 +4,7 @@ import "bootstrap/dist/js/bootstrap";
 import "select2/dist/js/select2.js";
 import "../../node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min";
 import Aos from "aos";
+import "slick-carousel";
 
 import { App } from "./parts/app.js";
 import { Plugins } from "./parts/plugins.js";
@@ -90,75 +91,118 @@ $(document).ready(function () {
 // ============================ header sub-menu ============================
 // lg up header js
 $(document).ready(function () {
-	$(".nav-menu .main-menu").click(function (e) {
+	// $(document).ready(function () {
+	// 	$(".nav-menu .main-menu").click(function (e) {
+	// 		e.stopPropagation();
+	// 		$(".nav-menu .main-menu").removeClass("active");
+	// 		$("ul.sub-menu").slideUp();
 
+	// 		$(this).addClass("active");
+	// 		$(this)
+	// 			.children("ul.sub-menu")
+	// 			.slideDown(function () {
+	// 				if ($("ul.sub-menu:visible").length > 0) {
+	//                     console.log("first-----rrrrrrrr---");
+	// 					$("ul.sub-menu").css("height", "auto");
+	// 					$(".header-menu").addClass("nav-active");
+	// 					$(this).addClass("heaaa-active");
+	// 				} else {
+	//                     console.log("first-----dddd---");
+	// 					$(".header-menu").removeClass("nav-active");
+	// 				}
+	// 			});
+	// 		handleWindowResizeDeskSize();
+	// 	});
 
-		$(".nav-menu .main-menu .sub-menu").css("display", "");
-		$(".nav-menu .main-menu .sub-menu").css("height", "auto");
+	// 	$(document).click(function (e) {
+	// 		if (!$(e.target).closest(".nav-menu").length) {
+	// 			$(".nav-menu .main-menu").removeClass("active");
+	// 			$("ul.sub-menu").slideUp(function () {
+	// 				$(".header-menu").removeClass("nav-active");
+	// 			});
+	// 		}
+	// 	});
 
-		e.stopPropagation(); // Prevent the body click event from being triggered
-		// Remove "active" class from all menu items
-		$(".nav-menu .main-menu").removeClass("active");
-		// Add "active" class to the clicked menu item
-		$(this).addClass("active");
-		// Check if the clicked menu has a visible sub-menu
-		var hasVisibleSubMenu = $(this).children("ul.sub-menu").is(":visible");
-		// Hide all sub-menus except the one associated with the clicked menu item
-		$("ul.sub-menu").not($(this).children()).slideUp();
-		// Toggle the sub-menu associated with the clicked menu item
-		$(this)
-			.children("ul.sub-menu")
-			.slideToggle(function () {
-				// After the slideToggle animation is complete
-				// Check if any sub-menu is open and add/remove "body-active" class accordingly
-				if ($("ul.sub-menu:visible").length > 0) {
-					$(".header-menu").addClass("nav-active");
-				} else {
-					$(".header-menu").removeClass("nav-active");
-				}
+	// 	$(".nav-menu ul.sub-menu").click(function (e) {
+	// 		e.stopPropagation();
+	// 	});
 
-				$(document).ready(function () {
-					function handleWindowResizeDeskSize() {
-						var windowWidth = $(window).width();
-						if (windowWidth >= 992) {
-							if ($("ul.sub-menu:visible").length > 0) {
-								$("body").addClass("body-active");
-								$("html").addClass("overflow-hidden");
-								$(".header-menu").addClass("nav-active");
-							} else {
-								$("body").removeClass("body-active");
-								$("html").removeClass("overflow-hidden");
-								$(".header-menu").removeClass("nav-active");
-							}
-						}
-					}
-					handleWindowResizeDeskSize();
-					$(window).resize(handleWindowResizeDeskSize);
-				});
-			});
-		// If the clicked menu had a visible sub-menu, remove the "body-active" class
-		if (hasVisibleSubMenu) {
-			$(".main-menu").removeClass("active");
-			$(".header-menu").removeClass("nav-active");
-		}
-		$(document).ready(function () {
-			function handleWindowResizeDeskSize() {
-				var windowWidth = $(window).width();
-				if (windowWidth >= 992) {
-					if (hasVisibleSubMenu) {
-						$("body").removeClass("body-active");
-						$(".main-menu").removeClass("active");
-						$("html").removeClass("overflow-hidden");
-						$(".header-menu").removeClass("nav-active");
-					}
-				}
+	// 	function handleWindowResizeDeskSize() {
+	// 		var windowWidth = $(window).width();
+	// 		if (windowWidth >= 992) {
+	// 			if ($("ul.sub-menu:visible").length > 0) {
+	// 				$("body").addClass("body-active");
+	// 				$("html").addClass("overflow-hidden");
+	// 				$(".header-menu").addClass("nav-active");
+	// 			} else {
+	// 				$("body").removeClass("body-active");
+	// 				$("html").removeClass("overflow-hidden");
+	// 				$(".header-menu").removeClass("nav-active");
+	// 			}
+	// 		}
+	// 	}
+
+	// 	$(window).resize(handleWindowResizeDeskSize);
+	// 	handleWindowResizeDeskSize(); // Run once on page load
+	// });
+
+	$(document).ready(function () {
+		$(".nav-menu .main-menu").click(function (e) {
+            e.stopImmediatePropagation();  
+
+			if ($(this).hasClass("active")) {
+                console.log("first-------------");
+				$(".nav-menu .main-menu").removeClass("active");
+				$("ul.sub-menu").slideUp();
+				$(".header-menu").removeClass("nav-active");
+				$("body").removeClass("body-active");
+				$("html").removeClass("overflow-hidden");
+			} else {
+                console.log("second-------------");
+				$(".nav-menu .main-menu").removeClass("active");
+				$("ul.sub-menu").slideUp();
+
+				$(this).addClass("active");
+				$(this).find("ul.sub-menu").slideDown().css("height", "auto"); 
+				$(".header-menu").addClass("nav-active");
+				$("body").addClass("body-active");
+				$("html").addClass("overflow-hidden");
 			}
-			handleWindowResizeDeskSize();
-			$(window).resize(handleWindowResizeDeskSize);
+  
 		});
+
+		$(document).click(function (e) {
+			if (!$(e.target).closest(".nav-menu").length) {
+				$(".nav-menu .main-menu").removeClass("active");
+				$("ul.sub-menu").slideUp(function () {
+					$(".header-menu").removeClass("nav-active");
+				});
+			}
+		});
+
+		$(".nav-menu ul.sub-menu").click(function (e) {
+			e.stopPropagation();
+		});
+
+		// function handleWindowResizeDeskSize() {
+		// 	var windowWidth = $(window).width();
+		// 	if (windowWidth >= 992) {
+		// 		if ($("ul.sub-menu:visible").length > 0) {
+		// 			$("body").addClass("body-active");
+		// 			$("html").addClass("overflow-hidden");
+		// 			$(".header-menu").addClass("nav-active");
+		// 		} else {
+		// 			$("body").removeClass("body-active");
+		// 			$("html").removeClass("overflow-hidden");
+		// 			$(".header-menu").removeClass("nav-active");
+		// 		}
+		// 	}
+		// }
+
+		// $(window).resize(handleWindowResizeDeskSize);
+		// handleWindowResizeDeskSize(); // Run once on page load
 	});
 
-	// Clicking anywhere on the body except the .nav-menu
 	$(document).ready(function () {
 		function handleWindowResizeDeskSize() {
 			var windowWidth = $(window).width();
@@ -247,16 +291,28 @@ $(document).ready(function () {
 //   function handleWindowResizeMegaMenu() {
 //     var windowWidth = $(window).width();
 //     if (windowWidth >= 0 && windowWidth <= 992) {
-$("#burger-menu").click(function () {
-	$("header").toggleClass("bg-res-header");
-	// $(".logo--wrap--row").toggleClass("d-none");
-	$(".navigation-bar").toggleClass("d-none").toggleClass("d-flex");
-	$(".header-menu").toggleClass("header-res-row");
-	$("header").toggleClass("fixed-position");
-	$("#menu-close, #menu-burger").toggleClass("d-none");
-	$(".header-btn-main").toggleClass("d-none");
-	$("html").toggleClass("overflow-hidden");
-	$("body").toggleClass("body-active overflow-hidden");
+$("#menu-burger").click(function () {
+	$("header").addClass("bg-res-header");
+	// $(".logo--wrap--row").addClass("d-none");
+	$(".navigation-bar").removeClass("d-none").addClass("d-flex");
+	$(".header-menu").addClass("header-res-row");
+	$("header").addClass("fixed-position");
+	$("#menu-burger").addClass("d-none");
+	$("#menu-close").removeClass("d-none");
+	$(".header-btn-main").removeClass("d-none");
+	$("html").addClass("overflow-hidden");
+	$("body").addClass("body-active overflow-hidden");
+});
+$("#menu-close").click(function () {
+	$("header").removeClass("bg-res-header");
+	$(".navigation-bar").addClass("d-none").removeClass("d-flex");
+	$(".header-menu").removeClass("header-res-row");
+	$("header").removeClass("fixed-position");
+	$("#menu-burger").removeClass("d-none");
+	$("#menu-close").addClass("d-none");
+	$(".header-btn-main").addClass("d-none");
+	$("html").removeClass("overflow-hidden");
+	$("body").removeClass("body-active overflow-hidden");
 });
 //     }
 //   }
@@ -370,4 +426,110 @@ $(document).ready(function () {
 		}
 		video.muted = !video.muted;
 	});
+});
+$(document).ready(function () {
+	$(".companyLogoSwiper").slick({
+		slidesToShow: 5,
+		slidesToScroll: 1,
+		autoplay: true,
+		autoplaySpeed: 3000,
+		infinite: true,
+		arrows: false,
+		responsive: [
+			{
+				breakpoint: 1200,
+				settings: {
+					slidesToShow: 5,
+				},
+			},
+			{
+				breakpoint: 992,
+				settings: {
+					slidesToShow: 4,
+					slidesToScroll: 1,
+				},
+			},
+			{
+				breakpoint: 575,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 1,
+				},
+			},
+			{
+				breakpoint: 0,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 1,
+					centerMode: true,
+				},
+			},
+		],
+	});
+});
+
+$(document).ready(function () {
+	// Main Slider
+	$(".slider-nav").slick({
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		arrows: false,
+		fade: true,
+		infinite: true,
+		asNavFor: ".slider-thumb",
+	});
+
+	// Thumbnail Slider
+	$(".slider-thumb").slick({
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		asNavFor: ".slider-nav",
+		dots: false,
+		centerMode: false,
+		vertical: true,
+		verticalSwiping: true,
+		arrows: false,
+		autoplay: true,
+		autoplaySpeed: 10000,
+		focusOnSelect: true,
+		infinite: true,
+	});
+	$(".slider-thumb").on("wheel", function (e) {
+		e.preventDefault();
+		if (e.originalEvent.deltaY < 0) {
+			$(this).slick("slickPrev");
+		} else {
+			$(this).slick("slickNext");
+		}
+	});
+    $('.gallery').slick({
+        slidesToShow:4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 0,
+        arrows:false,
+        speed: 5000, 
+        pauseOnHover: false,
+        cssEase: 'linear',
+        responsive: [ 
+			{
+				breakpoint: 991,
+				settings: {
+					slidesToShow: 3,
+				},
+			}, 
+			{
+				breakpoint: 768,
+				settings: {
+					slidesToShow: 2,
+				},
+			}, 
+			{
+				breakpoint: 575,
+				settings: {
+					slidesToShow: 1,
+				},
+			},
+		],
+      });
 });

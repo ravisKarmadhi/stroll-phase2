@@ -303,11 +303,16 @@
 
     .our-case-slider {
         height: 470px;
+
+        .slick-current {
+            border-radius: 15px;
+            background-color: rgba($color: $lightwhite, $alpha: 0.05);
+        }
     }
 }
 
 .img-slider-section {
-    .swiper {
+    .slick-list {
         overflow: visible;
 
         .swiper-wrapper {
@@ -689,10 +694,10 @@ body {
 
         @include media-breakpoint-down(lg) {
             padding: 15px;
-            border-radius: 5px;
+            // border-radius: 5px;
 
             .benefits-img {
-                border-radius: 5px;
+                // border-radius: 5px;
             }
         }
 

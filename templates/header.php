@@ -83,7 +83,7 @@ endif;
                                                 <?php
                                                 if (!empty($sub_menu['image']['url'])): ?>
                                                     <ul class="sub-menu list-none mb-0 position-absolute radiusL res-w-100 p-initial bggrayNew">
-                                                        <li class="d-flex flex-wrap align-items-center tpt-40 tpb-15">
+                                                        <li class="d-flex flex-wrap align-items-center tpt-40 tpb-15 h-100 dpt-20 dpb-20">
                                                             <div class="col-lg-6 col-12 pe-lg-2">
                                                                 <div class="col-lg-11 col-12 me-auto">
                                                                     <span class="acid-bold fontM leadingX textlightblack text-capitalize opacityX d-lg-block dmb-20 w-100 d-none"><?php echo $menu_link_custom['link']['title']; ?></span>

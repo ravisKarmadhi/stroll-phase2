@@ -76,16 +76,17 @@ $flexible_content = get_field('flexible_content');
                     <?php endif; ?>
                     <div class="container px-p-0">
                         <div class="row">
-                            <div class="col-lg-9 col-12 mx-auto">
-
-                                <div class="swiper companyLogoSwiper">
-                                    <div class="swiper-wrapper h-100">
+                            <div class="col-md-9 col-12 mx-auto">
+                                <div class="swipe pper h-100 justify-content-center">
+                                    <div class="swi per companyLogoSwiper">
                                         <?php foreach ($logo_items as $logo_items_custom) : ?>
-                                            <div class="swiper-slide h-100 px-3 me-0">
-                                                <div class="w-auto h-100 text-center">
-                                                    <img src="<?php echo $logo_items_custom['image']['url']; ?>" class="h-100" alt="">
+                                            <?php if (!empty($logo_items_custom['image'])): ?>
+                                                <div class="swip sli de h-10 0 px-3 me-0">
+                                                    <div class=" logo-img text-center">
+                                                        <img src="<?php echo $logo_items_custom['image']['url']; ?>" class="h-100 w-100 object-fit-contain" alt="logo">
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
@@ -447,7 +448,7 @@ $flexible_content = get_field('flexible_content');
                                             <p class="<?= $background_color == 'dark' ? 'text-white' : 'textlightblack' ?> acid-normal leadingM fontL dmt-20"><?php echo $three_icon_section_items_custom['content']; ?></p>
                                         </div>
                                     </div>
-                                    <?php endforeach; ?>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
@@ -662,48 +663,48 @@ $flexible_content = get_field('flexible_content');
                     <div class="dpt-235 tpt-135"></div>
                     <div class="container" data-aos="fade-right" data-aos-duration="1500">
                         <div class="row ">
-                            <?php if($accordion_position == 'left'): ?>
-                            <div class="<?= $content_type == 'with_content' ? 'col-lg-7' : 'col-lg-6'?>  d-lg-flex flex-lg-column  justify-content-lg-center <?= $content_type == 'with_content' ? 'order-2 order-lg-1' : '' ?>">
-                                <?php if ($content_type == 'with_image') : ?>
-                                    <?php if (!empty($how_it_works_hero_section_heading)) : ?>
-                                        <h3 class="text-white acid-bold fontLS lh-1 resfontXXS"><?php echo $how_it_works_hero_section_heading; ?></h3>
+                            <?php if ($accordion_position == 'left'): ?>
+                                <div class="<?= $content_type == 'with_content' ? 'col-lg-7' : 'col-lg-6' ?>  d-lg-flex flex-lg-column  justify-content-lg-center <?= $content_type == 'with_content' ? 'order-2 order-lg-1' : '' ?>">
+                                    <?php if ($content_type == 'with_image') : ?>
+                                        <?php if (!empty($how_it_works_hero_section_heading)) : ?>
+                                            <h3 class="text-white acid-bold fontLS lh-1 resfontXXS"><?php echo $how_it_works_hero_section_heading; ?></h3>
+                                        <?php endif; ?>
+                                        <?php if (!empty($how_it_works_hero_section_content)) : ?>
+                                            <h6 class="text-white acid-normal fontSX dmt-25 mmt-20 resfontL leadingXS resleadingM">
+                                                <?php echo $how_it_works_hero_section_content; ?></h6>
+                                        <?php endif; ?>
                                     <?php endif; ?>
-                                    <?php if (!empty($how_it_works_hero_section_content)) : ?>
-                                        <h6 class="text-white acid-normal fontSX dmt-25 mmt-20 resfontL leadingXS resleadingM">
-                                            <?php echo $how_it_works_hero_section_content; ?></h6>
-                                    <?php endif; ?>
-                                <?php endif; ?>
-                                <?php
-                                if (!empty($how_it_works_hero_section_items)) : ?>
-                                    <div class="accordion how-work-accordion <?= $content_type == 'with_content' ? '' : 'dmt-35' ?>" id="accordionExampleTwo">
-                                        <?php foreach ($how_it_works_hero_section_items as $key => $how_it_works_hero_section_items_custom) :
-                                            $clssname_value = ($key == '0') ? "true" : "false";
-                                        ?>
-                                            <div class="bg-accordion border-0 mb-3 radiusES overflow-hidden">
-                                                <h2 class="accordion-header" id="heading<?php echo $key; ?>">
-                                                    <button class="bg-transparent accordion-button shadow-none radiusES acid-bold text-white fontXL" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo $key; ?>" aria-expanded="<?php echo $clssname_value; ?>" aria-controls="collapse<?php echo $key; ?>">
-                                                        <?php echo $how_it_works_hero_section_items_custom['heading']; ?>
-                                                    </button>
-                                                </h2>
-                                                <div id="collapse<?php echo $key; ?>" class="accordion-collapse collapse <?php if (get_sub_field('accordion_open') && ($key == '0')) : ?>show<?php endif; ?>" aria-labelledby="heading<?php echo $key; ?>" data-bs-parent="#accordionExampleTwo">
-                                                    <div class="accordion-body col-lg-10">
-                                                        <h6 class="acid-normal text-white fontL leadingL mb-3">
-                                                            <?php echo $how_it_works_hero_section_items_custom['content']; ?>
-                                                        </h6>
+                                    <?php
+                                    if (!empty($how_it_works_hero_section_items)) : ?>
+                                        <div class="accordion how-work-accordion <?= $content_type == 'with_content' ? '' : 'dmt-35' ?>" id="accordionExampleTwo">
+                                            <?php foreach ($how_it_works_hero_section_items as $key => $how_it_works_hero_section_items_custom) :
+                                                $clssname_value = ($key == '0') ? "true" : "false";
+                                            ?>
+                                                <div class="bg-accordion border-0 mb-3 radiusES overflow-hidden">
+                                                    <h2 class="accordion-header" id="heading<?php echo $key; ?>">
+                                                        <button class="bg-transparent accordion-button shadow-none radiusES acid-bold text-white fontXL" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo $key; ?>" aria-expanded="<?php echo $clssname_value; ?>" aria-controls="collapse<?php echo $key; ?>">
+                                                            <?php echo $how_it_works_hero_section_items_custom['heading']; ?>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapse<?php echo $key; ?>" class="accordion-collapse collapse <?php if (get_sub_field('accordion_open') && ($key == '0')) : ?>show<?php endif; ?>" aria-labelledby="heading<?php echo $key; ?>" data-bs-parent="#accordionExampleTwo">
+                                                        <div class="accordion-body col-lg-10">
+                                                            <h6 class="acid-normal text-white fontL leadingL mb-3">
+                                                                <?php echo $how_it_works_hero_section_items_custom['content']; ?>
+                                                            </h6>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (!empty($how_it_works_hero_section_button['url'])) :
-                                    $target = ($how_it_works_hero_section_button['target'] == '_blank') ? "_blank" : "";
-                                ?>
-                                    <a href="<?php echo $how_it_works_hero_section_button['url']; ?>" target="<?php echo $target; ?>" class="text-white acid-bold d-flex align-items-center mx-lg-0 mx-auto justify-content-center fontXX text-decoration-none bgsecondary radiusX btnZ "><?php echo $how_it_works_hero_section_button['title']; ?></a>
-                                <?php endif; ?>
-                            </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if (!empty($how_it_works_hero_section_button['url'])) :
+                                        $target = ($how_it_works_hero_section_button['target'] == '_blank') ? "_blank" : "";
+                                    ?>
+                                        <a href="<?php echo $how_it_works_hero_section_button['url']; ?>" target="<?php echo $target; ?>" class="text-white acid-bold d-flex align-items-center mx-lg-0 mx-auto justify-content-center fontXX text-decoration-none bgsecondary radiusX btnZ "><?php echo $how_it_works_hero_section_button['title']; ?></a>
+                                    <?php endif; ?>
+                                </div>
                             <?php endif; ?>
-                            <div class="col-lg-5 <?= $accordion_position == 'left' ? 'order-1 order-lg-2 ps-lg-5' : 'pe-lg-5' ?>">
+                            <div class="col-lg-5 tmb-20 <?= $accordion_position == 'left' ? 'order-1 order-lg-2 ps-lg-5' : 'pe-lg-5' ?>">
                                 <?php if ($content_type == 'with_content') : ?>
                                     <?php if (!empty($how_it_works_hero_section_heading)) : ?>
                                         <h3 class="text-white acid-bold fontLS lh-1 resfontXXS ps-lg-4"><?php echo $how_it_works_hero_section_heading; ?></h3>
@@ -725,46 +726,46 @@ $flexible_content = get_field('flexible_content');
                                     </div>
                             <?php endif;
                             endif; ?>
-                             <?php if($accordion_position == 'right'): ?>
-                            <div class="<?= $content_type == 'with_content' ? 'col-lg-7' : 'col-lg-6'?>  d-lg-flex flex-lg-column  justify-content-lg-center">
-                                <?php if ($content_type == 'with_image') : ?>
-                                    <?php if (!empty($how_it_works_hero_section_heading)) : ?>
-                                        <h3 class="text-white acid-bold fontLS lh-1 resfontXXS"><?php echo $how_it_works_hero_section_heading; ?></h3>
+                            <?php if ($accordion_position == 'right'): ?>
+                                <div class="<?= $content_type == 'with_content' ? 'col-lg-7' : 'col-lg-6' ?>  d-lg-flex flex-lg-column  justify-content-lg-center">
+                                    <?php if ($content_type == 'with_image') : ?>
+                                        <?php if (!empty($how_it_works_hero_section_heading)) : ?>
+                                            <h3 class="text-white acid-bold fontLS lh-1 resfontXXS"><?php echo $how_it_works_hero_section_heading; ?></h3>
+                                        <?php endif; ?>
+                                        <?php if (!empty($how_it_works_hero_section_content)) : ?>
+                                            <h6 class="text-white acid-normal fontSX dmt-25 mmt-20 resfontL leadingXS resleadingM">
+                                                <?php echo $how_it_works_hero_section_content; ?></h6>
+                                        <?php endif; ?>
                                     <?php endif; ?>
-                                    <?php if (!empty($how_it_works_hero_section_content)) : ?>
-                                        <h6 class="text-white acid-normal fontSX dmt-25 mmt-20 resfontL leadingXS resleadingM">
-                                            <?php echo $how_it_works_hero_section_content; ?></h6>
-                                    <?php endif; ?>
-                                <?php endif; ?>
-                                <?php
-                                if (!empty($how_it_works_hero_section_items)) : ?>
-                                    <div class="accordion how-work-accordion <?= $content_type == 'with_content' ? '' : 'dmt-35' ?>" id="accordionExampleTwo">
-                                        <?php foreach ($how_it_works_hero_section_items as $key => $how_it_works_hero_section_items_custom) :
-                                            $clssname_value = ($key == '0') ? "true" : "false";
-                                        ?>
-                                            <div class="bg-accordion border-0 mb-3 radiusES overflow-hidden">
-                                                <h2 class="accordion-header" id="heading<?php echo $key; ?>">
-                                                    <button class="bg-transparent accordion-button shadow-none radiusES acid-bold text-white fontXL" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo $key; ?>" aria-expanded="<?php echo $clssname_value; ?>" aria-controls="collapse<?php echo $key; ?>">
-                                                        <?php echo $how_it_works_hero_section_items_custom['heading']; ?>
-                                                    </button>
-                                                </h2>
-                                                <div id="collapse<?php echo $key; ?>" class="accordion-collapse collapse <?php if (get_sub_field('accordion_open') && ($key == '0')) : ?>show<?php endif; ?>" aria-labelledby="heading<?php echo $key; ?>" data-bs-parent="#accordionExampleTwo">
-                                                    <div class="accordion-body col-lg-10">
-                                                        <h6 class="acid-normal text-white fontL leadingL mb-3">
-                                                            <?php echo $how_it_works_hero_section_items_custom['content']; ?>
-                                                        </h6>
+                                    <?php
+                                    if (!empty($how_it_works_hero_section_items)) : ?>
+                                        <div class="accordion how-work-accordion <?= $content_type == 'with_content' ? '' : 'dmt-35' ?>" id="accordionExampleTwo">
+                                            <?php foreach ($how_it_works_hero_section_items as $key => $how_it_works_hero_section_items_custom) :
+                                                $clssname_value = ($key == '0') ? "true" : "false";
+                                            ?>
+                                                <div class="bg-accordion border-0 mb-3 radiusES overflow-hidden">
+                                                    <h2 class="accordion-header" id="heading<?php echo $key; ?>">
+                                                        <button class="bg-transparent accordion-button shadow-none radiusES acid-bold text-white fontXL" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo $key; ?>" aria-expanded="<?php echo $clssname_value; ?>" aria-controls="collapse<?php echo $key; ?>">
+                                                            <?php echo $how_it_works_hero_section_items_custom['heading']; ?>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapse<?php echo $key; ?>" class="accordion-collapse collapse <?php if (get_sub_field('accordion_open') && ($key == '0')) : ?>show<?php endif; ?>" aria-labelledby="heading<?php echo $key; ?>" data-bs-parent="#accordionExampleTwo">
+                                                        <div class="accordion-body col-lg-10">
+                                                            <h6 class="acid-normal text-white fontL leadingL mb-3">
+                                                                <?php echo $how_it_works_hero_section_items_custom['content']; ?>
+                                                            </h6>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (!empty($how_it_works_hero_section_button['url'])) :
-                                    $target = ($how_it_works_hero_section_button['target'] == '_blank') ? "_blank" : "";
-                                ?>
-                                    <a href="<?php echo $how_it_works_hero_section_button['url']; ?>" target="<?php echo $target; ?>" class="text-white acid-bold d-flex align-items-center mx-lg-0 mx-auto justify-content-center fontXX text-decoration-none bgsecondary radiusX btnZ "><?php echo $how_it_works_hero_section_button['title']; ?></a>
-                                <?php endif; ?>
-                            </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if (!empty($how_it_works_hero_section_button['url'])) :
+                                        $target = ($how_it_works_hero_section_button['target'] == '_blank') ? "_blank" : "";
+                                    ?>
+                                        <a href="<?php echo $how_it_works_hero_section_button['url']; ?>" target="<?php echo $target; ?>" class="text-white acid-bold d-flex align-items-center mx-lg-0 mx-auto justify-content-center fontXX text-decoration-none bgsecondary radiusX btnZ "><?php echo $how_it_works_hero_section_button['title']; ?></a>
+                                    <?php endif; ?>
+                                </div>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -1577,7 +1578,7 @@ $flexible_content = get_field('flexible_content');
                         <div class="row rowX">
                             <?php foreach ($video_library_items as $key => $video_library_items_custom) : ?>
                                 <div class="col-lg-4 dmb-80 tmb-45">
-                                    <a data-fancybox data-src="<?php echo $video_library_items_custom['vido']; ?>" href="javascript:void(0)" class="d-block video-card-main text-decoration-none card-hover-new openModlaVideo">
+                                    <a data-fancybox data-src="<?php echo $video_library_items_custom['video']; ?>" href="javascript:void(0)" class="d-block video-card-main text-decoration-none card-hover-new openModlaVideo">
                                         <div class="position-relative video-card overflow-hidden radiusX resradiusES">
                                             <img src="<?php echo $video_library_items_custom['image']['url']; ?>" class="w-100 h-100 object-cover hover-img " alt="">
                                             <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2023/12/cate-layer.svg" alt="" class="position-absolute bottom-0 start-0 w-100">
@@ -1686,7 +1687,7 @@ $flexible_content = get_field('flexible_content');
                 <div class="position-absolute bottom-0 end-0">
                     <?php if ($fancy_box_video_type == 'fancy_box_video'): ?>
                         <div data-src="<?= $fancy_box_video ?>" data-type="video"
-                            data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
+                            data-fancybox class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-lg-5 mb-3 me-lg-5 me-3 cursor-pointer d-flex align-items-center">
                             <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
                             Click to play audio
                         </div>
@@ -1694,7 +1695,7 @@ $flexible_content = get_field('flexible_content');
                     <?php elseif ($fancy_box_video_type == 'fancy_box_youtube'): ?>
                         <?php if (!empty($fancy_box_youtube)): ?>
                             <div data-src="<?= $fancy_box_youtube ?>?autoplay=1" data-type="iframe"
-                                data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
+                                data-fancybox class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-lg-5 mb-3 me-lg-5 me-3 cursor-pointer d-flex align-items-center">
                                 <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
                                 Click to play audio
                             </div>
@@ -1702,7 +1703,7 @@ $flexible_content = get_field('flexible_content');
                     <?php elseif ($fancy_box_video_type == 'viemo'): ?>
                         <?php if (!empty($fancy_box_vimeo)): ?>
                             <div data-src="<?= $fancy_box_vimeo ?>?autoplay=1" data-type="iframe"
-                                data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
+                                data-fancybox class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-lg-5 mb-3 me-lg-5 me-3 cursor-pointer d-flex align-items-center">
                                 <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
                                 Click to play audio
                             </div>
@@ -1845,7 +1846,7 @@ $flexible_content = get_field('flexible_content');
             <section class="our-case-studies-section bgprimary dpb-130 tpb-0 d-lg-block d-none">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-7 col-12 pe-lg-4">
+                        <div class="col-lg-7 col-12 pe-lg-4 slider-nav">
                             <?php foreach ($case_study_group as $solution_list_items_custom) :
                                 $id = $solution_list_items_custom->ID;
                                 $ntitle = $solution_list_items_custom->post_title;
@@ -1858,34 +1859,34 @@ $flexible_content = get_field('flexible_content');
                                 $viemo = $post_media['viemo'];
                                 $youtube = $post_media['youtube'];
                             ?>
-                                <div class="our-case-studies-cards position-relative overflow-hidden radiusX ">
+                                <div class="our-case-studies-cards bg-black position-relative overflow-hidden radiusX" data-id="<?= $id ?>">
                                     <div class="our-case-studies-cards-img radiusX overflow-hidden">
-                                            <?php if ($media_type == 'video'): ?>
-                                                <?php if (!empty($video)): ?>
-                                                    <video playsinline="playsinline" autoplay="autoplay" muted="muted"
-                                                        class="w-100 h-100 object-cover">
-                                                        <source src="<?= $video ?>" type="video/mp4">
-                                                        </source>
-                                                    </video>
-                                                <?php endif; ?>
-                                            <?php elseif ($media_type == 'viemo') : ?>
-                                                <?php if (!empty($viemo)): ?>
-                                                    <iframe class="w-100 h-100 object-cover embed-video"
-                                                        src="<?= $viemo; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0" allow="autoplay"
-                                                        allowfullscreen>
-                                                    </iframe>
-                                                <?php endif; ?>
-                                            <?php elseif ($media_type == 'youtube') : ?>
-                                                <?php if (!empty($youtube)): ?>
-                                                    <iframe class="w-100 h-100 object-cover embed-video"
-                                                        src="<?= $youtube; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline=<?= basename($youtube) ?>"
-                                                        allow="autoplay; fullscreen">
-                                                    </iframe>
-
-                                                <?php endif; ?>
-                                            <?php else: ?>
-                                                <img src="<?php echo get_the_post_thumbnail_url($id); ?>" class="w-100 h-100 object-cover" alt="">
+                                        <?php if ($media_type == 'video'): ?>
+                                            <?php if (!empty($video)): ?>
+                                                <video playsinline="playsinline" autoplay="autoplay" muted="muted"
+                                                    class="w-100 h-100 object-cover">
+                                                    <source src="<?= $video ?>" type="video/mp4">
+                                                    </source>
+                                                </video>
                                             <?php endif; ?>
+                                        <?php elseif ($media_type == 'viemo') : ?>
+                                            <?php if (!empty($viemo)): ?>
+                                                <iframe class="w-100 h-100 object-cover embed-video"
+                                                    src="<?= $viemo; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0" allow="autoplay"
+                                                    allowfullscreen>
+                                                </iframe>
+                                            <?php endif; ?>
+                                        <?php elseif ($media_type == 'youtube') : ?>
+                                            <?php if (!empty($youtube)): ?>
+                                                <iframe class="w-100 h-100 object-cover embed-video"
+                                                    src="<?= $youtube; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline=<?= basename($youtube) ?>"
+                                                    allow="autoplay; fullscreen">
+                                                </iframe>
+
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            <img src="<?php echo get_the_post_thumbnail_url($id); ?>" class="w-100 h-100 object-cover" alt="">
+                                        <?php endif; ?>
                                     </div>
                                     <div class="position-absolute bottom-0 w-100 dmb-30 px-4 z-3">
                                         <div class="d-flex justify-content-between align-items-end">
@@ -1909,8 +1910,8 @@ $flexible_content = get_field('flexible_content');
                             <?php if (!empty($case_study_title)): ?>
                                 <div class="acid-bold fontMX leadingXL textlightwhite dmb-20"><?= $case_study_title; ?></div>
                             <?php endif; ?>
-                            <div class="swiper our-case-slider">
-                                <div class="swiper-wrapper">
+                            <div class="swip er our-case-slider">
+                                <div class="swiper-wr apper slider-thumb">
                                     <?php foreach ($case_study_group as $solution_list_items_custom) :
                                         $id = $solution_list_items_custom->ID;
                                         $ntitle = $solution_list_items_custom->post_title;
@@ -1919,7 +1920,7 @@ $flexible_content = get_field('flexible_content');
                                         $category = get_the_terms($id, 'case-term');
                                     ?>
 
-                                        <div class="swiper-slide our-case-right-cards d-flex align-items-center cursor-pointer" data-img="<?= $thumbnail_image ?>" data-title="Helping Brian to transform his walking and reduce falls">
+                                        <div class="swipe r-sl ide our-case-right-cards d-flex align-items-center cursor-pointer" data-id="<?= $id ?>">
                                             <div class="d-inline-flex align-items-center">
                                                 <div class="col-4">
                                                     <div class="our-case-right-cards-img overflow-hidden">
@@ -1932,7 +1933,6 @@ $flexible_content = get_field('flexible_content');
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
-
                                 </div>
                             </div>
                         </div>
@@ -1962,35 +1962,35 @@ $flexible_content = get_field('flexible_content');
                                         $youtube = $post_media['youtube'];
                                     ?>
                                         <div class="swiper-slide">
-                                            <div class="our-case-studies-cards2 position-relative overflow-hidden radiusX">
-                                            <div class="our-case-studies-cards-img radiusX overflow-hidden">
-                                            <?php if ($media_type == 'video'): ?>
-                                                <?php if (!empty($video)): ?>
-                                                    <video playsinline="playsinline" autoplay="autoplay" muted="muted"
-                                                        class="w-100 h-100 object-cover">
-                                                        <source src="<?= $video ?>" type="video/mp4">
-                                                        </source>
-                                                    </video>
-                                                <?php endif; ?>
-                                            <?php elseif ($media_type == 'viemo') : ?>
-                                                <?php if (!empty($viemo)): ?>
-                                                    <iframe class="w-100 h-100 object-cover embed-video"
-                                                        src="<?= $viemo; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0" allow="autoplay"
-                                                        allowfullscreen>
-                                                    </iframe>
-                                                <?php endif; ?>
-                                            <?php elseif ($media_type == 'youtube') : ?>
-                                                <?php if (!empty($youtube)): ?>
-                                                    <iframe class="w-100 h-100 object-cover embed-video"
-                                                        src="<?= $youtube; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline=<?= basename($youtube) ?>"
-                                                        allow="autoplay; fullscreen">
-                                                    </iframe>
+                                            <div class="our-case-studies-cards2 bg-black position-relative overflow-hidden radiusX">
+                                                <div class="our-case-studies-cards-img radiusX overflow-hidden">
+                                                    <?php if ($media_type == 'video'): ?>
+                                                        <?php if (!empty($video)): ?>
+                                                            <video playsinline="playsinline" autoplay="autoplay" muted="muted"
+                                                                class="w-100 h-100 object-cover">
+                                                                <source src="<?= $video ?>" type="video/mp4">
+                                                                </source>
+                                                            </video>
+                                                        <?php endif; ?>
+                                                    <?php elseif ($media_type == 'viemo') : ?>
+                                                        <?php if (!empty($viemo)): ?>
+                                                            <iframe class="w-100 h-100 object-cover embed-video"
+                                                                src="<?= $viemo; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0" allow="autoplay"
+                                                                allowfullscreen>
+                                                            </iframe>
+                                                        <?php endif; ?>
+                                                    <?php elseif ($media_type == 'youtube') : ?>
+                                                        <?php if (!empty($youtube)): ?>
+                                                            <iframe class="w-100 h-100 object-cover embed-video"
+                                                                src="<?= $youtube; ?>?autoplay=1&mute=1&loop=1&background=1&controls=0&rel=0&playisline=<?= basename($youtube) ?>"
+                                                                allow="autoplay; fullscreen">
+                                                            </iframe>
 
-                                                <?php endif; ?>
-                                            <?php else: ?>
-                                                <img src="<?php echo get_the_post_thumbnail_url($id); ?>" class="w-100 h-100 object-cover" alt="">
-                                            <?php endif; ?>
-                                    </div>
+                                                        <?php endif; ?>
+                                                    <?php else: ?>
+                                                        <img src="<?php echo get_the_post_thumbnail_url($id); ?>" class="w-100 h-100 object-cover" alt="">
+                                                    <?php endif; ?>
+                                                </div>
                                                 <div class="position-absolute bottom-0 w-100 dmb-30 px-4 z-3">
                                                     <div class="d-flex justify-content-between align-items-end">
                                                         <div class="col-9">
@@ -2037,7 +2037,7 @@ $flexible_content = get_field('flexible_content');
             $fancy_box_vimeo = get_sub_field('fancy_box_vimeo');
         ?>
 
-            <section class="why-wrok-for-section bgprimary dpt-180 dpb-140 tpt-50 tpb-80">
+            <section class="why-wrok-for-section bgprimary dpt-180 dpb-140 tpt-120 tpb-80">
                 <div class="container">
                     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end dmb-80">
                         <?php if (!empty($main_heading)): ?>
@@ -2079,7 +2079,7 @@ $flexible_content = get_field('flexible_content');
                         <div class="position-absolute bottom-0 end-0">
                             <?php if ($fancy_box_type == 'fancy_box_video'): ?>
                                 <div data-src="<?= $fancy_box_video ?>" data-type="video"
-                                    data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
+                                    data-fancybox class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-lg-5 mb-3 me-lg-5 me-3 cursor-pointer d-flex align-items-center">
                                     <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
                                     Click to play audio
                                 </div>
@@ -2088,8 +2088,8 @@ $flexible_content = get_field('flexible_content');
                                 <?php if (!empty($fancy_box_youtube)): ?>
                                     <div data-src="<?= $fancy_box_youtube ?>?autoplay=1"
                                         data-type="iframe"
-                                        data-fancybox="gallery"
-                                        class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
+                                        data-fancybox
+                                        class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-lg-5 mb-3 me-lg-5 me-3 cursor-pointer d-flex align-items-center">
                                         <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
                                         Click to play audio
                                     </div>
@@ -2097,7 +2097,7 @@ $flexible_content = get_field('flexible_content');
                             <?php elseif ($fancy_box_type == 'fancy_box_vimeo'): ?>
                                 <?php if (!empty($fancy_box_vimeo)): ?>
                                     <div data-src="<?= $fancy_box_vimeo ?>?autoplay=1" data-type="iframe"
-                                        data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center position-relative z-3">
+                                        data-fancybox class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-lg-5 mb-3 me-lg-5 me-3 cursor-pointer d-flex align-items-center position-relative z-3">
                                         <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
                                         Click to play audio
                                     </div>
@@ -2132,12 +2132,12 @@ $flexible_content = get_field('flexible_content');
 
             <section class="img-slider-section overflow-hidden bgprimary dpb-180 tpb-80">
                 <div class="container">
-                    <div class="swiper img-slider col-9 col-lg-12">
-                        <div class="swiper-wrapper">
+                    <div class="img-slider col-9 col-lg-12">
+                        <div class=" gallery">
                             <?php foreach ($image_group as $image_group_data) :
                                 $image = $image_group_data['image'];
                             ?>
-                                <div class="swiper-slide px-1">
+                                <div class="px-lg-3 px-2">
                                     <?php if (!empty($image)) : ?>
                                         <div class="img-slider-img radiusX overflow-hidden">
                                             <img src="<?= $image ?>" class="w-100 h-100 object-cover" alt="">
@@ -2165,18 +2165,18 @@ $flexible_content = get_field('flexible_content');
                 </div>
             </section>
 
-            <?php elseif (get_row_layout() == 'founding_video_section') :
-                $heading = get_sub_field('heading');
-                $media_type = get_sub_field('media_type');
-                $image = get_sub_field('image');
-                $video = get_sub_field('video');
-                $youtube = get_sub_field('youtube');
-                $vimeo = get_sub_field('vimeo');
-                $fancy_box_type = get_sub_field('fancy_box_type');
-                $fancy_box_video = get_sub_field('fancy_box_video');
-                $fancy_box_youtube = get_sub_field('fancy_box_youtube');
-                $fancy_box_viemo = get_sub_field('fancy_box_viemo');
-            ?>
+        <?php elseif (get_row_layout() == 'founding_video_section') :
+            $heading = get_sub_field('heading');
+            $media_type = get_sub_field('media_type');
+            $image = get_sub_field('image');
+            $video = get_sub_field('video');
+            $youtube = get_sub_field('youtube');
+            $vimeo = get_sub_field('vimeo');
+            $fancy_box_type = get_sub_field('fancy_box_type');
+            $fancy_box_video = get_sub_field('fancy_box_video');
+            $fancy_box_youtube = get_sub_field('fancy_box_youtube');
+            $fancy_box_viemo = get_sub_field('fancy_box_viemo');
+        ?>
             <section class="founding-video-section">
                 <div class="container">
                     <?php if (!empty($heading)): ?>
@@ -2214,7 +2214,7 @@ $flexible_content = get_field('flexible_content');
                         <div class="position-absolute bottom-0 end-0">
                             <?php if ($fancy_box_type == 'fancyboxvideo'): ?>
                                 <div data-src="<?= $fancy_box_video ?>" data-type="video"
-                                    data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
+                                    data-fancybox class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-lg-5 mb-3 me-lg-5 me-3 cursor-pointer d-flex align-items-center">
                                     <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
                                     Click to play audio
                                 </div>
@@ -2223,8 +2223,8 @@ $flexible_content = get_field('flexible_content');
                                 <?php if (!empty($fancy_box_youtube)): ?>
                                     <div data-src="<?= $fancy_box_youtube ?>?autoplay=1"
                                         data-type="iframe"
-                                        data-fancybox="gallery"
-                                        class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center">
+                                        data-fancybox
+                                        class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-lg-5 mb-3 me-lg-5 me-3 cursor-pointer d-flex align-items-center">
                                         <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
                                         Click to play audio
                                     </div>
@@ -2232,7 +2232,7 @@ $flexible_content = get_field('flexible_content');
                             <?php elseif ($fancy_box_type == 'fancyboxvimeo'): ?>
                                 <?php if (!empty($fancy_box_vimeo)): ?>
                                     <div data-src="<?= $fancy_box_vimeo ?>?autoplay=1" data-type="iframe"
-                                        data-fancybox="gallery" class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-5 me-5 cursor-pointer d-flex align-items-center position-relative z-3">
+                                        data-fancybox class="acid-bold fontM leadingM textlightwhite hero-text px-4 mb-lg-5 mb-3 me-lg-5 me-3 cursor-pointer d-flex align-items-center position-relative z-3">
                                         <img src="<?php echo get_home_url(); ?>/wp-content/uploads/2025/03/volume.svg" class="icon me-1" alt="">
                                         Click to play audio
                                     </div>
@@ -2243,34 +2243,34 @@ $flexible_content = get_field('flexible_content');
                 </div>
             </section>
 
-            <?php elseif (get_row_layout() == 'founding_content_section') :
-                $heading = get_sub_field('heading');
-                $content_group = get_sub_field('content_group');
-            ?>
+        <?php elseif (get_row_layout() == 'founding_content_section') :
+            $heading = get_sub_field('heading');
+            $content_group = get_sub_field('content_group');
+        ?>
 
             <section class="founding-content-section">
                 <div class="container">
                     <div class="col-lg-7 col-12 mx-auto">
-                    <?php if (!empty($heading)): ?>
-                        <div class="acid-bold fontSX leadingXS textlightblack resfontSSX"><?= $heading ?></div>
+                        <?php if (!empty($heading)): ?>
+                            <div class="acid-bold fontSX leadingXS textlightblack resfontSSX"><?= $heading ?></div>
                         <?php endif ?>
-                        <?php foreach($content_group as $content_group_data) :
+                        <?php foreach ($content_group as $content_group_data) :
                             $content_type = $content_group_data['content_type'];
                             $quote_content = $content_group_data['quote_content'];
                             $content = $content_group_data['content'];
                         ?>
                             <?php if ($content_type == 'withquote'): ?>
                                 <?php if (!empty($quote_content)): ?>
-                                <div class="d-flex quote-line dpt-35 dpb-35 dmt-55 dmb-55">
-                                    <div class="col-1"><img src="/wp-content/uploads/2025/03/quote.svg" alt=""></div>
-                                    <div class="col-11 ps-lg-5 acid-normal fontXX leadingXX textlightblack"><?= $quote_content ?></div>
-                                </div>
-                                 <?php endif ?>
+                                    <div class="d-flex quote-line dpt-35 dpb-35 dmt-55 dmb-55">
+                                        <div class="col-1"><img src="/wp-content/uploads/2025/03/quote.svg" alt=""></div>
+                                        <div class="col-11 ps-lg-5 acid-normal fontXX leadingXX textlightblack"><?= $quote_content ?></div>
+                                    </div>
+                                <?php endif ?>
 
-                            <?php elseif($content_type == 'without'): ?>
+                            <?php elseif ($content_type == 'without'): ?>
                                 <?php if (!empty($content)): ?>
-                                <div class="acid-normal fontXX leadingXX textlightblack"><?= $content ?></div>
-                                 <?php endif ?>
+                                    <div class="acid-normal fontXX leadingXX textlightblack"><?= $content ?></div>
+                                <?php endif ?>
                             <?php endif; ?>
                         <?php endforeach ?>
                     </div>
@@ -2282,13 +2282,13 @@ $flexible_content = get_field('flexible_content');
             $linkdin_title = $linkdin_media['title'];
             $linkdin_shortcode = $linkdin_media['linkdin_shortcode'];
         ?>
-            <section class="bglightwhite dpt-80">
+            <section class="bglightwhite dpt-80 tpt-50">
                 <div class="container">
                     <?php if (!empty($linkdin_title)): ?>
-                        <div class="fontMS dpb-45 leadingXL textlightblack acid-bold text-center"><?= $linkdin_title ?></div>
+                        <div class="fontMS dpb-45 leadingXL textlightblack acid-bold text-center resfontSX resleadingMM tpb-25"><?= $linkdin_title ?></div>
                     <?php endif; ?>
                     <?php if (!empty($linkdin_shortcode)): ?>
-                        <div class=""><?=$linkdin_shortcode ?></div>
+                        <div class=""><?= $linkdin_shortcode ?></div>
                     <?php endif; ?>
                 </div>
             </section>
